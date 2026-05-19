@@ -1,8 +1,16 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import { SlideData } from "@/lib/slides-data";
 import { cn } from "@/lib/utils";
+import {
+  MisalignmentDiagram,
+  DecisionTreeDiagram,
+  InterviewFlowDiagram,
+  OutputFlowDiagram,
+  WorkshopTimelineDiagram,
+} from "./graphics";
 
 // ─── Animation variants ──────────────────────────────────────────────────────
 
@@ -229,7 +237,70 @@ function WideLayout({ slide }: { slide: SlideData }) {
   );
 }
 
-function SplitLayout({ slide }: { slide: SlideData }) {
+function GraphicSplitLayout({ slide, graphic }: { slide: SlideData; graphic: React.ReactNode }) {
+  const { title, subtitle, body, bodyExtra } = slide;
+  const num = String(slide.id).padStart(2, "0");
+
+  return (
+    <div className="relative h-screen grid overflow-hidden" style={{ gridTemplateColumns: "5fr 7fr" }}>
+      <GhostNumber num={num} />
+
+      <motion.div
+        variants={stagger}
+        initial="hidden"
+        animate="show"
+        className="flex flex-col justify-between px-12 py-10 border-r-2 border-neutral-300 relative z-10"
+      >
+        <motion.p variants={fadeUp} className="font-mono text-sm tracking-[0.35em] uppercase text-neutral-500">
+          {num}
+        </motion.p>
+
+        <div className="flex-1 flex flex-col justify-center py-6">
+          <motion.h1
+            variants={fadeUp}
+            className="font-black leading-[1.0] tracking-[-0.025em] text-neutral-950 mb-5"
+            style={{ fontSize: "clamp(1.8rem, 3vw, 3rem)" }}
+          >
+            {title}
+          </motion.h1>
+          {subtitle && (
+            <motion.p variants={fadeUp} className="text-base text-neutral-600 font-light leading-relaxed">
+              {subtitle}
+            </motion.p>
+          )}
+          {body && body.length > 0 && (
+            <motion.div variants={fadeUp} className="mt-5 space-y-1">
+              <BodyLines lines={body} />
+            </motion.div>
+          )}
+          {bodyExtra && typeof bodyExtra === "string" && (
+            <motion.p
+              variants={fadeUp}
+              className="mt-5 text-sm font-semibold text-neutral-700 border-l-[3px] border-neutral-500 pl-4 py-0.5"
+            >
+              {bodyExtra}
+            </motion.p>
+          )}
+        </div>
+
+        <div />
+      </motion.div>
+
+      <motion.div
+        variants={stagger}
+        initial="hidden"
+        animate="show"
+        className="flex items-center justify-center px-12 py-10 relative z-10"
+      >
+        <motion.div variants={fadeUp} className="w-full">
+          {graphic}
+        </motion.div>
+      </motion.div>
+    </div>
+  );
+}
+
+function SplitLayout({ slide, graphic }: { slide: SlideData; graphic?: React.ReactNode }) {
   const { title, subtitle, body, bodyExtra, points, code, example } = slide;
   const num = String(slide.id).padStart(2, "0");
 
@@ -279,6 +350,13 @@ function SplitLayout({ slide }: { slide: SlideData }) {
         animate="show"
         className="overflow-y-auto px-10 py-10 flex flex-col justify-center relative z-10 scrollbar-none"
       >
+        {/* Inline diagram */}
+        {graphic && (
+          <motion.div variants={fadeUp} className="mb-7">
+            {graphic}
+          </motion.div>
+        )}
+
         {/* Example badge */}
         {example && (
           <motion.div
@@ -352,9 +430,20 @@ function SplitLayout({ slide }: { slide: SlideData }) {
 
 export default function Slide({ slide }: { slide: SlideData }) {
   const isHero = slide.id === 1 || slide.id === 15;
-  const isWide = !!slide.points && slide.points.length >= 3;
 
   if (isHero) return <HeroLayout slide={slide} />;
+
+  if (slide.id === 4) return <GraphicSplitLayout slide={slide} graphic={<DecisionTreeDiagram />} />;
+  if (slide.id === 8) return <GraphicSplitLayout slide={slide} graphic={<OutputFlowDiagram />} />;
+  if (slide.id === 12) return <GraphicSplitLayout slide={slide} graphic={<WorkshopTimelineDiagram />} />;
+
+  const isWide = !!slide.points && slide.points.length >= 3;
   if (isWide) return <WideLayout slide={slide} />;
-  return <SplitLayout slide={slide} />;
+
+  const inlineGraphic =
+    slide.id === 3 ? <MisalignmentDiagram /> :
+    slide.id === 5 ? <InterviewFlowDiagram /> :
+    undefined;
+
+  return <SplitLayout slide={slide} graphic={inlineGraphic} />;
 }
