@@ -44,9 +44,9 @@ function NavButton({
         "fixed top-1/2 -translate-y-1/2 z-50",
         side === "left" ? "left-5" : "right-5",
         "w-10 h-10 flex items-center justify-center rounded-full",
-        "border border-neutral-200 bg-white/90 backdrop-blur-sm",
+        "border-2 border-neutral-300 bg-white/90 backdrop-blur-sm",
         "opacity-0 hover:opacity-100 disabled:opacity-0",
-        "hover:border-neutral-400 hover:shadow-sm",
+        "hover:border-neutral-600 hover:shadow-sm",
         "transition-opacity duration-300 group",
       ].join(" ")}
     >
@@ -59,7 +59,7 @@ function NavButton({
         strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="text-neutral-400 group-hover:text-neutral-900 transition-colors"
+        className="text-neutral-600 group-hover:text-neutral-950 transition-colors"
       >
         {side === "left" ? (
           <polyline points="15 18 9 12 15 6" />
@@ -105,7 +105,7 @@ export default function PresentationPage() {
     <div className="relative h-screen overflow-hidden bg-white">
       {/* Progress bar — scaleX avoids layout reflow */}
       <motion.div
-        className="fixed top-0 left-0 h-[1.5px] w-full bg-neutral-900 z-50"
+        className="fixed top-0 left-0 h-[2px] w-full bg-neutral-900 z-50"
         style={{ transformOrigin: "left" }}
         animate={{ scaleX: (current + 1) / total }}
         transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -132,7 +132,7 @@ export default function PresentationPage() {
 
       {/* Slide counter */}
       <div className="fixed bottom-6 right-8 z-50 select-none pointer-events-none">
-        <span className="text-[10px] font-mono tracking-[0.3em] text-neutral-300">
+        <span className="text-xs font-mono tracking-[0.3em] text-neutral-500">
           {String(current + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
         </span>
       </div>

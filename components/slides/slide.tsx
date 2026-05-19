@@ -32,7 +32,7 @@ function GhostNumber({ num, size = "28vw" }: { num: string; size?: string }) {
   return (
     <div
       aria-hidden
-      className="absolute bottom-[-0.06em] right-[-0.02em] font-black text-neutral-900/[0.032] leading-none select-none pointer-events-none z-0"
+      className="absolute bottom-[-0.06em] right-[-0.02em] font-black text-neutral-900/[0.05] leading-none select-none pointer-events-none z-0"
       style={{ fontSize: size }}
     >
       {num}
@@ -57,13 +57,13 @@ function BodyLines({ lines }: { lines: string[] }) {
           <p
             key={i}
             className={cn(
-              "text-sm leading-relaxed",
-              isIndented && "pl-5 text-neutral-400",
-              !isIndented && "text-neutral-600",
-              isCheckmark && "text-emerald-600",
-              isCross && "text-red-500",
+              "text-base leading-relaxed",
+              isIndented && "pl-5 text-neutral-500",
+              !isIndented && "text-neutral-700",
+              isCheckmark && "text-emerald-700",
+              isCross && "text-red-600",
               isBetter && "font-bold text-neutral-900 mt-2",
-              isBold && "font-semibold text-neutral-800 mt-3 first:mt-0"
+              isBold && "font-semibold text-neutral-900 mt-3 first:mt-0"
             )}
           >
             {line}
@@ -80,27 +80,27 @@ function PointCard({ point, index }: { point: { label: string; items: string[] }
   return (
     <motion.div
       variants={cardFade}
-      className="rounded-2xl border border-neutral-100 bg-neutral-50/50 p-5 hover:border-neutral-200 hover:bg-neutral-50 transition-all duration-200 group relative overflow-hidden"
+      className="rounded-2xl border border-neutral-200 bg-neutral-50 p-5 hover:border-neutral-400 hover:bg-white transition-all duration-200 group relative overflow-hidden"
     >
-      <span className="absolute top-3 right-4 font-black text-neutral-100 text-xl leading-none select-none">
+      <span className="absolute top-3 right-4 font-black text-neutral-200 text-xl leading-none select-none">
         {String(index + 1).padStart(2, "0")}
       </span>
       {point.label && (
-        <p className="text-[10px] font-black tracking-[0.15em] uppercase text-neutral-400 group-hover:text-neutral-600 transition-colors mb-3 pr-8">
+        <p className="text-xs font-black tracking-[0.15em] uppercase text-neutral-500 group-hover:text-neutral-700 transition-colors mb-3 pr-8">
           {point.label}
         </p>
       )}
-      <ul className="space-y-1.5">
+      <ul className="space-y-2">
         {point.items.map((it, j) => (
           <li
             key={j}
             className={cn(
-              "text-xs text-neutral-500 leading-snug flex gap-1.5 items-start",
-              it.startsWith("✓") && "text-emerald-600"
+              "text-sm text-neutral-700 leading-snug flex gap-1.5 items-start",
+              it.startsWith("✓") && "text-emerald-700 font-medium"
             )}
           >
             {!it.match(/^(\d+\.|✓|✅)/) && (
-              <span className="text-neutral-300 mt-0.5 shrink-0 leading-none">—</span>
+              <span className="text-neutral-400 mt-0.5 shrink-0 leading-none">—</span>
             )}
             <span>{it}</span>
           </li>
@@ -121,32 +121,32 @@ function HeroLayout({ slide }: { slide: SlideData }) {
         variants={stagger}
         initial="hidden"
         animate="show"
-        className="relative z-10 max-w-[62%]"
+        className="relative z-10 max-w-[65%]"
       >
         <motion.p
           variants={fadeUp}
-          className="font-mono text-[11px] tracking-[0.35em] uppercase text-neutral-300 mb-10"
+          className="font-mono text-sm tracking-[0.35em] uppercase text-neutral-500 mb-10"
         >
           {num}
         </motion.p>
         <motion.h1
           variants={fadeUp}
           className="font-black leading-[0.9] tracking-[-0.03em] text-neutral-950 mb-8"
-          style={{ fontSize: "clamp(2.8rem, 5.5vw, 5rem)" }}
+          style={{ fontSize: "clamp(3.5rem, 6.5vw, 6rem)" }}
         >
           {slide.title}
         </motion.h1>
         {slide.subtitle && (
           <motion.p
             variants={fadeUp}
-            className="text-base lg:text-lg text-neutral-400 font-light leading-relaxed max-w-sm"
+            className="text-xl lg:text-2xl text-neutral-600 font-light leading-relaxed max-w-lg"
           >
             {slide.subtitle}
           </motion.p>
         )}
         {slide.id === 15 && (
           <motion.div variants={fadeUp} className="mt-14">
-            <div className="w-10 h-[2px] bg-neutral-900" />
+            <div className="w-12 h-[3px] bg-neutral-900" />
           </motion.div>
         )}
       </motion.div>
@@ -169,10 +169,10 @@ function WideLayout({ slide }: { slide: SlideData }) {
         className="relative z-10 flex flex-col h-full"
       >
         {/* Header row */}
-        <div className="flex items-end gap-8 mb-7 pb-6 border-b border-neutral-100">
+        <div className="flex items-end gap-8 mb-7 pb-6 border-b-2 border-neutral-300">
           <motion.p
             variants={fadeUp}
-            className="font-mono text-[11px] tracking-[0.35em] uppercase text-neutral-300 shrink-0 pb-0.5"
+            className="font-mono text-sm tracking-[0.35em] uppercase text-neutral-500 shrink-0 pb-0.5"
           >
             {num}
           </motion.p>
@@ -180,12 +180,12 @@ function WideLayout({ slide }: { slide: SlideData }) {
             <motion.h1
               variants={fadeUp}
               className="font-black leading-tight tracking-[-0.025em] text-neutral-950"
-              style={{ fontSize: "clamp(1.5rem, 2.4vw, 2.4rem)" }}
+              style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.8rem)" }}
             >
               {title}
             </motion.h1>
             {subtitle && (
-              <motion.p variants={fadeUp} className="text-sm text-neutral-400 font-light mt-1">
+              <motion.p variants={fadeUp} className="text-base text-neutral-600 font-light mt-1">
                 {subtitle}
               </motion.p>
             )}
@@ -219,7 +219,7 @@ function WideLayout({ slide }: { slide: SlideData }) {
         {bodyExtra && typeof bodyExtra === "string" && (
           <motion.p
             variants={fadeUp}
-            className="mt-4 text-xs font-semibold text-neutral-600 border-l-2 border-neutral-200 pl-3 py-0.5"
+            className="mt-4 text-sm font-semibold text-neutral-700 border-l-[3px] border-neutral-500 pl-4 py-0.5"
           >
             {bodyExtra}
           </motion.p>
@@ -242,11 +242,11 @@ function SplitLayout({ slide }: { slide: SlideData }) {
         variants={stagger}
         initial="hidden"
         animate="show"
-        className="flex flex-col justify-between px-12 py-10 border-r border-neutral-100 relative z-10"
+        className="flex flex-col justify-between px-12 py-10 border-r-2 border-neutral-300 relative z-10"
       >
         <motion.p
           variants={fadeUp}
-          className="font-mono text-[11px] tracking-[0.35em] uppercase text-neutral-300"
+          className="font-mono text-sm tracking-[0.35em] uppercase text-neutral-500"
         >
           {num}
         </motion.p>
@@ -254,15 +254,15 @@ function SplitLayout({ slide }: { slide: SlideData }) {
         <div className="flex-1 flex flex-col justify-center py-6">
           <motion.h1
             variants={fadeUp}
-            className="font-black leading-[1.0] tracking-[-0.025em] text-neutral-950 mb-4"
-            style={{ fontSize: "clamp(1.5rem, 2.6vw, 2.6rem)" }}
+            className="font-black leading-[1.0] tracking-[-0.025em] text-neutral-950 mb-5"
+            style={{ fontSize: "clamp(1.8rem, 3vw, 3rem)" }}
           >
             {title}
           </motion.h1>
           {subtitle && (
             <motion.p
               variants={fadeUp}
-              className="text-sm text-neutral-400 font-light leading-relaxed"
+              className="text-base text-neutral-600 font-light leading-relaxed"
             >
               {subtitle}
             </motion.p>
@@ -284,31 +284,31 @@ function SplitLayout({ slide }: { slide: SlideData }) {
           <motion.div
             variants={fadeUp}
             className={cn(
-              "inline-flex items-center gap-3 self-start rounded-full px-4 py-2 mb-6 border text-xs font-medium",
+              "inline-flex items-center gap-3 self-start rounded-full px-5 py-2.5 mb-7 border-2 text-sm font-medium",
               example.type === "bad"
-                ? "bg-red-50 border-red-100 text-red-800"
-                : "bg-emerald-50 border-emerald-100 text-emerald-800"
+                ? "bg-red-50 border-red-300 text-red-900"
+                : "bg-emerald-50 border-emerald-300 text-emerald-900"
             )}
           >
-            <span className="text-[10px] font-black tracking-[0.15em] uppercase opacity-50">
+            <span className="text-xs font-black tracking-[0.15em] uppercase opacity-70">
               {example.type === "bad" ? "Before" : "After"}
             </span>
-            <span className="w-px h-3 bg-current opacity-20 shrink-0" />
+            <span className="w-px h-3.5 bg-current opacity-30 shrink-0" />
             <span className="leading-snug">{example.label}</span>
           </motion.div>
         )}
 
         {/* Body */}
         {body && body.length > 0 && (
-          <motion.div variants={fadeUp} className="space-y-1.5 mb-6">
+          <motion.div variants={fadeUp} className="space-y-2 mb-7">
             <BodyLines lines={body} />
           </motion.div>
         )}
 
         {/* Code block */}
         {code && (
-          <motion.div variants={fadeUp} className="mb-6">
-            <pre className="font-mono text-[0.76rem] bg-neutral-950 text-neutral-100 rounded-2xl px-7 py-6 leading-loose whitespace-pre-wrap border border-neutral-800">
+          <motion.div variants={fadeUp} className="mb-7">
+            <pre className="font-mono text-[0.88rem] bg-neutral-950 text-neutral-100 rounded-2xl px-7 py-6 leading-loose whitespace-pre-wrap border border-neutral-700">
               {code}
             </pre>
           </motion.div>
@@ -319,7 +319,7 @@ function SplitLayout({ slide }: { slide: SlideData }) {
           <motion.div
             variants={cardStagger}
             className={cn(
-              "grid gap-3 mb-6",
+              "grid gap-3 mb-7",
               points.length === 1 ? "grid-cols-1" : "grid-cols-2"
             )}
           >
@@ -333,11 +333,11 @@ function SplitLayout({ slide }: { slide: SlideData }) {
         {bodyExtra && (
           <motion.div variants={fadeUp}>
             {typeof bodyExtra === "string" ? (
-              <p className="text-sm font-semibold text-neutral-700 border-l-2 border-neutral-200 pl-4 py-0.5 leading-relaxed">
+              <p className="text-base font-semibold text-neutral-800 border-l-[3px] border-neutral-500 pl-4 py-0.5 leading-relaxed">
                 {bodyExtra}
               </p>
             ) : (
-              <div className="space-y-1.5">
+              <div className="space-y-2">
                 <BodyLines lines={bodyExtra as string[]} />
               </div>
             )}
