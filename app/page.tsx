@@ -1,71 +1,141 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Slide from "@/components/slides/slide";
 import { SLIDES } from "@/lib/slides-data";
 
-export default function PresentationPage() {
-  const [current, setCurrent] = useState(0);
-  const total = SLIDES.length;
+const slideVariants = {
+  enter: (dir: number) => ({ x: dir > 0 ? 64 : -64, opacity: 0 }),
+  center: { x: 0, opacity: 1 },
+  exit: (dir: number) => ({ x: dir > 0 ? -64 : 64, opacity: 0 }),
+};
 
-  useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight" || e.key === " ") {
-        e.preventDefault();
-        setCurrent((c) => Math.min(c + 1, total - 1));
-      } else if (e.key === "ArrowLeft") {
-        setCurrent((c) => Math.max(c - 1, 0));
-      } else if (e.key === "Home") {
-        e.preventDefault();
-        setCurrent(0);
-      } else if (e.key === "End") {
-        e.preventDefault();
-        setCurrent(total - 1);
-      }
-    };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, [total]);
+function NavButton({
+  side,
+  onClick,
+  disabled,
+}: {
+  side: "left" | "right";
+  onClick: () => void;
+  disabled: boolean;
+}) {
+  const ref = useRef<HTMLButtonElement>(null);
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
 
   return (
-    <div className="relative min-h-screen bg-white">
-      {/* Slide content */}
-      <Slide slide={SLIDES[current]} />
-
-      {/* Left nav button */}
-      <button
-        onClick={() => setCurrent((c) => Math.max(c - 1, 0))}
-        disabled={current === 0}
-        aria-label="Previous slide"
-        className="fixed left-4 top-1/2 -translate-y-1/2 opacity-30 hover:opacity-100 disabled:opacity-10 transition-opacity duration-200 p-3 rounded-full hover:bg-neutral-100"
+    <motion.button
+      ref={ref}
+      disabled={disabled}
+      onClick={onClick}
+      onMouseMove={(e) => {
+        if (!ref.current) return;
+        const r = ref.current.getBoundingClientRect();
+        setOffset({
+          x: (e.clientX - (r.left + r.width / 2)) * 0.28,
+          y: (e.clientY - (r.top + r.height / 2)) * 0.28,
+        });
+      }}
+      onMouseLeave={() => setOffset({ x: 0, y: 0 })}
+      animate={{ x: offset.x, y: offset.y }}
+      transition={{ type: "spring", stiffness: 400, damping: 28 }}
+      aria-label={side === "left" ? "Previous slide" : "Next slide"}
+      className={[
+        "fixed top-1/2 -translate-y-1/2 z-50",
+        side === "left" ? "left-5" : "right-5",
+        "w-10 h-10 flex items-center justify-center rounded-full",
+        "border border-neutral-200 bg-white/90 backdrop-blur-sm",
+        "opacity-0 hover:opacity-100 disabled:opacity-0",
+        "hover:border-neutral-400 hover:shadow-sm",
+        "transition-opacity duration-300 group",
+      ].join(" ")}
+    >
+      <svg
+        width="13"
+        height="13"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="text-neutral-400 group-hover:text-neutral-900 transition-colors"
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        {side === "left" ? (
           <polyline points="15 18 9 12 15 6" />
-        </svg>
-      </button>
-
-      {/* Right nav button */}
-      <button
-        onClick={() => setCurrent((c) => Math.min(c + 1, total - 1))}
-        disabled={current === total - 1}
-        aria-label="Next slide"
-        className="fixed right-4 top-1/2 -translate-y-1/2 opacity-30 hover:opacity-100 disabled:opacity-10 transition-opacity duration-200 p-3 rounded-full hover:bg-neutral-100"
-      >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        ) : (
           <polyline points="9 18 15 12 9 6" />
-        </svg>
-      </button>
+        )}
+      </svg>
+    </motion.button>
+  );
+}
 
-      {/* Footer */}
-      <footer className="fixed bottom-0 left-0 right-0 flex items-center justify-between px-8 py-4">
-        <span className="text-xs text-neutral-400 tracking-wide">Claude Code for Productivity</span>
-        <div className="flex flex-col items-center gap-1">
-          <span className="text-xs text-neutral-400">
-            {current + 1} / {total}
-          </span>
-          <span className="text-xs text-neutral-300">← → Space · Home End</span>
-        </div>
-      </footer>
+export default function PresentationPage() {
+  const [current, setCurrent] = useState(0);
+  const [dir, setDir] = useState(1);
+  const total = SLIDES.length;
+
+  const goTo = (next: number) => {
+    setDir(next > current ? 1 : -1);
+    setCurrent(next);
+  };
+
+  useEffect(() => {
+    const handle = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight" || e.key === " ") {
+        e.preventDefault();
+        if (current < total - 1) goTo(current + 1);
+      } else if (e.key === "ArrowLeft") {
+        if (current > 0) goTo(current - 1);
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        goTo(0);
+      } else if (e.key === "End") {
+        e.preventDefault();
+        goTo(total - 1);
+      }
+    };
+    window.addEventListener("keydown", handle);
+    return () => window.removeEventListener("keydown", handle);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [current, total]);
+
+  return (
+    <div className="relative h-screen overflow-hidden bg-white">
+      {/* Progress bar — scaleX avoids layout reflow */}
+      <motion.div
+        className="fixed top-0 left-0 h-[1.5px] w-full bg-neutral-900 z-50"
+        style={{ transformOrigin: "left" }}
+        animate={{ scaleX: (current + 1) / total }}
+        transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+      />
+
+      {/* Slides */}
+      <AnimatePresence mode="wait" custom={dir}>
+        <motion.div
+          key={current}
+          custom={dir}
+          variants={slideVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{ duration: 0.38, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="absolute inset-0"
+        >
+          <Slide slide={SLIDES[current]} />
+        </motion.div>
+      </AnimatePresence>
+
+      <NavButton side="left" onClick={() => goTo(current - 1)} disabled={current === 0} />
+      <NavButton side="right" onClick={() => goTo(current + 1)} disabled={current === total - 1} />
+
+      {/* Slide counter */}
+      <div className="fixed bottom-6 right-8 z-50 select-none pointer-events-none">
+        <span className="text-[10px] font-mono tracking-[0.3em] text-neutral-300">
+          {String(current + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+        </span>
+      </div>
     </div>
   );
 }

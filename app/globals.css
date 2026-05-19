@@ -28,7 +28,11 @@ body {
   user-select: none;
 }
 
-/* Smooth slide transitions */
-.slide-container {
-  transition: opacity 0.2s ease-in-out;
+/* Hide scrollbar on content columns */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
