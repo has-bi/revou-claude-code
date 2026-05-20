@@ -10,18 +10,18 @@ export interface SlideData {
 }
 
 export const SLIDES: SlideData[] = [
-  // Slide 1: Title
+  // ── Section 1: Why ───────────────────────────────────────────────────────────
+
   {
     id: 1,
     title: "Claude Code for Productivity",
     subtitle: "Engineering Better Processes Through AI Collaboration",
   },
 
-  // Slide 2: Today's Focus
   {
     id: 2,
-    title: "Today's Focus",
-    subtitle: "What We're Actually Doing Today",
+    title: "Today's Agenda",
+    subtitle: "Learn → See → Do",
     body: [
       "You already know:",
       "✓ What Claude Code is",
@@ -30,20 +30,20 @@ export const SLIDES: SlideData[] = [
     ],
     points: [
       {
-        label: "Today we're covering:",
+        label: "Today we cover:",
         items: [
-          "Process engineering: How to structure problems before coding",
-          "The grill-me approach: Using relentless interviewing to resolve design trees",
-          "From vague idea → clear SOW: Turning \"I need automation\" into actionable spec",
-          "Skills & connectors: Extending Claude with reusable workflows and tool integrations",
-          "Live demo: Watch the full problem-to-solution process",
+          "The methodology: why most AI projects fail and how to fix it",
+          "Skills & connectors: reusable workflows + tool integrations",
+          "Live demo (20 min): Isi Kulkasku fridge tracker, built start to finish",
+          "Case study lab (50 min): apply grill-me to your own real problem",
         ],
       },
     ],
-    bodyExtra: "Goal: You leave with a methodology, not just code examples.",
+    bodyExtra: "Structure: understand the method → watch it live → practice it yourself.",
   },
 
-  // Slide 3: The Real Problem
+  // ── Section 2: The Methodology ────────────────────────────────────────────────
+
   {
     id: 3,
     title: "The Real Problem",
@@ -60,7 +60,6 @@ export const SLIDES: SlideData[] = [
     ],
   },
 
-  // Slide 4: The Design Tree Concept
   {
     id: 4,
     title: "The Design Tree Concept",
@@ -95,7 +94,6 @@ export const SLIDES: SlideData[] = [
     bodyExtra: "You need to walk down EVERY branch before coding.",
   },
 
-  // Slide 5: The grill-me Method
   {
     id: 5,
     title: "The grill-me Method",
@@ -120,10 +118,9 @@ For each question, provide your recommended answer.`,
     ],
   },
 
-  // Slide 6: Real Example - Before grill-me
   {
     id: 6,
-    title: "Real Example - Before grill-me",
+    title: "Real Example — Before grill-me",
     subtitle: "The 'Just Build It' Approach",
     example: {
       type: "bad",
@@ -145,15 +142,13 @@ For each question, provide your recommended answer.`,
     ],
   },
 
-  // Slide 7: Real Example - With grill-me
   {
     id: 7,
-    title: "Real Example - With grill-me",
+    title: "Real Example — With grill-me",
     subtitle: "The Interview-First Approach",
     example: {
       type: "good",
-      label:
-        "User prompt: \"Build me a tool to track team tasks\" + uses grill-me skill",
+      label: "Same prompt + grill-me skill",
     },
     body: [
       "Claude's interview (excerpt):",
@@ -166,12 +161,11 @@ For each question, provide your recommended answer.`,
       "7. Who should see what? Different access levels?",
       "8. How do you want to view tasks? List, board, timeline?",
       "9. Do you need reporting? What kind of reports?",
-      "10. [continues for 15-20 more questions]",
+      "10. [continues for 15–20 more questions]",
       "Result: Clear SOW before a single line of code is written.",
     ],
   },
 
-  // Slide 8: The Output - Flowchart & SOW
   {
     id: 8,
     title: "The Output — Flowchart & SOW",
@@ -198,31 +192,32 @@ For each question, provide your recommended answer.`,
         ],
       },
       {
-        label: "3. Shared vocabulary",
+        label: "3. Shared Vocabulary",
         items: ["Terminology defined", "Ambiguous terms clarified"],
       },
     ],
     bodyExtra: "Now you can code with confidence.",
   },
 
-  // Slide 9: Skills — Pre-Built Workflows
+  // ── Section 3: The Toolkit ────────────────────────────────────────────────────
+
   {
     id: 9,
     title: "Skills — Pre-Built Workflows",
-    subtitle: "Install Once, Invoke with a Slash Command",
-    body: ["Skills are reusable prompt workflows you invoke directly in your session."],
+    subtitle: "SOW in hand. Now use the right tool for the job.",
+    body: ["Skills are reusable slash-command workflows. Install once, invoke per session."],
     points: [
       {
         label: "grill-me",
         items: [
-          "Interview-driven design — the core skill we covered today",
-          "Resolves every branch before you write a line of code",
+          "The interview skill — the core of today's methodology",
+          "Walks every branch until shared understanding is reached",
         ],
       },
       {
         label: "Next.js Frontend",
         items: [
-          "Official skill from the Claude Code repo",
+          "Official skill from the Claude Code GitHub",
           "Component scaffolding, routing, layouts, data fetching patterns",
         ],
       },
@@ -237,26 +232,25 @@ For each question, provide your recommended answer.`,
         label: "to-issues",
         items: [
           "Breaks a PRD into independently-grabbable tasks",
-          "Pairs with Linear or GitHub Issues for immediate planning",
+          "Pairs with Linear or GitHub Issues for immediate sprint planning",
         ],
       },
       {
         label: "improve-codebase-architecture",
         items: [
           "Finds refactoring opportunities using your domain language",
-          "Respects the decisions documented in CONTEXT.md",
+          "Respects decisions documented in CONTEXT.md / CLAUDE.md",
         ],
       },
     ],
-    bodyExtra: "Find skills: github.com/anthropics/claude-code — official + community",
+    bodyExtra: "Skills live at: github.com/anthropics/claude-code (official + community)",
   },
 
-  // Slide 10: Connectors — Your Tools Inside Claude
   {
     id: 10,
     title: "Connectors — Your Tools Inside Claude",
     subtitle: "Model Context Protocol (MCP)",
-    body: ["MCP servers let Claude read and write to the tools you already use — without copy-pasting."],
+    body: ["MCP servers let Claude read and write to the tools you already use — no copy-pasting context."],
     points: [
       {
         label: "GitHub",
@@ -270,15 +264,15 @@ For each question, provide your recommended answer.`,
         label: "Linear",
         items: [
           "Pick up tasks directly in your session",
-          "Update issue status, assignee, priority",
+          "Update issue status, assignee, priority in real time",
           "Create sub-issues from a generated SOW",
         ],
       },
       {
         label: "Vercel",
         items: [
-          "Trigger deployments and check build logs",
-          "Read runtime errors directly in context",
+          "Trigger deployments and read build logs",
+          "Surface runtime errors directly in context",
           "Manage environment variables",
         ],
       },
@@ -294,23 +288,23 @@ For each question, provide your recommended answer.`,
     bodyExtra: "Setup: add MCP servers to .claude/settings.json in your project",
   },
 
-  // Slide 11: The Daily Workflow
   {
     id: 11,
     title: "The Daily Workflow",
     subtitle: "Claude Code + Linear + GitHub + Skills",
     body: [
-      "This is how a typical day actually looks:",
-      "1. Open Linear — pick up the top task",
-      "2. Open Claude Code — load the relevant skill for the work",
+      "This is how a typical work day looks in practice:",
+      "1. Open Linear — pick up the top task for the day",
+      "2. Open Claude Code — load the skill relevant to the work",
       "3. Run grill-me if requirements are unclear — resolve before coding",
       "4. Build — Claude Code + GitHub connector for diffs and PRs",
-      "5. Ship — Vercel connector for deploy status and logs",
+      "5. Ship — Vercel connector for deploy status and runtime logs",
     ],
     bodyExtra: "The connectors keep everything in one place. No context-switching.",
   },
 
-  // Slide 12: When to Use This Approach
+  // ── Section 4: Guardrails ─────────────────────────────────────────────────────
+
   {
     id: 12,
     title: "When to Use This Approach",
@@ -341,45 +335,8 @@ For each question, provide your recommended answer.`,
     ],
   },
 
-  // Slide 13: Enhancing Your Workflow
   {
     id: 13,
-    title: "Enhancing Your Workflow",
-    subtitle: "Process Improvements Beyond grill-me",
-    body: ["Other skills and techniques to combine:"],
-    points: [
-      {
-        label: "1. CONTEXT.md / CLAUDE.md",
-        items: [
-          "Document domain language, architecture decisions",
-          "Claude reads this before every session",
-        ],
-      },
-      {
-        label: "2. to-prd skill",
-        items: ["Convert grill-me output into formal PRD"],
-      },
-      {
-        label: "3. to-issues skill",
-        items: ["Break PRD into independently-grabbable tasks"],
-      },
-      {
-        label: "4. TDD workflow",
-        items: ["Test-driven development with red-green-refactor loop"],
-      },
-      {
-        label: "5. improve-codebase-architecture",
-        items: [
-          "Find refactoring opportunities based on domain language",
-        ],
-      },
-    ],
-    bodyExtra: "Full toolkit: github.com/mattpocock/skills",
-  },
-
-  // Slide 14: Common Mistakes
-  {
-    id: 14,
     title: "Common Mistakes in AI Collaboration",
     subtitle: "What Slows People Down",
     body: [
@@ -397,60 +354,177 @@ For each question, provide your recommended answer.`,
     ],
   },
 
-  // Slide 15: Today's Workshop Flow
+  // ── Section 5: Live Demo — Isi Kulkasku ──────────────────────────────────────
+
+  {
+    id: 14,
+    title: "Live Demo",
+    subtitle: "Isi Kulkasku — My Fridge Tracker",
+    body: [
+      "20 minutes. A real problem. The full methodology.",
+      "What you'll watch:",
+      "  • A vague problem described the way it arrives in your head",
+      "  • grill-me running live — every branch walked, every decision made",
+      "  • The SOW that emerges from the interview",
+      "  • The app built with Claude Code in 10–13 minutes",
+    ],
+    bodyExtra: "Watch how the questions in grill-me map directly to the code structure.",
+  },
+
   {
     id: 15,
-    title: "Today's Workshop Flow",
-    subtitle: "What We'll Do in Case Study Lab",
-    body: ["Your task (50 mins):"],
-    points: [
-      {
-        label: "Step 1: Identify a problem (10 mins)",
-        items: [
-          "Pick one repetitive/inefficient task from your work",
-          "Brief your group",
-        ],
-      },
-      {
-        label: "Step 2: Grill each other (30 mins)",
-        items: [
-          "One person presents their problem",
-          "Others interview them using grill-me approach",
-          "Walk down the decision tree",
-          "Resolve dependencies",
-        ],
-      },
-      {
-        label: "Step 3: Document (10 mins)",
-        items: [
-          "Create flowchart (can be rough sketch)",
-          "Write SOW bullet points",
-          "Identify what you NOW understand that wasn't clear at start",
-        ],
-      },
+    title: "The Problem",
+    subtitle: "How It Arrives in Your Head",
+    body: [
+      "The vague ask:",
+      "  \"I want something to track what's in my fridge.\"",
+      "What I know:",
+      "  • I keep forgetting about food that's about to expire",
+      "  • I throw away money every week on forgotten produce",
+      "  • I want some kind of reminder before it's too late",
+      "What I don't know yet:",
+      "  • What data to actually track",
+      "  • How notifications should work",
+      "  • Whether my family shares the same list",
+      "  • What categories make sense for me",
     ],
-    bodyExtra: "Then: present findings (30 mins total across groups)",
+    bodyExtra: "This is where most people open Claude and just start coding.",
   },
 
-  // Slide 16: Demo Preview
   {
     id: 16,
-    title: "Demo Preview",
-    subtitle: "What I'll Build Live",
+    title: "grill-me in Action",
+    subtitle: "12 Questions. 3 Minutes. Every Branch Resolved.",
     body: [
-      "Watch the full grill-me workflow in real time:",
-      "What you'll see:",
-      "1. A real problem — described vaguely, the way it arrives in your head",
-      "2. grill-me in action — walking every branch of the decision tree",
-      "3. The output — a flowchart and SOW that emerges from the interview",
-      "4. The build — code written with clarity, not guesswork",
+      "1. What items will you track? Food only, or beverages too?",
+      "2. Do you always know the expiry date when you add something?",
+      "3. How early do you want to be warned? 1 day, 3 days, 1 week?",
+      "4. How should notifications arrive? In-app, email, browser push?",
+      "5. What time of day? Morning, before shopping?",
+      "6. Do you track quantity? (half a milk carton vs full)",
+      "7. Single user or shared with family?",
+      "8. What categories make sense for your fridge?",
+      "9. What happens when you consume an item — delete or mark as used?",
+      "10. Mobile or desktop first?",
+      "11. Do you want a shopping list for items to restock?",
+      "12. Do you need history — how much food you consumed over time?",
     ],
-    bodyExtra: "Pay attention to: how many hidden decisions surface that weren't obvious upfront.",
+    bodyExtra: "Each answer closes a branch. By question 12, the SOW writes itself.",
   },
 
-  // Slide 17: Key Takeaways
   {
     id: 17,
+    title: "Scope of Work",
+    subtitle: "What We Decided to Build",
+    body: ["Decisions made from the interview:"],
+    points: [
+      {
+        label: "Item Model",
+        items: [
+          "Fields: name, category, quantity + unit, expiry date (optional), added date",
+          "6 categories: Produce · Dairy · Meat · Fish · Beverage · Other",
+          "Status: Fresh (>3 days) · Expiring Soon (≤3 days) · Expired · No Date",
+        ],
+      },
+      {
+        label: "The Interface",
+        items: [
+          "Dashboard view: cards sorted by expiry date",
+          "Status badges with color coding (green / yellow / red)",
+          "Add Item form: name + category dropdown + date picker + quantity",
+          "One-tap remove when item is consumed",
+        ],
+      },
+      {
+        label: "Notifications",
+        items: [
+          "Daily in-app banner at page load: items expiring in ≤ 3 days",
+          "Browser push notification permission (optional, user-controlled)",
+          "Single user only — multi-household is v2",
+        ],
+      },
+    ],
+    bodyExtra: "Out of scope v1: barcode scanning · recipe suggestions · shopping list · history",
+  },
+
+  {
+    id: 18,
+    title: "The Build — 3 Phases",
+    subtitle: "10–13 Minutes with Claude Code",
+    body: ["Each grill-me decision maps directly to a phase:"],
+    points: [
+      {
+        label: "Phase 1 — Foundation (3 min)",
+        items: [
+          "Load the frontend-nextjs skill for scaffold",
+          "Define Item type: name, category, qty, unit, expiryDate?",
+          "Set up useState array as the in-memory fridge state",
+          "Helper: getDaysUntilExpiry(date) → status string",
+        ],
+      },
+      {
+        label: "Phase 2 — Core UI (5 min)",
+        items: [
+          "Fridge board: item cards sorted ascending by expiry date",
+          "Status badge per card: Fresh / Expiring Soon / Expired / No Date",
+          "Add Item form: all fields, submit appends to state",
+          "Consume button: remove item from list",
+        ],
+      },
+      {
+        label: "Phase 3 — Notifications (3 min)",
+        items: [
+          "On mount: filter items expiring ≤ 3 days → show banner",
+          "Banner: count + item names (e.g. 'Milk, Eggs expiring soon')",
+          "Request browser push permission if user opts in",
+          "Empty state: friendly message when fridge is clear",
+        ],
+      },
+    ],
+    bodyExtra: "The structure we build mirrors the SOW branch by branch.",
+  },
+
+  // ── Section 6: Case Study Lab ─────────────────────────────────────────────────
+
+  {
+    id: 19,
+    title: "Your Turn — Case Study Lab",
+    subtitle: "50 Minutes to Apply the Methodology",
+    body: ["Pick a real repetitive problem from your own work:"],
+    points: [
+      {
+        label: "Step 1: Identify (10 min)",
+        items: [
+          "Pick one inefficient or repetitive task from your daily work",
+          "Describe it vaguely — the way it arrived in your head",
+          "Brief your group: 2 minutes max",
+        ],
+      },
+      {
+        label: "Step 2: Grill (30 min)",
+        items: [
+          "One person presents; others interview them grill-me style",
+          "Walk every branch of the decision tree",
+          "Resolve dependencies — don't skip hard questions",
+          "Someone documents decisions as they're made",
+        ],
+      },
+      {
+        label: "Step 3: Document (10 min)",
+        items: [
+          "Sketch a rough system flowchart",
+          "Write SOW bullet points: in-scope + explicitly out of scope",
+          "Note: what did you learn that wasn't obvious at the start?",
+        ],
+      },
+    ],
+    bodyExtra: "Then: each group presents findings — 5 min per group",
+  },
+
+  // ── Section 7: Close ──────────────────────────────────────────────────────────
+
+  {
+    id: 20,
     title: "Key Takeaways",
     subtitle: "Process > Tools",
     body: ["Remember:"],
@@ -458,12 +532,12 @@ For each question, provide your recommended answer.`,
       {
         label: "",
         items: [
-          "1. Interview before implementation — grill-me style saves time",
-          "2. Walk the decision tree — resolve every branch explicitly",
+          "1. Interview before implementation — grill-me saves time and rework",
+          "2. Walk every branch — don't code until every decision is resolved",
           "3. Document shared understanding — CONTEXT.md, SOW, flowcharts",
-          "4. Use skills — reusable workflows for common patterns",
-          "5. Connect your tools — Linear, GitHub, Vercel via MCP",
-          "6. Slow down to speed up — 15 min planning beats 2 hours rework",
+          "4. Use skills — reusable workflows for common patterns (to-prd, to-issues)",
+          "5. Connect your tools — Linear, GitHub, Vercel via MCP keep you in flow",
+          "6. Slow down to speed up — 15 min planning beats 2 hours of rework",
         ],
       },
     ],
@@ -471,16 +545,9 @@ For each question, provide your recommended answer.`,
       "Mindset shift: Your job isn't to tell Claude what to do. It's to reach shared understanding, THEN build together.",
   },
 
-  // Slide 18: Let's Build
   {
-    id: 18,
+    id: 21,
     title: "Let's Build",
     subtitle: "From Vague Problem to Clear Solution",
-    body: [
-      "Apply the methodology starting today.",
-      "Take your next project — don't jump to code.",
-      "Interview first. Walk the tree. Build with clarity.",
-    ],
-    bodyExtra: "The bottleneck was never Claude. It was shared understanding.",
   },
 ];
