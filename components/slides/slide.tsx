@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { SlideData } from "@/lib/slides-data";
 import { cn } from "@/lib/utils";
@@ -11,8 +11,6 @@ import {
   OutputFlowDiagram,
   WorkshopTimelineDiagram,
 } from "./graphics";
-
-// ─── Animation variants ──────────────────────────────────────────────────────
 
 const stagger = {
   hidden: {},
@@ -34,7 +32,7 @@ const cardFade = {
   show: { y: 0, opacity: 1, transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] } },
 };
 
-// ─── Ghost number ─────────────────────────────────────────────────────────────
+const BOLD_LINE_RE = /^(The result:|What Claude built:|What user actually needed:|What you'll see:|What happens:|Claude's interview|Claude's response|Result:)/;
 
 function GhostNumber({ num, size = "28vw" }: { num: string; size?: string }) {
   return (
@@ -48,8 +46,6 @@ function GhostNumber({ num, size = "28vw" }: { num: string; size?: string }) {
   );
 }
 
-// ─── Body lines renderer ─────────────────────────────────────────────────────
-
 function BodyLines({ lines }: { lines: string[] }) {
   return (
     <>
@@ -58,9 +54,7 @@ function BodyLines({ lines }: { lines: string[] }) {
         const isCross = line.startsWith("❌");
         const isIndented = line.startsWith("  ");
         const isBetter = line.startsWith("✅ Better");
-        const isBold = !!line.match(
-          /^(The result:|What Claude built:|What user actually needed:|What you'll see:|What happens:|Claude's interview|Claude's response|Result:)/
-        );
+        const isBold = BOLD_LINE_RE.test(line);
         return (
           <p
             key={i}
@@ -81,8 +75,6 @@ function BodyLines({ lines }: { lines: string[] }) {
     </>
   );
 }
-
-// ─── Point card ──────────────────────────────────────────────────────────────
 
 function PointCard({ point, index }: { point: { label: string; items: string[] }; index: number }) {
   return (
@@ -118,23 +110,46 @@ function PointCard({ point, index }: { point: { label: string; items: string[] }
   );
 }
 
-// ─── Layouts ─────────────────────────────────────────────────────────────────
+// Shared left column used by both split layout variants
+function SlideLeftColumn({ slide, children }: { slide: SlideData; children?: ReactNode }) {
+  const num = String(slide.id).padStart(2, "0");
+  return (
+    <motion.div
+      variants={stagger}
+      initial="hidden"
+      animate="show"
+      className="flex flex-col justify-between px-12 py-10 border-r-2 border-neutral-300 relative z-10"
+    >
+      <motion.p variants={fadeUp} className="font-mono text-sm tracking-[0.35em] uppercase text-neutral-500">
+        {num}
+      </motion.p>
+      <div className="flex-1 flex flex-col justify-center py-6">
+        <motion.h1
+          variants={fadeUp}
+          className="font-black leading-[1.0] tracking-[-0.025em] text-neutral-950 mb-5"
+          style={{ fontSize: "clamp(1.8rem, 3vw, 3rem)" }}
+        >
+          {slide.title}
+        </motion.h1>
+        {slide.subtitle && (
+          <motion.p variants={fadeUp} className="text-base text-neutral-600 font-light leading-relaxed">
+            {slide.subtitle}
+          </motion.p>
+        )}
+        {children}
+      </div>
+      <div />
+    </motion.div>
+  );
+}
 
 function HeroLayout({ slide }: { slide: SlideData }) {
   const num = String(slide.id).padStart(2, "0");
   return (
     <div className="relative h-screen flex flex-col justify-center px-14 lg:px-20 overflow-hidden">
       <GhostNumber num={num} size="30vw" />
-      <motion.div
-        variants={stagger}
-        initial="hidden"
-        animate="show"
-        className="relative z-10 max-w-[65%]"
-      >
-        <motion.p
-          variants={fadeUp}
-          className="font-mono text-sm tracking-[0.35em] uppercase text-neutral-500 mb-10"
-        >
+      <motion.div variants={stagger} initial="hidden" animate="show" className="relative z-10 max-w-[65%]">
+        <motion.p variants={fadeUp} className="font-mono text-sm tracking-[0.35em] uppercase text-neutral-500 mb-10">
           {num}
         </motion.p>
         <motion.h1
@@ -145,10 +160,7 @@ function HeroLayout({ slide }: { slide: SlideData }) {
           {slide.title}
         </motion.h1>
         {slide.subtitle && (
-          <motion.p
-            variants={fadeUp}
-            className="text-xl lg:text-2xl text-neutral-600 font-light leading-relaxed max-w-lg"
-          >
+          <motion.p variants={fadeUp} className="text-xl lg:text-2xl text-neutral-600 font-light leading-relaxed max-w-lg">
             {slide.subtitle}
           </motion.p>
         )}
@@ -170,13 +182,7 @@ function WideLayout({ slide }: { slide: SlideData }) {
   return (
     <div className="relative h-screen flex flex-col overflow-hidden px-12 lg:px-16 py-10">
       <GhostNumber num={num} size="22vw" />
-      <motion.div
-        variants={stagger}
-        initial="hidden"
-        animate="show"
-        className="relative z-10 flex flex-col h-full"
-      >
-        {/* Header row */}
+      <motion.div variants={stagger} initial="hidden" animate="show" className="relative z-10 flex flex-col h-full">
         <div className="flex items-end gap-8 mb-7 pb-6 border-b-2 border-neutral-300">
           <motion.p
             variants={fadeUp}
@@ -206,7 +212,6 @@ function WideLayout({ slide }: { slide: SlideData }) {
           </motion.div>
         )}
 
-        {/* Point cards grid */}
         {points && (
           <motion.div
             variants={cardStagger}
@@ -237,127 +242,56 @@ function WideLayout({ slide }: { slide: SlideData }) {
   );
 }
 
-function GraphicSplitLayout({ slide, graphic }: { slide: SlideData; graphic: React.ReactNode }) {
-  const { title, subtitle, body, bodyExtra } = slide;
+function GraphicSplitLayout({ slide, graphic }: { slide: SlideData; graphic: ReactNode }) {
+  const { body, bodyExtra } = slide;
   const num = String(slide.id).padStart(2, "0");
 
   return (
     <div className="relative h-screen grid overflow-hidden" style={{ gridTemplateColumns: "5fr 7fr" }}>
       <GhostNumber num={num} />
-
-      <motion.div
-        variants={stagger}
-        initial="hidden"
-        animate="show"
-        className="flex flex-col justify-between px-12 py-10 border-r-2 border-neutral-300 relative z-10"
-      >
-        <motion.p variants={fadeUp} className="font-mono text-sm tracking-[0.35em] uppercase text-neutral-500">
-          {num}
-        </motion.p>
-
-        <div className="flex-1 flex flex-col justify-center py-6">
-          <motion.h1
+      <SlideLeftColumn slide={slide}>
+        {body && body.length > 0 && (
+          <motion.div variants={fadeUp} className="mt-5 space-y-1">
+            <BodyLines lines={body} />
+          </motion.div>
+        )}
+        {bodyExtra && typeof bodyExtra === "string" && (
+          <motion.p
             variants={fadeUp}
-            className="font-black leading-[1.0] tracking-[-0.025em] text-neutral-950 mb-5"
-            style={{ fontSize: "clamp(1.8rem, 3vw, 3rem)" }}
+            className="mt-5 text-sm font-semibold text-neutral-700 border-l-[3px] border-neutral-500 pl-4 py-0.5"
           >
-            {title}
-          </motion.h1>
-          {subtitle && (
-            <motion.p variants={fadeUp} className="text-base text-neutral-600 font-light leading-relaxed">
-              {subtitle}
-            </motion.p>
-          )}
-          {body && body.length > 0 && (
-            <motion.div variants={fadeUp} className="mt-5 space-y-1">
-              <BodyLines lines={body} />
-            </motion.div>
-          )}
-          {bodyExtra && typeof bodyExtra === "string" && (
-            <motion.p
-              variants={fadeUp}
-              className="mt-5 text-sm font-semibold text-neutral-700 border-l-[3px] border-neutral-500 pl-4 py-0.5"
-            >
-              {bodyExtra}
-            </motion.p>
-          )}
-        </div>
-
-        <div />
-      </motion.div>
-
+            {bodyExtra}
+          </motion.p>
+        )}
+      </SlideLeftColumn>
       <motion.div
         variants={stagger}
         initial="hidden"
         animate="show"
         className="flex items-center justify-center px-12 py-10 relative z-10"
       >
-        <motion.div variants={fadeUp} className="w-full">
-          {graphic}
-        </motion.div>
+        <div className="w-full">{graphic}</div>
       </motion.div>
     </div>
   );
 }
 
-function SplitLayout({ slide, graphic }: { slide: SlideData; graphic?: React.ReactNode }) {
-  const { title, subtitle, body, bodyExtra, points, code, example } = slide;
+function SplitLayout({ slide, graphic }: { slide: SlideData; graphic?: ReactNode }) {
+  const { body, bodyExtra, points, code, example } = slide;
   const num = String(slide.id).padStart(2, "0");
 
   return (
     <div className="relative h-screen grid overflow-hidden" style={{ gridTemplateColumns: "5fr 7fr" }}>
       <GhostNumber num={num} />
-
-      {/* Left: title column */}
-      <motion.div
-        variants={stagger}
-        initial="hidden"
-        animate="show"
-        className="flex flex-col justify-between px-12 py-10 border-r-2 border-neutral-300 relative z-10"
-      >
-        <motion.p
-          variants={fadeUp}
-          className="font-mono text-sm tracking-[0.35em] uppercase text-neutral-500"
-        >
-          {num}
-        </motion.p>
-
-        <div className="flex-1 flex flex-col justify-center py-6">
-          <motion.h1
-            variants={fadeUp}
-            className="font-black leading-[1.0] tracking-[-0.025em] text-neutral-950 mb-5"
-            style={{ fontSize: "clamp(1.8rem, 3vw, 3rem)" }}
-          >
-            {title}
-          </motion.h1>
-          {subtitle && (
-            <motion.p
-              variants={fadeUp}
-              className="text-base text-neutral-600 font-light leading-relaxed"
-            >
-              {subtitle}
-            </motion.p>
-          )}
-        </div>
-
-        <div />
-      </motion.div>
-
-      {/* Right: content column */}
+      <SlideLeftColumn slide={slide} />
       <motion.div
         variants={stagger}
         initial="hidden"
         animate="show"
         className="overflow-y-auto px-10 py-10 flex flex-col justify-center relative z-10 scrollbar-none"
       >
-        {/* Inline diagram */}
-        {graphic && (
-          <motion.div variants={fadeUp} className="mb-7">
-            {graphic}
-          </motion.div>
-        )}
+        {graphic && <div className="mb-7">{graphic}</div>}
 
-        {/* Example badge */}
         {example && (
           <motion.div
             variants={fadeUp}
@@ -376,14 +310,12 @@ function SplitLayout({ slide, graphic }: { slide: SlideData; graphic?: React.Rea
           </motion.div>
         )}
 
-        {/* Body */}
         {body && body.length > 0 && (
           <motion.div variants={fadeUp} className="space-y-2 mb-7">
             <BodyLines lines={body} />
           </motion.div>
         )}
 
-        {/* Code block */}
         {code && (
           <motion.div variants={fadeUp} className="mb-7">
             <pre className="font-mono text-[0.88rem] bg-neutral-950 text-neutral-100 rounded-2xl px-7 py-6 leading-loose whitespace-pre-wrap border border-neutral-700">
@@ -392,7 +324,6 @@ function SplitLayout({ slide, graphic }: { slide: SlideData; graphic?: React.Rea
           </motion.div>
         )}
 
-        {/* Point cards */}
         {points && points.length > 0 && (
           <motion.div
             variants={cardStagger}
@@ -407,7 +338,6 @@ function SplitLayout({ slide, graphic }: { slide: SlideData; graphic?: React.Rea
           </motion.div>
         )}
 
-        {/* Body extra */}
         {bodyExtra && (
           <motion.div variants={fadeUp}>
             {typeof bodyExtra === "string" ? (
@@ -425,8 +355,6 @@ function SplitLayout({ slide, graphic }: { slide: SlideData; graphic?: React.Rea
     </div>
   );
 }
-
-// ─── Main export ─────────────────────────────────────────────────────────────
 
 export default function Slide({ slide }: { slide: SlideData }) {
   const isHero = slide.id === 1 || slide.id === 15;
