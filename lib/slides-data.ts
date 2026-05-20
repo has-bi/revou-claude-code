@@ -35,6 +35,7 @@ export const SLIDES: SlideData[] = [
           "Process engineering: How to structure problems before coding",
           "The grill-me approach: Using relentless interviewing to resolve design trees",
           "From vague idea → clear SOW: Turning \"I need automation\" into actionable spec",
+          "Skills & connectors: Extending Claude with reusable workflows and tool integrations",
           "Live demo: Watch the full problem-to-solution process",
         ],
       },
@@ -173,7 +174,7 @@ For each question, provide your recommended answer.`,
   // Slide 8: The Output - Flowchart & SOW
   {
     id: 8,
-    title: "The Output - Flowchart & SOW",
+    title: "The Output — Flowchart & SOW",
     subtitle: "What You Get After Grilling",
     body: ["After the interview, Claude produces:"],
     points: [
@@ -204,9 +205,114 @@ For each question, provide your recommended answer.`,
     bodyExtra: "Now you can code with confidence.",
   },
 
-  // Slide 9: When to Use This Approach
+  // Slide 9: Skills — Pre-Built Workflows
   {
     id: 9,
+    title: "Skills — Pre-Built Workflows",
+    subtitle: "Install Once, Invoke with a Slash Command",
+    body: ["Skills are reusable prompt workflows you invoke directly in your session."],
+    points: [
+      {
+        label: "grill-me",
+        items: [
+          "Interview-driven design — the core skill we covered today",
+          "Resolves every branch before you write a line of code",
+        ],
+      },
+      {
+        label: "Next.js Frontend",
+        items: [
+          "Official skill from the Claude Code repo",
+          "Component scaffolding, routing, layouts, data fetching patterns",
+        ],
+      },
+      {
+        label: "to-prd",
+        items: [
+          "Converts a grill-me session into a formal Product Requirements Doc",
+          "Ready to share with stakeholders or hand off to a dev",
+        ],
+      },
+      {
+        label: "to-issues",
+        items: [
+          "Breaks a PRD into independently-grabbable tasks",
+          "Pairs with Linear or GitHub Issues for immediate planning",
+        ],
+      },
+      {
+        label: "improve-codebase-architecture",
+        items: [
+          "Finds refactoring opportunities using your domain language",
+          "Respects the decisions documented in CONTEXT.md",
+        ],
+      },
+    ],
+    bodyExtra: "Find skills: github.com/anthropics/claude-code — official + community",
+  },
+
+  // Slide 10: Connectors — Your Tools Inside Claude
+  {
+    id: 10,
+    title: "Connectors — Your Tools Inside Claude",
+    subtitle: "Model Context Protocol (MCP)",
+    body: ["MCP servers let Claude read and write to the tools you already use — without copy-pasting."],
+    points: [
+      {
+        label: "GitHub",
+        items: [
+          "Read and create issues, PRs, and code reviews",
+          "Search across your codebase by symbol or keyword",
+          "Comment, merge, label — all from the Claude session",
+        ],
+      },
+      {
+        label: "Linear",
+        items: [
+          "Pick up tasks directly in your session",
+          "Update issue status, assignee, priority",
+          "Create sub-issues from a generated SOW",
+        ],
+      },
+      {
+        label: "Vercel",
+        items: [
+          "Trigger deployments and check build logs",
+          "Read runtime errors directly in context",
+          "Manage environment variables",
+        ],
+      },
+      {
+        label: "Notion · Drive · Slack",
+        items: [
+          "Read docs and wikis as session context",
+          "Write reports and summaries back to pages",
+          "Post updates to channels on task completion",
+        ],
+      },
+    ],
+    bodyExtra: "Setup: add MCP servers to .claude/settings.json in your project",
+  },
+
+  // Slide 11: The Daily Workflow
+  {
+    id: 11,
+    title: "The Daily Workflow",
+    subtitle: "Claude Code + Linear + GitHub + Skills",
+    body: [
+      "This is how a typical day actually looks:",
+      "1. Open Linear — pick up the top task",
+      "2. Open Claude Code — load the relevant skill for the work",
+      "3. Run grill-me if requirements are unclear — resolve before coding",
+      "4. Build — Claude Code + GitHub connector for diffs and PRs",
+      "5. Ship — Vercel connector for deploy status and logs",
+    ],
+    bodyExtra: "The connectors keep everything in one place. No context-switching.",
+  },
+
+  // Slide 12: When to Use This Approach
+  {
+    id: 12,
     title: "When to Use This Approach",
     subtitle: "Not Every Task Needs Grilling",
     points: [
@@ -235,12 +341,12 @@ For each question, provide your recommended answer.`,
     ],
   },
 
-  // Slide 10: Enhancing Your Workflow
+  // Slide 13: Enhancing Your Workflow
   {
-    id: 10,
+    id: 13,
     title: "Enhancing Your Workflow",
     subtitle: "Process Improvements Beyond grill-me",
-    body: ["Other skills/techniques to combine:"],
+    body: ["Other skills and techniques to combine:"],
     points: [
       {
         label: "1. CONTEXT.md / CLAUDE.md",
@@ -271,9 +377,9 @@ For each question, provide your recommended answer.`,
     bodyExtra: "Full toolkit: github.com/mattpocock/skills",
   },
 
-  // Slide 11: Common Mistakes
+  // Slide 14: Common Mistakes
   {
-    id: 11,
+    id: 14,
     title: "Common Mistakes in AI Collaboration",
     subtitle: "What Slows People Down",
     body: [
@@ -291,9 +397,9 @@ For each question, provide your recommended answer.`,
     ],
   },
 
-  // Slide 12: Today's Workshop Flow
+  // Slide 15: Today's Workshop Flow
   {
-    id: 12,
+    id: 15,
     title: "Today's Workshop Flow",
     subtitle: "What We'll Do in Case Study Lab",
     body: ["Your task (50 mins):"],
@@ -326,9 +432,9 @@ For each question, provide your recommended answer.`,
     bodyExtra: "Then: present findings (30 mins total across groups)",
   },
 
-  // Slide 13: Demo Preview
+  // Slide 16: Demo Preview
   {
-    id: 13,
+    id: 16,
     title: "Demo Preview",
     subtitle: "What I'll Build Live",
     body: [
@@ -342,9 +448,9 @@ For each question, provide your recommended answer.`,
     bodyExtra: "Pay attention to: how many hidden decisions surface that weren't obvious upfront.",
   },
 
-  // Slide 14: Key Takeaways
+  // Slide 17: Key Takeaways
   {
-    id: 14,
+    id: 17,
     title: "Key Takeaways",
     subtitle: "Process > Tools",
     body: ["Remember:"],
@@ -352,11 +458,12 @@ For each question, provide your recommended answer.`,
       {
         label: "",
         items: [
-          "1. Interview before implementation - grill-me style saves time",
-          "2. Walk the decision tree - resolve every branch explicitly",
-          "3. Document shared understanding - CONTEXT.md, SOW, flowcharts",
-          "4. Slow down to speed up - 15 min planning beats 2 hours rework",
-          "5. Treat Claude as collaborator - not command executor",
+          "1. Interview before implementation — grill-me style saves time",
+          "2. Walk the decision tree — resolve every branch explicitly",
+          "3. Document shared understanding — CONTEXT.md, SOW, flowcharts",
+          "4. Use skills — reusable workflows for common patterns",
+          "5. Connect your tools — Linear, GitHub, Vercel via MCP",
+          "6. Slow down to speed up — 15 min planning beats 2 hours rework",
         ],
       },
     ],
@@ -364,9 +471,9 @@ For each question, provide your recommended answer.`,
       "Mindset shift: Your job isn't to tell Claude what to do. It's to reach shared understanding, THEN build together.",
   },
 
-  // Slide 15: Let's Build
+  // Slide 18: Let's Build
   {
-    id: 15,
+    id: 18,
     title: "Let's Build",
     subtitle: "From Vague Problem to Clear Solution",
     body: [

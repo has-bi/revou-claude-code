@@ -227,6 +227,50 @@ export function OutputFlowDiagram() {
   );
 }
 
+// ─── Daily Workflow Diagram ───────────────────────────────────────────────────
+
+export function DailyWorkflowDiagram() {
+  const nodes = [
+    { label: "Linear",       sub: "pick task",        accent: false },
+    { label: "Claude Code",  sub: "open session",     accent: true  },
+    { label: "Skills",       sub: "load workflow",    accent: false },
+    { label: "GitHub",       sub: "PR & review",      accent: false },
+    { label: "Vercel",       sub: "deploy & ship",    accent: false },
+  ];
+  const boxW = 96, boxH = 52, gap = 16;
+  const total = nodes.length * boxW + (nodes.length - 1) * gap;
+  const startX = (560 - total) / 2;
+
+  return (
+    <svg viewBox="0 0 560 88" className="w-full h-full" style={{ overflow: "visible" }}>
+      {nodes.map((n, i) => {
+        const x = startX + i * (boxW + gap);
+        return (
+          <g key={i}>
+            <AnimBox
+              x={x} y={8} w={boxW} h={boxH}
+              label={n.label} sub={n.sub}
+              delay={0.1 + i * 0.1}
+              fill={n.accent ? C.bgMid : C.bg}
+              stroke={n.accent ? C.borderMid : C.border}
+              bold={n.accent}
+            />
+            {i < nodes.length - 1 && (
+              <>
+                <AnimLine
+                  d={`M ${x + boxW} ${8 + boxH / 2} L ${x + boxW + gap} ${8 + boxH / 2}`}
+                  delay={0.25 + i * 0.1} duration={0.2}
+                />
+                <AnimArrow x={x + boxW + gap} y={8 + boxH / 2} delay={0.35 + i * 0.1} />
+              </>
+            )}
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
 // ─── Workshop Timeline Diagram ────────────────────────────────────────────────
 
 export function WorkshopTimelineDiagram() {

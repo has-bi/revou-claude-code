@@ -9,6 +9,7 @@ import {
   DecisionTreeDiagram,
   InterviewFlowDiagram,
   OutputFlowDiagram,
+  DailyWorkflowDiagram,
   WorkshopTimelineDiagram,
 } from "./graphics";
 
@@ -164,7 +165,7 @@ function HeroLayout({ slide }: { slide: SlideData }) {
             {slide.subtitle}
           </motion.p>
         )}
-        {slide.id === 15 && (
+        {slide.id === 18 && (
           <motion.div variants={fadeUp} className="mt-14">
             <div className="w-12 h-[3px] bg-neutral-900" />
           </motion.div>
@@ -357,13 +358,14 @@ function SplitLayout({ slide, graphic }: { slide: SlideData; graphic?: ReactNode
 }
 
 export default function Slide({ slide }: { slide: SlideData }) {
-  const isHero = slide.id === 1 || slide.id === 15;
+  const isHero = slide.id === 1 || slide.id === 18;
 
   if (isHero) return <HeroLayout slide={slide} />;
 
-  if (slide.id === 4) return <GraphicSplitLayout slide={slide} graphic={<DecisionTreeDiagram />} />;
-  if (slide.id === 8) return <GraphicSplitLayout slide={slide} graphic={<OutputFlowDiagram />} />;
-  if (slide.id === 12) return <GraphicSplitLayout slide={slide} graphic={<WorkshopTimelineDiagram />} />;
+  if (slide.id === 4)  return <GraphicSplitLayout slide={slide} graphic={<DecisionTreeDiagram />} />;
+  if (slide.id === 8)  return <GraphicSplitLayout slide={slide} graphic={<OutputFlowDiagram />} />;
+  if (slide.id === 11) return <SplitLayout slide={slide} graphic={<DailyWorkflowDiagram />} />;
+  if (slide.id === 15) return <GraphicSplitLayout slide={slide} graphic={<WorkshopTimelineDiagram />} />;
 
   const isWide = !!slide.points && slide.points.length >= 3;
   if (isWide) return <WideLayout slide={slide} />;
