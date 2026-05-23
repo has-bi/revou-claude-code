@@ -14,84 +14,84 @@ export const SLIDES: SlideData[] = [
 
   {
     id: 1,
-    title: "Claude Code for Productivity",
-    subtitle: "Engineering Better Processes Through AI Collaboration",
+    title: "Claude Code buat Produktivitas",
+    subtitle: "Cara Beneran Collaborate sama AI yang Actually Work",
   },
 
   {
     id: 2,
-    title: "Today's Agenda",
-    subtitle: "Learn → See → Do",
+    title: "Agenda Hari Ini",
+    subtitle: "Learn → Nonton → Praktek",
     body: [
-      "You already know:",
-      "✓ What Claude Code is",
-      "✓ How to use it",
+      "Lo udah tau:",
+      "✓ Apa itu Claude Code",
+      "✓ Cara pakainya",
       "✓ Basic prompting",
     ],
     points: [
       {
-        label: "Today we cover:",
+        label: "Yang kita bahas hari ini:",
         items: [
-          "The methodology: why most AI projects fail and how to fix it",
+          "The methodology: kenapa most AI projects fail dan gimana fixnya",
           "Skills & connectors: reusable workflows + tool integrations",
-          "Live demo (20 min): Isi Kulkasku fridge tracker, built start to finish",
-          "Case study lab (50 min): apply grill-me to your own real problem",
+          "Live demo (20 menit): Isi Kulkasku, dibangun dari nol sampe jadi",
+          "Case study lab (50 menit): apply grill-me ke real problem lo sendiri",
         ],
       },
     ],
-    bodyExtra: "Structure: understand the method → watch it live → practice it yourself.",
+    bodyExtra: "Strukturnya: paham dulu methodnya → nonton live → praktek sendiri.",
   },
 
   // ── Section 2: The Methodology ────────────────────────────────────────────────
 
   {
     id: 3,
-    title: "The Real Problem",
-    subtitle: "Why Most AI Projects Fail",
+    title: "The Real Problem Sih",
+    subtitle: "Kenapa Most AI Projects Tuh Fail",
     body: [
-      "Most people jump straight to: \"Claude, build me X\"",
-      "The result:",
-      "  • Claude builds something that technically works",
-      "  • But doesn't actually solve your problem",
-      "  • Or solves the wrong problem",
-      "  • Or is overengineered / underengineered",
-      "Why? Misalignment. You and Claude don't have shared understanding yet.",
-      "The fix: Interview-driven design before implementation.",
+      "Kebanyakan orang langsung bilang: \"Claude, buatin gue X\"",
+      "Hasilnya:",
+      "  • Claude bikin sesuatu yang technically works",
+      "  • Tapi nggak actually solve problem lo",
+      "  • Atau malah solve problem yang salah",
+      "  • Atau overengineered / underengineered banget",
+      "Kenapa? Misalignment. Lo sama Claude belum punya shared understanding.",
+      "Fixnya: Interview-driven design before implementation.",
     ],
   },
 
   {
     id: 4,
     title: "The Design Tree Concept",
-    subtitle: "Every Problem is a Decision Tree",
-    body: ["Example: \"I want to automate my weekly report\""],
+    subtitle: "Every Problem tuh Actually Decision Tree",
+    body: ["Contohnya: \"Gue mau automate weekly report gue\""],
     points: [
       {
-        label: "Branch 1: What data sources?",
+        label: "Branch 1: Data sourcenya dari mana?",
         items: [
-          "Excel files? → Where stored? Cloud or local?",
-          "API calls? → Which APIs? Auth method?",
-          "Database? → Which tables? Access permissions?",
+          "Excel files? → Disimpennya di mana? Cloud atau local?",
+          "API calls? → API yang mana? Auth methodnya gimana?",
+          "Database? → Table yang mana? Access permissionsnya?",
         ],
       },
       {
-        label: "Branch 2: What's the output format?",
+        label: "Branch 2: Output formatnya kayak gimana?",
         items: [
-          "PDF? → Template needed? Charts included?",
-          "Email? → Plain text or HTML? Recipients?",
-          "Dashboard? → Real-time or static? Hosting?",
+          "PDF? → Ada template? Charts-nya include?",
+          "Email? → Plain text atau HTML? Ke siapa aja?",
+          "Dashboard? → Real-time atau static? Hostingnya di mana?",
         ],
       },
       {
-        label: "Branch 3: When does it run?",
+        label: "Branch 3: Kapan jalannya?",
         items: [
-          "Manual trigger? → Button click or command?",
-          "Scheduled? → Daily? Time zone handling?",
-          "Event-driven? → What triggers it?",
+          "Manual trigger? → Tombol atau command?",
+          "Scheduled? → Tiap hari? Time zone gimana?",
+          "Event-driven? → Apa yang trigger-nya?",
         ],
       },
     ],
-    bodyExtra: "You need to walk down EVERY branch before coding.",
+    bodyExtra: "Lo harus walk down EVERY branch before coding.",
   },
 
   {
@@ -99,8 +99,8 @@ export const SLIDES: SlideData[] = [
     title: "The grill-me Method",
     subtitle: "Relentless Interviewing for Shared Understanding",
     body: [
-      "Concept from Matt Pocock:",
-      "Force Claude to interview you systematically until every decision is resolved.",
+      "Konsepnya dari Matt Pocock:",
+      "Force Claude buat interview lo secara systematic sampai semua decision resolved.",
     ],
     code: `Interview me relentlessly about every aspect of this plan
 until we reach a shared understanding.
@@ -110,11 +110,11 @@ dependencies between decisions one by one.
 
 For each question, provide your recommended answer.`,
     bodyExtra: [
-      "What happens:",
-      "  • Claude asks 15-50 questions (depending on complexity)",
-      "  • Each question forces you to clarify your requirements",
-      "  • By the end: both you and Claude understand exactly what to build",
-      "Result: Higher quality code, fewer iterations, less rework.",
+      "Yang bakal terjadi:",
+      "  • Claude bakal nanya 15-50 pertanyaan (tergantung complexity-nya)",
+      "  • Tiap pertanyaan maksa lo untuk clarify requirements lo",
+      "  • Di akhir: lo sama Claude ngerti exactly what to build",
+      "Hasilnya: Code yang lebih bagus, fewer iterations, less rework.",
     ],
   },
 
