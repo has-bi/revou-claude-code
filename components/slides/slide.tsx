@@ -5,9 +5,7 @@ import { motion } from "framer-motion";
 import { SlideData } from "@/lib/slides-data";
 import { cn } from "@/lib/utils";
 import {
-  AssistantComponentsDiagram,
   IterationLoopDiagram,
-  DeliverablesDiagram,
 } from "./graphics";
 
 const stagger = {
@@ -317,7 +315,7 @@ function SplitLayout({ slide, graphic }: { slide: SlideData; graphic?: ReactNode
 
         {code && (
           <motion.div variants={fadeUp} className="mb-7">
-            <pre className="font-mono text-[0.88rem] bg-neutral-950 text-neutral-100 rounded-2xl px-7 py-6 leading-loose whitespace-pre-wrap border border-neutral-700">
+            <pre className="font-mono text-[0.78rem] bg-neutral-950 text-neutral-100 rounded-2xl px-7 py-5 leading-relaxed whitespace-pre-wrap border border-neutral-700">
               {code}
             </pre>
           </motion.div>
@@ -360,9 +358,7 @@ export default function Slide({ slide }: { slide: SlideData }) {
 
   if (isHero) return <HeroLayout slide={slide} />;
 
-  if (slide.id === 5)  return <GraphicSplitLayout slide={slide} graphic={<AssistantComponentsDiagram />} />;
   if (slide.id === 13) return <GraphicSplitLayout slide={slide} graphic={<IterationLoopDiagram />} />;
-  if (slide.id === 17) return <GraphicSplitLayout slide={slide} graphic={<DeliverablesDiagram />} />;
 
   const isWide = !!slide.points && slide.points.length >= 2;
   if (isWide) return <WideLayout slide={slide} />;
