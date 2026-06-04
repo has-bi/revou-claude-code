@@ -2,11 +2,17 @@
 
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
+import {
+  CheckCircle2,
+  XCircle,
+  ChevronRight,
+  Lightbulb,
+  BrainCircuit,
+  Rocket,
+} from "lucide-react";
 import { SlideData } from "@/lib/slides-data";
 import { cn } from "@/lib/utils";
-import {
-  IterationLoopDiagram,
-} from "./graphics";
+import { IterationLoopDiagram } from "./graphics";
 
 const stagger = {
   hidden: {},
@@ -28,7 +34,7 @@ const cardFade = {
   show: { y: 0, opacity: 1, transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] } },
 };
 
-const BOLD_LINE_RE = /^(The result:|What Claude built:|What user actually needed:|What you'll see:|What happens:|Claude's interview|Claude's response|Result:)/;
+const BOLD_LINE_RE = /^(The result:|What Claude built:|What user actually needed:|What you'll see:|What happens:|Claude's interview|Claude's response|Result:|Kalau nggak lolos:)/;
 
 function GhostNumber({ num, size = "28vw" }: { num: string; size?: string }) {
   return (
@@ -44,23 +50,51 @@ function GhostNumber({ num, size = "28vw" }: { num: string; size?: string }) {
 
 function BodyLines({ lines }: { lines: string[] }) {
   return (
-    <>
+    <div className="space-y-1">
       {lines.map((line, i) => {
+        if (line === "") return <div key={i} className="h-2" />;
+
         const isCheckmark = line.startsWith("✓") || line.startsWith("✅");
         const isCross = line.startsWith("❌");
         const isIndented = line.startsWith("  ");
         const isBetter = line.startsWith("✅ Better");
         const isBold = BOLD_LINE_RE.test(line);
+
+        // Strip emoji prefix so the icon replaces it
+        const displayText = (isCheckmark || isCross) ? line.slice(2) : line;
+
+        if (isCheckmark) {
+          return (
+            <div key={i} className={cn("flex gap-2 items-start", isBetter && "mt-2")}>
+              <CheckCircle2
+                size={15}
+                className={cn("shrink-0 mt-[3px]", isBetter ? "text-emerald-600" : "text-emerald-500")}
+              />
+              <p className={cn(
+                "text-base leading-relaxed text-emerald-700",
+                isBetter && "font-bold text-neutral-900"
+              )}>
+                {displayText}
+              </p>
+            </div>
+          );
+        }
+
+        if (isCross) {
+          return (
+            <div key={i} className="flex gap-2 items-start">
+              <XCircle size={15} className="shrink-0 mt-[3px] text-red-500" />
+              <p className="text-base leading-relaxed text-red-600">{displayText}</p>
+            </div>
+          );
+        }
+
         return (
           <p
             key={i}
             className={cn(
               "text-base leading-relaxed",
-              isIndented && "pl-5 text-neutral-500",
-              !isIndented && "text-neutral-700",
-              isCheckmark && "text-emerald-700",
-              isCross && "text-red-600",
-              isBetter && "font-bold text-neutral-900 mt-2",
+              isIndented ? "pl-5 text-neutral-500" : "text-neutral-700",
               isBold && "font-semibold text-neutral-900 mt-3 first:mt-0"
             )}
           >
@@ -68,11 +102,15 @@ function BodyLines({ lines }: { lines: string[] }) {
           </p>
         );
       })}
-    </>
+    </div>
   );
 }
 
 function PointCard({ point, index }: { point: { label: string; items: string[] }; index: number }) {
+  const labelIsCheck = point.label.startsWith("✓") || point.label.startsWith("✅");
+  const labelIsCross = point.label.startsWith("❌");
+  const cleanLabel = (labelIsCheck || labelIsCross) ? point.label.slice(2) : point.label;
+
   return (
     <motion.div
       variants={cardFade}
@@ -82,27 +120,47 @@ function PointCard({ point, index }: { point: { label: string; items: string[] }
         {String(index + 1).padStart(2, "0")}
       </span>
       {point.label && (
-        <p className="text-xs font-black tracking-[0.15em] uppercase text-neutral-500 group-hover:text-neutral-700 transition-colors mb-3 pr-8">
-          {point.label}
-        </p>
+        <div className="flex items-center gap-1.5 mb-3 pr-8">
+          {labelIsCheck && <CheckCircle2 size={12} className="shrink-0 text-emerald-500" />}
+          {labelIsCross && <XCircle size={12} className="shrink-0 text-red-400" />}
+          <p className="text-xs font-black tracking-[0.15em] uppercase text-neutral-500 group-hover:text-neutral-700 transition-colors leading-tight">
+            {cleanLabel}
+          </p>
+        </div>
       )}
       <ul className="space-y-2">
-        {point.items.map((it, j) => (
-          <li
-            key={j}
-            className={cn(
-              "text-sm text-neutral-700 leading-snug flex gap-1.5 items-start",
-              it.startsWith("✓") && "text-emerald-700 font-medium"
-            )}
-          >
-            {!it.match(/^(\d+\.|✓|✅)/) && (
-              <span className="text-neutral-400 mt-0.5 shrink-0 leading-none">—</span>
-            )}
-            <span>{it}</span>
-          </li>
-        ))}
+        {point.items.map((it, j) => {
+          const isCheck = it.startsWith("✓") || it.startsWith("✅");
+          const displayIt = isCheck ? it.slice(2) : it;
+          const isNumbered = /^\d+\./.test(it);
+          return (
+            <li
+              key={j}
+              className={cn(
+                "text-sm leading-snug flex gap-1.5 items-start",
+                isCheck ? "text-emerald-700 font-medium" : "text-neutral-700"
+              )}
+            >
+              {isCheck ? (
+                <CheckCircle2 size={13} className="shrink-0 mt-0.5 text-emerald-500" />
+              ) : !isNumbered ? (
+                <ChevronRight size={13} className="shrink-0 mt-0.5 text-neutral-400" />
+              ) : null}
+              <span>{displayIt}</span>
+            </li>
+          );
+        })}
       </ul>
     </motion.div>
+  );
+}
+
+function Callout({ text }: { text: string }) {
+  return (
+    <div className="flex items-start gap-2 border-l-[3px] border-neutral-400 pl-4 py-0.5">
+      <Lightbulb size={14} className="shrink-0 mt-0.5 text-neutral-500" />
+      <p className="text-sm font-semibold text-neutral-700 leading-relaxed">{text}</p>
+    </div>
   );
 }
 
@@ -139,6 +197,11 @@ function SlideLeftColumn({ slide, children }: { slide: SlideData; children?: Rea
   );
 }
 
+const HERO_ICONS: Record<number, ReactNode> = {
+  1:  <BrainCircuit size={52} className="text-neutral-300 mb-8" strokeWidth={1.5} />,
+  20: <Rocket size={52} className="text-neutral-300 mb-8" strokeWidth={1.5} />,
+};
+
 function HeroLayout({ slide }: { slide: SlideData }) {
   const num = String(slide.id).padStart(2, "0");
   return (
@@ -148,6 +211,9 @@ function HeroLayout({ slide }: { slide: SlideData }) {
         <motion.p variants={fadeUp} className="font-mono text-sm tracking-[0.35em] uppercase text-neutral-500 mb-10">
           {num}
         </motion.p>
+        {HERO_ICONS[slide.id] && (
+          <motion.div variants={fadeUp}>{HERO_ICONS[slide.id]}</motion.div>
+        )}
         <motion.h1
           variants={fadeUp}
           className="font-black leading-[0.9] tracking-[-0.03em] text-neutral-950 mb-8"
@@ -203,7 +269,7 @@ function WideLayout({ slide }: { slide: SlideData }) {
         </div>
 
         {body && body.length > 0 && (
-          <motion.div variants={fadeUp} className="mb-5 space-y-1">
+          <motion.div variants={fadeUp} className="mb-5">
             <BodyLines lines={body} />
           </motion.div>
         )}
@@ -227,12 +293,9 @@ function WideLayout({ slide }: { slide: SlideData }) {
         )}
 
         {bodyExtra && typeof bodyExtra === "string" && (
-          <motion.p
-            variants={fadeUp}
-            className="mt-4 text-sm font-semibold text-neutral-700 border-l-[3px] border-neutral-500 pl-4 py-0.5"
-          >
-            {bodyExtra}
-          </motion.p>
+          <motion.div variants={fadeUp} className="mt-4">
+            <Callout text={bodyExtra} />
+          </motion.div>
         )}
       </motion.div>
     </div>
@@ -248,17 +311,14 @@ function GraphicSplitLayout({ slide, graphic }: { slide: SlideData; graphic: Rea
       <GhostNumber num={num} />
       <SlideLeftColumn slide={slide}>
         {body && body.length > 0 && (
-          <motion.div variants={fadeUp} className="mt-5 space-y-1">
+          <motion.div variants={fadeUp} className="mt-5">
             <BodyLines lines={body} />
           </motion.div>
         )}
         {bodyExtra && typeof bodyExtra === "string" && (
-          <motion.p
-            variants={fadeUp}
-            className="mt-5 text-sm font-semibold text-neutral-700 border-l-[3px] border-neutral-500 pl-4 py-0.5"
-          >
-            {bodyExtra}
-          </motion.p>
+          <motion.div variants={fadeUp} className="mt-5">
+            <Callout text={bodyExtra} />
+          </motion.div>
         )}
       </SlideLeftColumn>
       <motion.div
@@ -273,7 +333,7 @@ function GraphicSplitLayout({ slide, graphic }: { slide: SlideData; graphic: Rea
   );
 }
 
-function SplitLayout({ slide, graphic }: { slide: SlideData; graphic?: ReactNode }) {
+function SplitLayout({ slide }: { slide: SlideData }) {
   const { body, bodyExtra, points, code, example } = slide;
   const num = String(slide.id).padStart(2, "0");
 
@@ -287,28 +347,29 @@ function SplitLayout({ slide, graphic }: { slide: SlideData; graphic?: ReactNode
         animate="show"
         className="overflow-y-auto px-10 py-10 flex flex-col justify-center relative z-10 scrollbar-none"
       >
-        {graphic && <div className="mb-7">{graphic}</div>}
-
         {example && (
-          <motion.div
-            variants={fadeUp}
-            className={cn(
-              "inline-flex items-center gap-3 self-start rounded-full px-5 py-2.5 mb-7 border-2 text-sm font-medium",
+          <motion.div variants={fadeUp} className="mb-7">
+            <div className={cn(
+              "inline-flex items-center gap-2 rounded-full px-4 py-2 border text-sm font-medium",
               example.type === "bad"
-                ? "bg-red-50 border-red-300 text-red-900"
-                : "bg-emerald-50 border-emerald-300 text-emerald-900"
-            )}
-          >
-            <span className="text-xs font-black tracking-[0.15em] uppercase opacity-70">
-              {example.type === "bad" ? "Before" : "After"}
-            </span>
-            <span className="w-px h-3.5 bg-current opacity-30 shrink-0" />
-            <span className="leading-snug">{example.label}</span>
+                ? "bg-red-50 border-red-200 text-red-800"
+                : "bg-emerald-50 border-emerald-200 text-emerald-800"
+            )}>
+              {example.type === "bad"
+                ? <XCircle size={14} className="text-red-500 shrink-0" />
+                : <CheckCircle2 size={14} className="text-emerald-500 shrink-0" />
+              }
+              <span className="text-xs font-black tracking-[0.15em] uppercase opacity-60">
+                {example.type === "bad" ? "Before" : "After"}
+              </span>
+              <span className="w-px h-3.5 bg-current opacity-20 shrink-0" />
+              <span className="leading-snug">{example.label}</span>
+            </div>
           </motion.div>
         )}
 
         {body && body.length > 0 && (
-          <motion.div variants={fadeUp} className="space-y-2 mb-7">
+          <motion.div variants={fadeUp} className="mb-7">
             <BodyLines lines={body} />
           </motion.div>
         )}
@@ -338,13 +399,9 @@ function SplitLayout({ slide, graphic }: { slide: SlideData; graphic?: ReactNode
         {bodyExtra && (
           <motion.div variants={fadeUp}>
             {typeof bodyExtra === "string" ? (
-              <p className="text-base font-semibold text-neutral-800 border-l-[3px] border-neutral-500 pl-4 py-0.5 leading-relaxed">
-                {bodyExtra}
-              </p>
+              <Callout text={bodyExtra} />
             ) : (
-              <div className="space-y-2">
-                <BodyLines lines={bodyExtra as string[]} />
-              </div>
+              <BodyLines lines={bodyExtra as string[]} />
             )}
           </motion.div>
         )}

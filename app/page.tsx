@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Slide from "@/components/slides/slide";
 import { SLIDES } from "@/lib/slides-data";
 
@@ -50,23 +51,10 @@ function NavButton({
         "transition-opacity duration-300 group",
       ].join(" ")}
     >
-      <svg
-        width="13"
-        height="13"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="text-neutral-600 group-hover:text-neutral-950 transition-colors"
-      >
-        {side === "left" ? (
-          <polyline points="15 18 9 12 15 6" />
-        ) : (
-          <polyline points="9 18 15 12 9 6" />
-        )}
-      </svg>
+      {side === "left"
+        ? <ChevronLeft size={16} className="text-neutral-600 group-hover:text-neutral-950 transition-colors" />
+        : <ChevronRight size={16} className="text-neutral-600 group-hover:text-neutral-950 transition-colors" />
+      }
     </motion.button>
   );
 }
