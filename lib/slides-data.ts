@@ -209,6 +209,43 @@ HOW TO RESPOND:
 
   {
     id: 9,
+    title: "Harness Engineering",
+    subtitle: "Paksa assistant berpikir sebelum jawab",
+    body: [
+      "Standard prompt → assistant langsung jawab, bisa salah arah.",
+      "Harness → tambahkan 3 fase internal ke system prompt:",
+    ],
+    points: [
+      {
+        label: "① OBSERVE — Kumpulkan konteks dulu",
+        items: [
+          "Apa yang user tanyakan? Metric, comparison, atau recommendation?",
+          "Field dan filter mana yang relevan?",
+          "Ada yang ambigu atau kurang jelas?",
+        ],
+      },
+      {
+        label: "② EVALUATE — Pertimbangkan pendekatan",
+        items: [
+          "Metode kalkulasi mana yang paling tepat?",
+          "Ada confounding factor? (volume, jam peak, zona)",
+          "Apakah satu angka cukup, atau butuh perbandingan?",
+        ],
+      },
+      {
+        label: "③ VALIDATE — Cek output sebelum deliver",
+        items: [
+          "Jawaban ini benar-benar menjawab pertanyaannya?",
+          "Angka sudah dikutip dengan benar dari data?",
+          "Kalau tidak yakin, flag eksplisit — jangan tebak",
+        ],
+      },
+    ],
+    bodyExtra: "Tambahkan 3 fase ini ke system prompt di antara TASKS dan HOW TO RESPOND.",
+  },
+
+  {
+    id: 10,
     title: "Step 1 — Siapkan Data",
     subtitle: "5 menit sebelum buka ChatGPT",
     points: [
@@ -233,7 +270,7 @@ HOW TO RESPOND:
   },
 
   {
-    id: 10,
+    id: 11,
     title: "Step 2 & 3 — Build the Assistant",
     subtitle: "3 opsi tool, pilih yang lo punya akses",
     points: [
@@ -266,7 +303,7 @@ HOW TO RESPOND:
   },
 
   {
-    id: 11,
+    id: 12,
     title: "Step 4 — Test 10 Questions",
     subtitle: "Cover 4 tipe: metrics, comparisons, patterns, recommendations",
     points: [
@@ -306,7 +343,7 @@ HOW TO RESPOND:
   // ── Section 7: Iteration ──────────────────────────────────────────────────────
 
   {
-    id: 12,
+    id: 13,
     title: "Per Question — Cek 3 Hal",
     subtitle: "Kalau ada yang fail → revise prompt → re-test → log",
     body: [
@@ -324,7 +361,7 @@ HOW TO RESPOND:
   },
 
   {
-    id: 13,
+    id: 14,
     title: "Common Pitfalls",
     subtitle: "Yang paling sering bikin stuck",
     points: [
@@ -362,7 +399,7 @@ HOW TO RESPOND:
   // ── Section 8: Capstone ───────────────────────────────────────────────────────
 
   {
-    id: 14,
+    id: 15,
     title: "Capstone Work Session",
     subtitle: "Apply ke data capstone lo sendiri — 60 menit",
     points: [
@@ -401,7 +438,7 @@ HOW TO RESPOND:
   },
 
   {
-    id: 15,
+    id: 16,
     title: "Checkpoint Rubrik — 100 Poin",
     subtitle: "Week 6 fokus di AA, AS, dan TM",
     points: [
@@ -447,7 +484,7 @@ HOW TO RESPOND:
   // ── Section 9: Deliverable ────────────────────────────────────────────────────
 
   {
-    id: 16,
+    id: 17,
     title: "Deliverable",
     subtitle: "Submit sebelum deadline",
     points: [
@@ -481,7 +518,7 @@ HOW TO RESPOND:
   // ── Section 10: Preview & Close ───────────────────────────────────────────────
 
   {
-    id: 17,
+    id: 18,
     title: "Week 7 Preview",
     subtitle: "Simple Analytics with GPT — Still No Code",
     body: [
@@ -497,7 +534,7 @@ HOW TO RESPOND:
   },
 
   {
-    id: 18,
+    id: 19,
     title: "Let's Build",
     subtitle: "Data lo udah siap. Prompt template udah ada. Tinggal mulai.",
   },
