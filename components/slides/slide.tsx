@@ -160,7 +160,7 @@ function HeroLayout({ slide }: { slide: SlideData }) {
             {slide.subtitle}
           </motion.p>
         )}
-        {slide.id === 19 && (
+        {slide.id === 20 && (
           <motion.div variants={fadeUp} className="mt-14">
             <div className="w-12 h-[3px] bg-neutral-900" />
           </motion.div>
@@ -354,11 +354,12 @@ function SplitLayout({ slide, graphic }: { slide: SlideData; graphic?: ReactNode
 }
 
 export default function Slide({ slide }: { slide: SlideData }) {
-  const isHero = slide.id === 1 || slide.id === 19;
+  const isHero = slide.id === 1 || slide.id === 20;
 
   if (isHero) return <HeroLayout slide={slide} />;
 
-  if (slide.id === 13) return <GraphicSplitLayout slide={slide} graphic={<IterationLoopDiagram />} />;
+  if (slide.id === 5)  return <SplitLayout slide={slide} />;
+  if (slide.id === 14) return <GraphicSplitLayout slide={slide} graphic={<IterationLoopDiagram />} />;
 
   const isWide = !!slide.points && slide.points.length >= 2;
   if (isWide) return <WideLayout slide={slide} />;

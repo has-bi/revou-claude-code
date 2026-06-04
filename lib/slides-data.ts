@@ -213,7 +213,7 @@ HOW TO RESPOND:
     subtitle: "Paksa assistant berpikir sebelum jawab",
     body: [
       "Standard prompt → assistant langsung jawab, bisa salah arah.",
-      "Harness → tambahkan 3 fase internal ke system prompt:",
+      "Harness → 3 fase internal yang berjalan sebelum jawaban dikirim:",
     ],
     points: [
       {
@@ -222,6 +222,7 @@ HOW TO RESPOND:
           "Apa yang user tanyakan? Metric, comparison, atau recommendation?",
           "Field dan filter mana yang relevan?",
           "Ada yang ambigu atau kurang jelas?",
+          "Apakah butuh data dari lebih dari satu kolom?",
         ],
       },
       {
@@ -230,6 +231,7 @@ HOW TO RESPOND:
           "Metode kalkulasi mana yang paling tepat?",
           "Ada confounding factor? (volume, jam peak, zona)",
           "Apakah satu angka cukup, atau butuh perbandingan?",
+          "Apa unit dan format output yang paling tepat?",
         ],
       },
       {
@@ -238,6 +240,7 @@ HOW TO RESPOND:
           "Jawaban ini benar-benar menjawab pertanyaannya?",
           "Angka sudah dikutip dengan benar dari data?",
           "Kalau tidak yakin, flag eksplisit — jangan tebak",
+          "Response sesuai panjang dan format yang diminta?",
         ],
       },
     ],
@@ -246,6 +249,38 @@ HOW TO RESPOND:
 
   {
     id: 10,
+    title: "System Prompt + Harness",
+    subtitle: "Template lengkap — paste ini ke ChatGPT atau Claude",
+    code: `PERSONA:
+You are a GrabFood operations analyst specializing in delivery
+efficiency. Data-driven, professional, and concise.
+
+YOUR DATA:
+9,200 orders · Feb 9–11, 2024 · Peak hours only
+Fields: order_id, restaurant, zone, prep_time, delivery_time,
+        late_status, customer_rating
+Late = >30 min past estimated delivery
+
+TASKS:
+1. Calculate metrics (rates, averages, percentiles)
+2. Compare restaurants, zones, time periods
+3. Identify delay patterns and bottlenecks
+4. Recommend operational improvements
+
+INTERNAL REASONING (before every response):
+① OBSERVE  — What is asked? Which fields/filters apply?
+② EVALUATE — Best calc method? Any confounders?
+③ VALIDATE — Does this answer the question? Numbers correct?
+
+HOW TO RESPOND:
+- Cite specific numbers ("2,300 of 9,200 = 25%")
+- Show calculation steps
+- Keep responses under 3 paragraphs
+- If uncertain, flag explicitly — never guess`,
+  },
+
+  {
+    id: 11,
     title: "Step 1 — Siapkan Data",
     subtitle: "5 menit sebelum buka ChatGPT",
     points: [
@@ -270,7 +305,7 @@ HOW TO RESPOND:
   },
 
   {
-    id: 11,
+    id: 12,
     title: "Step 2 & 3 — Build the Assistant",
     subtitle: "3 opsi tool, pilih yang lo punya akses",
     points: [
@@ -303,7 +338,7 @@ HOW TO RESPOND:
   },
 
   {
-    id: 12,
+    id: 13,
     title: "Step 4 — Test 10 Questions",
     subtitle: "Cover 4 tipe: metrics, comparisons, patterns, recommendations",
     points: [
@@ -343,7 +378,7 @@ HOW TO RESPOND:
   // ── Section 7: Iteration ──────────────────────────────────────────────────────
 
   {
-    id: 13,
+    id: 14,
     title: "Per Question — Cek 3 Hal",
     subtitle: "Kalau ada yang fail → revise prompt → re-test → log",
     body: [
@@ -361,7 +396,7 @@ HOW TO RESPOND:
   },
 
   {
-    id: 14,
+    id: 15,
     title: "Common Pitfalls",
     subtitle: "Yang paling sering bikin stuck",
     points: [
@@ -399,7 +434,7 @@ HOW TO RESPOND:
   // ── Section 8: Capstone ───────────────────────────────────────────────────────
 
   {
-    id: 15,
+    id: 16,
     title: "Capstone Work Session",
     subtitle: "Apply ke data capstone lo sendiri — 60 menit",
     points: [
@@ -438,7 +473,7 @@ HOW TO RESPOND:
   },
 
   {
-    id: 16,
+    id: 17,
     title: "Checkpoint Rubrik — 100 Poin",
     subtitle: "Week 6 fokus di AA, AS, dan TM",
     points: [
@@ -484,7 +519,7 @@ HOW TO RESPOND:
   // ── Section 9: Deliverable ────────────────────────────────────────────────────
 
   {
-    id: 17,
+    id: 18,
     title: "Deliverable",
     subtitle: "Submit sebelum deadline",
     points: [
@@ -518,7 +553,7 @@ HOW TO RESPOND:
   // ── Section 10: Preview & Close ───────────────────────────────────────────────
 
   {
-    id: 18,
+    id: 19,
     title: "Week 7 Preview",
     subtitle: "Simple Analytics with GPT — Still No Code",
     body: [
@@ -534,7 +569,7 @@ HOW TO RESPOND:
   },
 
   {
-    id: 19,
+    id: 20,
     title: "Let's Build",
     subtitle: "Data lo udah siap. Prompt template udah ada. Tinggal mulai.",
   },
