@@ -271,6 +271,147 @@ export function DailyWorkflowDiagram() {
   );
 }
 
+// ─── Assistant Components Diagram ────────────────────────────────────────────
+
+export function AssistantComponentsDiagram() {
+  const boxes = [
+    { label: "① Persona",       sub: "role & tone" },
+    { label: "② Tasks",         sub: "what it can do" },
+    { label: "③ Knowledge",     sub: "your data" },
+    { label: "④ System Prompt", sub: "how to behave" },
+  ];
+  const boxW = 200, boxH = 44, gap = 16, cx = 130;
+  const startY = 10;
+
+  return (
+    <svg viewBox="0 0 260 260" className="w-full h-full" style={{ overflow: "visible" }}>
+      {boxes.map((b, i) => {
+        const y = startY + i * (boxH + gap);
+        const nextY = y + boxH;
+        const arrowBaseY = nextY + 4;
+        return (
+          <g key={i}>
+            <AnimBox x={cx - boxW / 2} y={y} w={boxW} h={boxH}
+              label={b.label} sub={b.sub} delay={0.1 + i * 0.12}
+              fill={i === 0 ? C.bgMid : C.bg}
+              stroke={i === 0 ? C.borderMid : C.border}
+              bold={i === 0}
+            />
+            {i < boxes.length - 1 && (
+              <>
+                <AnimLine d={`M ${cx} ${nextY} L ${cx} ${arrowBaseY + 2}`}
+                  delay={0.25 + i * 0.12} duration={0.15} />
+                <motion.polygon
+                  points={`${cx - 5},${arrowBaseY + 2} ${cx + 5},${arrowBaseY + 2} ${cx},${arrowBaseY + 11}`}
+                  fill={C.line}
+                  initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3 + i * 0.12, duration: 0.15 }}
+                />
+              </>
+            )}
+          </g>
+        );
+      })}
+      <motion.text x={cx} y={240} textAnchor="middle"
+        fontSize={11} fontFamily={FONT} fill={C.textSub} fontStyle="italic"
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }}>
+        Combine all 4 → paste into ChatGPT
+      </motion.text>
+    </svg>
+  );
+}
+
+// ─── Iteration Loop Diagram ───────────────────────────────────────────────────
+
+export function IterationLoopDiagram() {
+  const boxW = 148, boxH = 44, y = 20;
+  const boxes = [
+    { x: 8,   label: "Test Question", sub: "ask the assistant",  accent: true },
+    { x: 186, label: "Check Answer",  sub: "verify vs Excel",    accent: false },
+    { x: 364, label: "Revise Prompt", sub: "if it fails",        accent: false },
+  ];
+  const cy = y + boxH / 2;
+
+  return (
+    <svg viewBox="0 0 520 140" className="w-full h-full" style={{ overflow: "visible" }}>
+      {boxes.map((b, i) => (
+        <AnimBox key={i} x={b.x} y={y} w={boxW} h={boxH}
+          label={b.label} sub={b.sub} delay={0.1 + i * 0.12}
+          fill={b.accent ? C.bgMid : C.bg}
+          stroke={b.accent ? C.borderMid : C.border}
+          bold={b.accent}
+        />
+      ))}
+
+      {/* Forward arrows */}
+      <AnimLine d={`M ${boxes[0].x + boxW} ${cy} L ${boxes[1].x} ${cy}`} delay={0.45} duration={0.2} />
+      <AnimArrow x={boxes[1].x} y={cy} delay={0.55} />
+      <AnimLine d={`M ${boxes[1].x + boxW} ${cy} L ${boxes[2].x} ${cy}`} delay={0.6} duration={0.2} />
+      <AnimArrow x={boxes[2].x} y={cy} delay={0.7} />
+
+      {/* Return line: box3 bottom-center → down → across → box1 bottom-center → up */}
+      <AnimLine
+        d={`M ${boxes[2].x + boxW / 2} ${y + boxH} L ${boxes[2].x + boxW / 2} 100 L ${boxes[0].x + boxW / 2} 100 L ${boxes[0].x + boxW / 2} ${y + boxH}`}
+        delay={0.8} duration={0.5}
+      />
+      {/* Arrowhead pointing up at bottom of box1 */}
+      <motion.polygon
+        points={`${boxes[0].x + boxW / 2 - 5},${y + boxH} ${boxes[0].x + boxW / 2 + 5},${y + boxH} ${boxes[0].x + boxW / 2},${y + boxH - 9}`}
+        fill={C.line}
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.15 }}
+      />
+
+      <motion.text x={260} y={126} textAnchor="middle"
+        fontSize={11} fontFamily={FONT} fill={C.textSub} fontStyle="italic"
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.3 }}>
+        Repeat until stable
+      </motion.text>
+    </svg>
+  );
+}
+
+// ─── Deliverables Diagram ─────────────────────────────────────────────────────
+
+export function DeliverablesDiagram() {
+  const boxW = 130, boxH = 44, gap = 30, startX = 15;
+  const boxes = [
+    { label: "System Prompt", sub: "documented" },
+    { label: "Q&A Log",       sub: "10+ pairs" },
+    { label: "Demo Video",    sub: "2 min" },
+  ];
+  const cy = 10 + boxH / 2;
+
+  return (
+    <svg viewBox="0 0 460 100" className="w-full h-full" style={{ overflow: "visible" }}>
+      {boxes.map((b, i) => {
+        const x = startX + i * (boxW + gap);
+        return (
+          <g key={i}>
+            <AnimBox x={x} y={10} w={boxW} h={boxH}
+              label={b.label} sub={b.sub} delay={0.1 + i * 0.15}
+            />
+            {i < boxes.length - 1 && (
+              <>
+                <AnimLine
+                  d={`M ${x + boxW} ${cy} L ${x + boxW + gap} ${cy}`}
+                  delay={0.3 + i * 0.15} duration={0.2}
+                />
+                <AnimArrow x={x + boxW + gap} y={cy} delay={0.4 + i * 0.15} />
+              </>
+            )}
+          </g>
+        );
+      })}
+      <motion.text x={230} y={84} textAnchor="middle"
+        fontSize={12} fontFamily={FONT} fill={C.textSub} fontWeight={500}
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }}>
+        = Full submission package
+      </motion.text>
+    </svg>
+  );
+}
+
 // ─── Workshop Timeline Diagram ────────────────────────────────────────────────
 
 export function WorkshopTimelineDiagram() {

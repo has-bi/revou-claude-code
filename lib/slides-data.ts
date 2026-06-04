@@ -10,544 +10,495 @@ export interface SlideData {
 }
 
 export const SLIDES: SlideData[] = [
-  // ── Section 1: Why ───────────────────────────────────────────────────────────
+  // ── Section 1: Pembuka ────────────────────────────────────────────────────────
 
   {
     id: 1,
-    title: "Claude Code buat Produktivitas",
-    subtitle: "Cara Beneran Collaborate sama AI yang Actually Work",
+    title: "Building Your AI Assistant",
+    subtitle: "GrabFood Case Study — Dari Dashboard ke Conversation",
   },
+
+  // ── Section 2: Di Mana Kita Sekarang ─────────────────────────────────────────
 
   {
     id: 2,
-    title: "Agenda Hari Ini",
-    subtitle: "Learn → Nonton → Praktek",
-    body: [
-      "Lo udah tau:",
-      "✓ Apa itu Claude Code",
-      "✓ Cara pakainya",
-      "✓ Basic prompting",
-    ],
+    title: "Di Mana Kita Sekarang",
+    subtitle: "Continuing GrabFood: Week 2 → 3 → 4 → 6",
     points: [
       {
-        label: "Yang kita bahas hari ini:",
+        label: "Week 2 — Define the Problem",
         items: [
-          "The methodology: kenapa most AI projects fail dan gimana fixnya",
-          "Skills & connectors: reusable workflows + tool integrations",
-          "Live demo (20 menit): Isi Kulkasku, dibangun dari nol sampe jadi",
-          "Case study lab (50 menit): apply grill-me ke real problem lo sendiri",
+          "25% of peak-hour orders late",
+          "$630K/month in refunds & lost customers",
+        ],
+      },
+      {
+        label: "Week 3 — Root Cause",
+        items: [
+          "Prep time: 41% of delay",
+          "Travel time: 31% · Wait time: 14%",
+        ],
+      },
+      {
+        label: "Week 4 — Visualize",
+        items: [
+          "Dashboard + story deck for stakeholders",
+          "Pizza Corner slowest: 48 min prep, 65% late",
         ],
       },
     ],
-    bodyExtra: "Strukturnya: paham dulu methodnya → nonton live → praktek sendiri.",
+    bodyExtra: "Week 6 → Build an AI assistant that answers questions about the data — without Excel.",
   },
 
-  // ── Section 2: The Methodology ────────────────────────────────────────────────
+  // ── Section 3: What We're Building ───────────────────────────────────────────
 
   {
     id: 3,
-    title: "The Real Problem Sih",
-    subtitle: "Kenapa Most AI Projects Tuh Fail",
+    title: "Apa yang Kita Bangun",
+    subtitle: "AI Assistant = GPT + Your Data + Custom Instructions",
     body: [
-      "Kebanyakan orang langsung bilang: \"Claude, buatin gue X\"",
-      "Hasilnya:",
-      "  • Claude bikin sesuatu yang technically works",
-      "  • Tapi nggak actually solve problem lo",
-      "  • Atau malah solve problem yang salah",
-      "  • Atau overengineered / underengineered banget",
-      "Kenapa? Misalignment. Lo sama Claude belum punya shared understanding.",
-      "Fixnya: Interview-driven design before implementation.",
+      "Nggak semua orang di tim bisa buka Excel atau bikin dashboard.",
+      "Tanpa assistant — manager mau tau restoran paling lambat:",
+      "  • Buka Excel → filter → group → hitung → sort → format → kirim",
+      "  • Takes 20 minutes, requires Excel skills",
+      "Dengan assistant — manager cukup ketik:",
+      '  "Which restaurants are slowest during dinner rush?"',
+      "  • Jawaban spesifik, data-backed, dalam detik",
+      "  • No Excel skills needed",
     ],
   },
 
   {
     id: 4,
-    title: "The Design Tree Concept",
-    subtitle: "Every Problem tuh Actually Decision Tree",
-    body: ["Contohnya: \"Gue mau automate weekly report gue\""],
+    title: "Yang Kita Nggak Lakuin",
+    subtitle: "Set Expectations Dulu",
     points: [
       {
-        label: "Branch 1: Data sourcenya dari mana?",
+        label: "❌ Bukan ini",
         items: [
-          "Excel files? → Disimpennya di mana? Cloud atau local?",
-          "API calls? → API yang mana? Auth methodnya gimana?",
-          "Database? → Table yang mana? Access permissionsnya?",
+          "Build ML models from scratch",
+          "Write Python code for predictions",
+          "Train neural networks",
         ],
       },
       {
-        label: "Branch 2: Output formatnya kayak gimana?",
+        label: "✓ Ini yang kita lakuin",
         items: [
-          "PDF? → Ada template? Charts-nya include?",
-          "Email? → Plain text atau HTML? Ke siapa aja?",
-          "Dashboard? → Real-time atau static? Hostingnya di mana?",
-        ],
-      },
-      {
-        label: "Branch 3: Kapan jalannya?",
-        items: [
-          "Manual trigger? → Tombol atau command?",
-          "Scheduled? → Tiap hari? Time zone gimana?",
-          "Event-driven? → Apa yang trigger-nya?",
+          "✓ Write prompts that tell GPT what to do",
+          "✓ Upload data so GPT can read it",
+          "✓ Test questions and verify answers",
+          "✓ Refine prompts based on results",
         ],
       },
     ],
-    bodyExtra: "Lo harus walk down EVERY branch before coding.",
+    bodyExtra: "Tools: ChatGPT Plus · Custom GPTs · Claude.ai Projects (free tier works)",
   },
+
+  // ── Section 4: 4 Komponen ─────────────────────────────────────────────────────
 
   {
     id: 5,
-    title: "The grill-me Method",
-    subtitle: "Relentless Interviewing for Shared Understanding",
-    body: [
-      "Konsepnya dari Matt Pocock:",
-      "Force Claude buat interview lo secara systematic sampai semua decision resolved.",
-    ],
-    code: `Interview me relentlessly about every aspect of this plan
-until we reach a shared understanding.
-
-Walk down each branch of the design tree, resolving
-dependencies between decisions one by one.
-
-For each question, provide your recommended answer.`,
-    bodyExtra: [
-      "Yang bakal terjadi:",
-      "  • Claude bakal nanya 15-50 pertanyaan (tergantung complexity-nya)",
-      "  • Tiap pertanyaan maksa lo untuk clarify requirements lo",
-      "  • Di akhir: lo sama Claude ngerti exactly what to build",
-      "Hasilnya: Code yang lebih bagus, fewer iterations, less rework.",
+    title: "4 Komponen AI Assistant",
+    subtitle: "Setiap assistant butuh keempat ini",
+    points: [
+      {
+        label: "① Persona — Who is the assistant?",
+        items: [
+          '"You are a GrabFood operations analyst"',
+          "Role · Expertise · Tone (professional, data-driven, concise)",
+        ],
+      },
+      {
+        label: "② Tasks — What can it do?",
+        items: [
+          "Calculate metrics (late rate, avg time)",
+          "Compare restaurants, zones, time periods",
+          "Analyze delay patterns · Recommend actions",
+        ],
+      },
+      {
+        label: "③ Knowledge Sources — What data?",
+        items: [
+          "Cleaned dataset from Week 3 (CSV)",
+          "Data dictionary · Week 2 problem context",
+        ],
+      },
+      {
+        label: "④ System Prompt — How to behave?",
+        items: [
+          "Always cite specific numbers from data",
+          "Show calculation steps",
+          "Flag uncertainty · Keep responses concise",
+        ],
+      },
     ],
   },
 
+  // ── Section 5: Prompt Engineering ────────────────────────────────────────────
+
   {
     id: 6,
-    title: "Real Example — Before grill-me",
-    subtitle: "The 'Just Build It' Approach",
-    example: {
-      type: "bad",
-      label: "User prompt: \"Build me a tool to track team tasks\"",
-    },
+    title: "Prompt Engineering Basics",
+    subtitle: "Specific, contextual, testable",
+    example: { type: "bad", label: '"What\'s the problem with deliveries?" — too vague' },
     body: [
-      "Claude's response: Immediately starts coding a todo list with basic CRUD",
-      "What Claude built:",
-      "  • Simple task list",
-      "  • Add/edit/delete tasks",
-      "  • Mark as complete",
-      "What user actually needed:",
-      "  • Task dependencies",
-      "  • Time tracking per task",
-      "  • Integration with existing project management tool",
-      "  • Weekly summary emails to manager",
-      "  • Different permission levels for team members",
-      "Wasted time: 2 hours building the wrong thing.",
+      "❌ Vague: \"What's the problem with deliveries?\"",
+      "   Which deliveries? What aspect? What timeframe?",
+      "❌ Too broad: \"Tell me about restaurants\"",
+      "   Which ones? What about them?",
+      "✅ Better: \"What's the late order rate (>30 min) for South Jakarta",
+      "   during dinner (6–8pm)? Show your calculation.\"",
+      "✅ Better: \"Which 3 restaurants have highest avg prep time?",
+      "   Show: name, avg time, order count. Sort descending.\"",
     ],
   },
 
   {
     id: 7,
-    title: "Real Example — With grill-me",
-    subtitle: "The Interview-First Approach",
-    example: {
-      type: "good",
-      label: "Same prompt + grill-me skill",
-    },
-    body: [
-      "Claude's interview (excerpt):",
-      "1. Who will use this tool? Just you, or your whole team?",
-      "2. Do tasks need due dates? Priority levels?",
-      "3. Should tasks have subtasks or dependencies?",
-      "4. Do you need time tracking? Just duration or start/stop timestamps?",
-      "5. Where does task data come from? Manual entry only, or pulling from other tools?",
-      "6. What happens when a task is complete? Any notifications?",
-      "7. Who should see what? Different access levels?",
-      "8. How do you want to view tasks? List, board, timeline?",
-      "9. Do you need reporting? What kind of reports?",
-      "10. [continues for 15–20 more questions]",
-      "Result: Clear SOW before a single line of code is written.",
-    ],
+    title: "Template Prompt",
+    subtitle: "Pakai struktur ini setiap kali tanya ke assistant",
+    code: `Question:      [Clear, specific question]
+Data source:   [Which file/table]
+Timeframe:     [When — e.g. Feb 9–11, peak hours only]
+Metric:        [How to calculate — Late = >30 min past estimate]
+Output format: [Table, number, list, etc.]
+
+─────────────────────────────────────────────
+Example:
+
+Question:  What's the correlation between prep time and late deliveries?
+Source:    restaurant_prep.csv joined with orders.csv
+Timeframe: Feb 9–11, 2024, all peak hours
+Metric:    Late = >30 min past estimated delivery
+Output:    Correlation coefficient + plain-language explanation`,
   },
 
   {
     id: 8,
-    title: "The Output — Flowchart & SOW",
-    subtitle: "What You Get After Grilling",
-    body: ["After the interview, Claude produces:"],
-    points: [
-      {
-        label: "1. System Flowchart",
-        items: [
-          "Data flow from input to output",
-          "Integration points",
-          "User interactions",
-          "Decision points",
-        ],
-      },
-      {
-        label: "2. Scope of Work (SOW)",
-        items: [
-          "Clear requirements list",
-          "Technical decisions made",
-          "Edge cases identified",
-          "Implementation phases",
-          "What's explicitly OUT of scope",
-        ],
-      },
-      {
-        label: "3. Shared Vocabulary",
-        items: ["Terminology defined", "Ambiguous terms clarified"],
-      },
-    ],
-    bodyExtra: "Now you can code with confidence.",
+    title: "System Prompt — Full Template",
+    subtitle: "Copy-paste ini ke ChatGPT atau Claude",
+    code: `PERSONA:
+You are a GrabFood operations analyst specializing in delivery
+efficiency. Data-driven, professional, and concise.
+
+YOUR DATA:
+9,200 delivery orders · Feb 9–11, 2024 · Peak hours only
+Fields: order_id, restaurant, zone, prep_time, delivery_time,
+        late_status, customer_rating
+Late = >30 min past estimated delivery
+
+KEY CONTEXT:
+Late rate: 25% (2,300 of 9,200 orders)
+Main cause: prep time (avg 35 min late vs 18 min on-time)
+Business impact: $630K/month
+
+TASKS:
+1. Calculate metrics (rates, averages, percentiles)
+2. Compare performance across restaurants and zones
+3. Identify delay patterns and bottlenecks
+4. Recommend operational improvements
+
+HOW TO RESPOND:
+- Cite specific numbers ("2,300 of 9,200 = 25%")
+- Show calculation steps
+- Keep responses under 3 paragraphs
+- If data is insufficient, say so clearly`,
   },
 
-  // ── Section 3: The Toolkit ────────────────────────────────────────────────────
+  // ── Section 6: Steps ──────────────────────────────────────────────────────────
 
   {
     id: 9,
-    title: "Skills — Pre-Built Workflows",
-    subtitle: "SOW in hand. Now use the right tool for the job.",
-    body: ["Skills are reusable slash-command workflows. Install once, invoke per session."],
+    title: "Step 1 — Siapkan Data",
+    subtitle: "5 menit sebelum buka ChatGPT",
     points: [
       {
-        label: "grill-me",
+        label: "File 1: orders_cleaned.csv",
         items: [
-          "The interview skill — the core of today's methodology",
-          "Walks every branch until shared understanding is reached",
+          "Dataset hasil cleaning dari Week 3",
+          "File utama yang akan dibaca assistant",
+          "Pastikan sudah cleaned — bukan raw data",
         ],
       },
       {
-        label: "Next.js Frontend",
+        label: "File 2: summary.txt",
         items: [
-          "Official skill from the Claude Code GitHub",
-          "Component scaffolding, routing, layouts, data fetching patterns",
-        ],
-      },
-      {
-        label: "to-prd",
-        items: [
-          "Converts a grill-me session into a formal Product Requirements Doc",
-          "Ready to share with stakeholders or hand off to a dev",
-        ],
-      },
-      {
-        label: "to-issues",
-        items: [
-          "Breaks a PRD into independently-grabbable tasks",
-          "Pairs with Linear or GitHub Issues for immediate sprint planning",
-        ],
-      },
-      {
-        label: "improve-codebase-architecture",
-        items: [
-          "Finds refactoring opportunities using your domain language",
-          "Respects decisions documented in CONTEXT.md / CLAUDE.md",
+          "Context singkat: date range, key metrics, Week 2 findings",
+          '"9,200 orders · Feb 9–11 · 25% late · Avg prep 28 min"',
+          "Copy-paste dari problem statement Week 2",
         ],
       },
     ],
-    bodyExtra: "Skills live at: github.com/anthropics/claude-code (official + community)",
+    bodyExtra: "Jangan skip — GPT nggak punya data lo kalau file belum di-upload.",
   },
 
   {
     id: 10,
-    title: "Connectors — Your Tools Inside Claude",
-    subtitle: "Model Context Protocol (MCP)",
-    body: ["MCP servers let Claude read and write to the tools you already use — no copy-pasting context."],
+    title: "Step 2 & 3 — Build the Assistant",
+    subtitle: "3 opsi tool, pilih yang lo punya akses",
     points: [
       {
-        label: "GitHub",
+        label: "Option A — ChatGPT Plus",
         items: [
-          "Read and create issues, PRs, and code reviews",
-          "Search across your codebase by symbol or keyword",
-          "Comment, merge, label — all from the Claude session",
+          "New chat → upload CSV via paperclip",
+          "Paste system prompt → send",
+          '"Acknowledge by summarizing the dataset"',
         ],
       },
       {
-        label: "Linear",
+        label: "Option B — Custom GPTs",
         items: [
-          "Pick up tasks directly in your session",
-          "Update issue status, assignee, priority in real time",
-          "Create sub-issues from a generated SOW",
+          "Explore GPTs → Create",
+          "Instructions = system prompt",
+          "Knowledge = CSV upload → Save",
         ],
       },
       {
-        label: "Vercel",
+        label: "Option C — Claude Projects (free)",
         items: [
-          "Trigger deployments and read build logs",
-          "Surface runtime errors directly in context",
-          "Manage environment variables",
-        ],
-      },
-      {
-        label: "Notion · Drive · Slack",
-        items: [
-          "Read docs and wikis as session context",
-          "Write reports and summaries back to pages",
-          "Post updates to channels on task completion",
+          "Create Project → upload files",
+          "Custom instructions = system prompt",
+          "Free tier works",
         ],
       },
     ],
-    bodyExtra: "Setup: add MCP servers to .claude/settings.json in your project",
+    bodyExtra: 'Verify: tanya "What dataset do you have?" — kalau jawab bener, lanjut testing.',
   },
 
   {
     id: 11,
-    title: "The Daily Workflow",
-    subtitle: "Claude Code + Linear + GitHub + Skills",
-    body: [
-      "This is how a typical work day looks in practice:",
-      "1. Open Linear — pick up the top task for the day",
-      "2. Open Claude Code — load the skill relevant to the work",
-      "3. Run grill-me if requirements are unclear — resolve before coding",
-      "4. Build — Claude Code + GitHub connector for diffs and PRs",
-      "5. Ship — Vercel connector for deploy status and runtime logs",
+    title: "Step 4 — Test 10 Questions",
+    subtitle: "Cover 4 tipe: metrics, comparisons, patterns, recommendations",
+    points: [
+      {
+        label: "Set 1 — Basic Metrics",
+        items: [
+          "What's the overall late order rate?",
+          "Avg delivery time: late vs on-time orders?",
+          "How many restaurants in the dataset?",
+        ],
+      },
+      {
+        label: "Set 2 — Comparisons",
+        items: [
+          "Which 3 restaurants have worst late rate?",
+          "Compare late rates: lunch (12–2pm) vs dinner (6–8pm)",
+          "Which zone has best performance?",
+        ],
+      },
+      {
+        label: "Set 3 — Patterns",
+        items: [
+          "Correlation between prep time and late deliveries?",
+          "Avg prep, travel, wait time for late orders?",
+        ],
+      },
+      {
+        label: "Set 4 — Recommendations",
+        items: [
+          "If prep drops 10 min, how many orders saved?",
+          "Fix slow restaurants or improve routing — which first?",
+        ],
+      },
     ],
-    bodyExtra: "The connectors keep everything in one place. No context-switching.",
   },
 
-  // ── Section 4: Guardrails ─────────────────────────────────────────────────────
+  // ── Section 7: Iteration ──────────────────────────────────────────────────────
 
   {
     id: 12,
-    title: "When to Use This Approach",
-    subtitle: "Not Every Task Needs Grilling",
-    points: [
-      {
-        label: "Use grill-me style for:",
-        items: [
-          "✓ Anything you'll use for >1 month",
-          "✓ Tools others will use (team tools, client deliverables)",
-          "✓ Complex workflows with multiple integration points",
-          "✓ When requirements are vague in your head",
-          "✓ Projects where mistakes are costly",
-        ],
-      },
-      {
-        label: "Skip for:",
-        items: [
-          "Simple one-off scripts",
-          "Prototypes you'll throw away",
-          "Well-defined problems with clear specs already",
-          "Time-sensitive quick fixes",
-        ],
-      },
-    ],
+    title: "Per Question — Cek 3 Hal",
+    subtitle: "Kalau ada yang fail → revise prompt → re-test → log",
     body: [
-      "Rule of thumb: If it takes >2 hours to build, it's worth 15 minutes of grilling.",
+      "Untuk setiap pertanyaan yang lo test:",
+      "✓ Directly answers what was asked? (bukan summary samar-samar)",
+      "✓ Calculations shown? (\"2,300 ÷ 9,200 = 25%\" bukan cuma \"25%\")",
+      "✓ Verified against Excel? (spot-check minimal 3 jawaban secara manual)",
+      "",
+      "Kalau nggak lolos:",
+      "  • Tambah instruksi spesifik di system prompt",
+      "  • Coba rephrase pertanyaannya",
+      "  • Log apa yang diubah dan kenapa",
     ],
+    bodyExtra: "Minimum 2 iterasi prompt sebelum submit.",
   },
 
   {
     id: 13,
-    title: "Common Mistakes in AI Collaboration",
-    subtitle: "What Slows People Down",
-    body: [
-      "❌ Jumping to code too fast",
-      "   No shared understanding = misalignment",
-      "❌ Accepting Claude's first answer",
-      "   Claude gives options. Push back. Question assumptions.",
-      "❌ Not documenting decisions",
-      "   Next session, Claude has no memory of what you decided",
-      "❌ Vague requirements",
-      '   "Make it user-friendly" → means nothing. Define criteria.',
-      "❌ Treating Claude like Google",
-      "   It's a collaborator, not a search engine. Have conversations.",
-      "✅ Better: Slow down upfront. Interview. Document. Then build fast.",
+    title: "Common Pitfalls",
+    subtitle: "Yang paling sering bikin stuck",
+    points: [
+      {
+        label: "Lupa upload file",
+        items: [
+          "GPT nggak punya data lo sampai lo attach",
+          "Ini penyebab #1 jawaban yang salah",
+        ],
+      },
+      {
+        label: "Prompt terlalu vague",
+        items: [
+          '"Analyze data" → GPT bingung mau ngapain',
+          "Harus ada: role, data description, task list",
+        ],
+      },
+      {
+        label: "Nggak verify jawaban",
+        items: [
+          "GPT bisa confident tapi salah",
+          "Always open Excel and spot-check",
+        ],
+      },
+      {
+        label: "Cuma test 2–3 pertanyaan",
+        items: [
+          "Butuh diversity: metrics, comparisons, patterns, rekomendasi",
+          "Minimum 10 untuk rubrik full score",
+        ],
+      },
     ],
   },
 
-  // ── Section 5: Live Demo — Isi Kulkasku ──────────────────────────────────────
+  // ── Section 8: Capstone ───────────────────────────────────────────────────────
 
   {
     id: 14,
-    title: "Live Demo",
-    subtitle: "Isi Kulkasku — My Fridge Tracker",
-    body: [
-      "20 minutes. A real problem. The full methodology.",
-      "What you'll watch:",
-      "  • A vague problem described the way it arrives in your head",
-      "  • grill-me running live — every branch walked, every decision made",
-      "  • The SOW that emerges from the interview",
-      "  • The app built with Claude Code in 10–13 minutes",
+    title: "Capstone Work Session",
+    subtitle: "Apply ke data capstone lo sendiri — 60 menit",
+    points: [
+      {
+        label: "0–15 min — Design Persona & Prompt",
+        items: [
+          "Persona spesifik ke problem lo, bukan generic",
+          "List knowledge sources (cleaned dataset lo)",
+          "Tulis system prompt pakai template tadi",
+        ],
+      },
+      {
+        label: "15–35 min — Build & Test",
+        items: [
+          "Upload dataset, paste prompt, verify initial response",
+          "Test 10+ questions: metrics, comparisons, patterns, rekomendasi",
+          "Verify setiap jawaban terhadap data aslinya",
+        ],
+      },
+      {
+        label: "35–50 min — Iterate & Refine",
+        items: [
+          "Revise prompt berdasarkan jawaban yang wrong/vague",
+          "Minimum 2 iterasi — log setiap perubahan",
+        ],
+      },
+      {
+        label: "50–60 min — Document & Demo Prep",
+        items: [
+          "Finalize system prompt (copy-paste ready)",
+          "Q&A log: 10+ pairs + verification notes",
+          "2-min demo video atau screenshots 3+ interactions",
+        ],
+      },
     ],
-    bodyExtra: "Watch how the questions in grill-me map directly to the code structure.",
   },
 
   {
     id: 15,
-    title: "The Problem",
-    subtitle: "How It Arrives in Your Head",
-    body: [
-      "The vague ask:",
-      "  \"I want something to track what's in my fridge.\"",
-      "What I know:",
-      "  • I keep forgetting about food that's about to expire",
-      "  • I throw away money every week on forgotten produce",
-      "  • I want some kind of reminder before it's too late",
-      "What I don't know yet:",
-      "  • What data to actually track",
-      "  • How notifications should work",
-      "  • Whether my family shares the same list",
-      "  • What categories make sense for me",
+    title: "Checkpoint Rubrik — 100 Poin",
+    subtitle: "Week 6 fokus di AA, AS, dan TM",
+    points: [
+      {
+        label: "AI Literacy — 25 pts ← FOKUS",
+        items: [
+          "✓ 3+ AI use cases dari lecture",
+          "✓ BI vs GenAI dibedakan dengan benar",
+          "✓ 3–5 pertanyaan analisis terdefinisi",
+          "✓ Output AI tool terdokumentasi",
+          "✓ Limitations & adjustment dicatat",
+        ],
+      },
+      {
+        label: "Business Interpretation — 25 pts",
+        items: [
+          "✓ Top 3–5 findings diprioritaskan",
+          "✓ Findings → concrete actions",
+          "✓ Risks highlighted · EDA Week 3 extended",
+        ],
+      },
+      {
+        label: "Assistant Design — 25 pts ← FOKUS",
+        items: [
+          "✓ Persona & tasks clearly defined",
+          "✓ System prompt documented",
+          "✓ 10+ test questions prepared",
+          "✓ Prompt iterations logged",
+        ],
+      },
+      {
+        label: "Testing & UX — 25 pts ← FOKUS",
+        items: [
+          "✓ Responses concise & on-topic",
+          "✓ Tested with outside user",
+          "✓ 2+ iterations from feedback",
+          "✓ Stable for demo",
+        ],
+      },
     ],
-    bodyExtra: "This is where most people open Claude and just start coding.",
   },
+
+  // ── Section 9: Deliverable ────────────────────────────────────────────────────
 
   {
     id: 16,
-    title: "grill-me in Action",
-    subtitle: "12 Questions. 3 Minutes. Every Branch Resolved.",
-    body: [
-      "1. What items will you track? Food only, or beverages too?",
-      "2. Do you always know the expiry date when you add something?",
-      "3. How early do you want to be warned? 1 day, 3 days, 1 week?",
-      "4. How should notifications arrive? In-app, email, browser push?",
-      "5. What time of day? Morning, before shopping?",
-      "6. Do you track quantity? (half a milk carton vs full)",
-      "7. Single user or shared with family?",
-      "8. What categories make sense for your fridge?",
-      "9. What happens when you consume an item — delete or mark as used?",
-      "10. Mobile or desktop first?",
-      "11. Do you want a shopping list for items to restock?",
-      "12. Do you need history — how much food you consumed over time?",
+    title: "Deliverable",
+    subtitle: "Submit sebelum deadline",
+    points: [
+      {
+        label: "① Final System Prompt",
+        items: [
+          "Copy-paste ready — langsung bisa dipakai",
+          "Spesifik ke problem & data capstone lo",
+          "Bukan template generic dari internet",
+        ],
+      },
+      {
+        label: "② Q&A Log (10+ pairs)",
+        items: [
+          "Question · Answer · Verified? · Iteration notes",
+          "Cover: metrics, comparisons, patterns, recommendations",
+          "Log perubahan prompt: apa yang diubah, kenapa",
+        ],
+      },
+      {
+        label: "③ Demo Video / Screenshots",
+        items: [
+          "2-min screen recording atau min. 3 screenshots",
+          "Show: system prompt, 2 live questions, 1 limitation",
+          "Harus jelas assistant-nya stable dan siap dipakai stakeholder",
+        ],
+      },
     ],
-    bodyExtra: "Each answer closes a branch. By question 12, the SOW writes itself.",
   },
+
+  // ── Section 10: Preview & Close ───────────────────────────────────────────────
 
   {
     id: 17,
-    title: "Scope of Work",
-    subtitle: "What We Decided to Build",
-    body: ["Decisions made from the interview:"],
-    points: [
-      {
-        label: "Item Model",
-        items: [
-          "Fields: name, category, quantity + unit, expiry date (optional), added date",
-          "6 categories: Produce · Dairy · Meat · Fish · Beverage · Other",
-          "Status: Fresh (>3 days) · Expiring Soon (≤3 days) · Expired · No Date",
-        ],
-      },
-      {
-        label: "The Interface",
-        items: [
-          "Dashboard view: cards sorted by expiry date",
-          "Status badges with color coding (green / yellow / red)",
-          "Add Item form: name + category dropdown + date picker + quantity",
-          "One-tap remove when item is consumed",
-        ],
-      },
-      {
-        label: "Notifications",
-        items: [
-          "Daily in-app banner at page load: items expiring in ≤ 3 days",
-          "Browser push notification permission (optional, user-controlled)",
-          "Single user only — multi-household is v2",
-        ],
-      },
+    title: "Week 7 Preview",
+    subtitle: "Simple Analytics with GPT — Still No Code",
+    body: [
+      "Minggu depan kita pakai GPT buat analytics lebih dalam:",
+      "  • Ask GPT to find patterns in your data",
+      "  • Generate simple trend forecasts",
+      "  • Create text summaries and insight reports",
+      "GrabFood angle:",
+      "  • Predict which orders are likely to be late",
+      "  • Based on patterns yang kita temukan minggu ini",
     ],
-    bodyExtra: "Out of scope v1: barcode scanning · recipe suggestions · shopping list · history",
+    bodyExtra: "Same tools, smarter questions. No new setup required.",
   },
 
   {
     id: 18,
-    title: "The Build — 3 Phases",
-    subtitle: "10–13 Minutes with Claude Code",
-    body: ["Each grill-me decision maps directly to a phase:"],
-    points: [
-      {
-        label: "Phase 1 — Foundation (3 min)",
-        items: [
-          "Load the frontend-nextjs skill for scaffold",
-          "Define Item type: name, category, qty, unit, expiryDate?",
-          "Set up useState array as the in-memory fridge state",
-          "Helper: getDaysUntilExpiry(date) → status string",
-        ],
-      },
-      {
-        label: "Phase 2 — Core UI (5 min)",
-        items: [
-          "Fridge board: item cards sorted ascending by expiry date",
-          "Status badge per card: Fresh / Expiring Soon / Expired / No Date",
-          "Add Item form: all fields, submit appends to state",
-          "Consume button: remove item from list",
-        ],
-      },
-      {
-        label: "Phase 3 — Notifications (3 min)",
-        items: [
-          "On mount: filter items expiring ≤ 3 days → show banner",
-          "Banner: count + item names (e.g. 'Milk, Eggs expiring soon')",
-          "Request browser push permission if user opts in",
-          "Empty state: friendly message when fridge is clear",
-        ],
-      },
-    ],
-    bodyExtra: "The structure we build mirrors the SOW branch by branch.",
-  },
-
-  // ── Section 6: Case Study Lab ─────────────────────────────────────────────────
-
-  {
-    id: 19,
-    title: "Your Turn — Case Study Lab",
-    subtitle: "50 Minutes to Apply the Methodology",
-    body: ["Pick a real repetitive problem from your own work:"],
-    points: [
-      {
-        label: "Step 1: Identify (10 min)",
-        items: [
-          "Pick one inefficient or repetitive task from your daily work",
-          "Describe it vaguely — the way it arrived in your head",
-          "Brief your group: 2 minutes max",
-        ],
-      },
-      {
-        label: "Step 2: Grill (30 min)",
-        items: [
-          "One person presents; others interview them grill-me style",
-          "Walk every branch of the decision tree",
-          "Resolve dependencies — don't skip hard questions",
-          "Someone documents decisions as they're made",
-        ],
-      },
-      {
-        label: "Step 3: Document (10 min)",
-        items: [
-          "Sketch a rough system flowchart",
-          "Write SOW bullet points: in-scope + explicitly out of scope",
-          "Note: what did you learn that wasn't obvious at the start?",
-        ],
-      },
-    ],
-    bodyExtra: "Then: each group presents findings — 5 min per group",
-  },
-
-  // ── Section 7: Close ──────────────────────────────────────────────────────────
-
-  {
-    id: 20,
-    title: "Key Takeaways",
-    subtitle: "Process > Tools",
-    body: ["Remember:"],
-    points: [
-      {
-        label: "",
-        items: [
-          "1. Interview before implementation — grill-me saves time and rework",
-          "2. Walk every branch — don't code until every decision is resolved",
-          "3. Document shared understanding — CONTEXT.md, SOW, flowcharts",
-          "4. Use skills — reusable workflows for common patterns (to-prd, to-issues)",
-          "5. Connect your tools — Linear, GitHub, Vercel via MCP keep you in flow",
-          "6. Slow down to speed up — 15 min planning beats 2 hours of rework",
-        ],
-      },
-    ],
-    bodyExtra:
-      "Mindset shift: Your job isn't to tell Claude what to do. It's to reach shared understanding, THEN build together.",
-  },
-
-  {
-    id: 21,
     title: "Let's Build",
-    subtitle: "From Vague Problem to Clear Solution",
+    subtitle: "Data lo udah siap. Prompt template udah ada. Tinggal mulai.",
   },
 ];

@@ -5,12 +5,9 @@ import { motion } from "framer-motion";
 import { SlideData } from "@/lib/slides-data";
 import { cn } from "@/lib/utils";
 import {
-  MisalignmentDiagram,
-  DecisionTreeDiagram,
-  InterviewFlowDiagram,
-  OutputFlowDiagram,
-  DailyWorkflowDiagram,
-  WorkshopTimelineDiagram,
+  AssistantComponentsDiagram,
+  IterationLoopDiagram,
+  DeliverablesDiagram,
 } from "./graphics";
 
 const stagger = {
@@ -165,7 +162,7 @@ function HeroLayout({ slide }: { slide: SlideData }) {
             {slide.subtitle}
           </motion.p>
         )}
-        {slide.id === 21 && (
+        {slide.id === 18 && (
           <motion.div variants={fadeUp} className="mt-14">
             <div className="w-12 h-[3px] bg-neutral-900" />
           </motion.div>
@@ -218,6 +215,7 @@ function WideLayout({ slide }: { slide: SlideData }) {
             variants={cardStagger}
             className={cn(
               "grid gap-3 flex-1 min-h-0",
+              count === 2 && "grid-cols-2",
               count === 3 && "grid-cols-3",
               count === 4 && "grid-cols-2",
               count === 5 && "grid-cols-3",
@@ -358,22 +356,16 @@ function SplitLayout({ slide, graphic }: { slide: SlideData; graphic?: ReactNode
 }
 
 export default function Slide({ slide }: { slide: SlideData }) {
-  const isHero = slide.id === 1 || slide.id === 21;
+  const isHero = slide.id === 1 || slide.id === 18;
 
   if (isHero) return <HeroLayout slide={slide} />;
 
-  if (slide.id === 4)  return <GraphicSplitLayout slide={slide} graphic={<DecisionTreeDiagram />} />;
-  if (slide.id === 8)  return <GraphicSplitLayout slide={slide} graphic={<OutputFlowDiagram />} />;
-  if (slide.id === 11) return <GraphicSplitLayout slide={slide} graphic={<DailyWorkflowDiagram />} />;
-  if (slide.id === 19) return <GraphicSplitLayout slide={slide} graphic={<WorkshopTimelineDiagram />} />;
+  if (slide.id === 5)  return <GraphicSplitLayout slide={slide} graphic={<AssistantComponentsDiagram />} />;
+  if (slide.id === 12) return <GraphicSplitLayout slide={slide} graphic={<IterationLoopDiagram />} />;
+  if (slide.id === 16) return <GraphicSplitLayout slide={slide} graphic={<DeliverablesDiagram />} />;
 
-  const isWide = !!slide.points && slide.points.length >= 3;
+  const isWide = !!slide.points && slide.points.length >= 2;
   if (isWide) return <WideLayout slide={slide} />;
 
-  const inlineGraphic =
-    slide.id === 3 ? <MisalignmentDiagram /> :
-    slide.id === 5 ? <InterviewFlowDiagram /> :
-    undefined;
-
-  return <SplitLayout slide={slide} graphic={inlineGraphic} />;
+  return <SplitLayout slide={slide} />;
 }

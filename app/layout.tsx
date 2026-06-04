@@ -10,8 +10,8 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Claude Code for Productivity",
-  description: "Engineering Better Processes Through AI Collaboration",
+  title: "Week 6: Building Your AI Assistant",
+  description: "GrabFood Case Study — AI Assistant Design & Prompt Engineering",
 };
 
 export default function RootLayout({
