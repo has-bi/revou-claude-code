@@ -169,7 +169,7 @@ export const SLIDES: SlideData[] = [
         items: [
           "Flag high-risk items before they fail",
           '"Create an Excel formula to score late-delivery risk"',
-          "Output: High / Medium / Low risk per row",
+          "Output: risk score 0–100 per order row",
         ],
       },
       {
@@ -184,10 +184,41 @@ export const SLIDES: SlideData[] = [
     bodyExtra: "Tip: start with Pattern Discovery — the patterns you find feed directly into Risk Scoring and What-If.",
   },
 
-  // ── Section 4: Deep Dive Per Type ─────────────────────────────────────────────
+  // ── Section 4: Dataset Structure ──────────────────────────────────────────────
 
   {
     id: 7,
+    title: "Your Dataset at a Glance",
+    subtitle: "9,200 GrabFood orders — Feb–Mar 2026",
+    points: [
+      {
+        label: "Key columns for your formula",
+        items: [
+          "B — order_time: timestamp (use HOUR(B2) for dinner rush)",
+          "E — customer_zone: Central / South / East / West / North Jakarta",
+          "F — distance_km: delivery distance in km",
+          "G — prep_time_min: kitchen prep time in minutes",
+          "K — late_status: 'Late' or 'On-time' ← truth label",
+        ],
+      },
+      {
+        label: "Your task — Column O",
+        items: [
+          "O — risk_score: EMPTY, you fill this with your formula",
+          "Formula target: numeric score from 0 to 100",
+          "Score > 70 → predicted Late (target: >70% accurate)",
+          "Score < 30 → predicted On-time",
+          "Copy formula from O2 down to O9201",
+        ],
+      },
+    ],
+    bodyExtra: "Tip: the three strongest predictors in this dataset are prep_time_min (col G), distance_km (col F), and customer_zone (col E).",
+  },
+
+  // ── Section 5: Deep Dive Per Type ─────────────────────────────────────────────
+
+  {
+    id: 8,
     title: "Type 1 — Pattern Discovery",
     subtitle: "Find patterns you might have missed",
     body: [
@@ -203,16 +234,16 @@ For each pattern:
   - Sample size (must be ≥ 30 orders)
   - Confidence: High / Medium / Low"
 
-After GPT responds:
-→ Open Excel, filter rows matching the pattern
-→ Calculate actual late rate:
-     =COUNTIFS(range,criteria,is_late,"TRUE") / COUNTIF(range,criteria)
-→ Compare to GPT's number — should be within 5%`,
+After GPT responds → verify in Excel:
+  =COUNTIFS(K:K,"Late",G:G,">"&30) / COUNTIF(G:G,">"&30)
+  (swap G:G and 30 for whatever column + threshold GPT gave you)
+
+Compare to GPT's number — should be within 5%`,
     bodyExtra: "Tip: always ask GPT for the sample size. A pattern based on 5 orders is not reliable — insist on ≥ 30.",
   },
 
   {
-    id: 8,
+    id: 9,
     title: "Type 2 — Trend Forecasting",
     subtitle: "Predict what's going to happen next",
     body: [
@@ -240,36 +271,38 @@ Use the output to:
   },
 
   {
-    id: 9,
+    id: 10,
     title: "Type 3 — Risk Scoring",
     subtitle: "Flag high-risk orders before it's too late",
     body: [
-      "Build a simple formula in Excel to label every order.",
-      "Paste it as a new column — then layer it on top of your Week 4 dashboard.",
+      "Build a numeric formula (0–100) in Excel to score every order.",
+      "Paste it into column O, then copy down to all 9,200 rows.",
     ],
     code: `Prompt:
 "Create a risk scoring formula for Excel.
 
-Available columns: prep_time, distance_km, hour, zone
-Output: 'High Risk' or 'Low Risk' per order row
+Columns: G=prep_time_min, F=distance_km,
+         E=customer_zone, B=order_time
+Output: numeric score 0–100 in cell O2
 
-Give me the exact Excel IF formula I can paste."
+Give me the exact Excel formula I can paste."
 
 Example output from GPT:
-=IF(OR(B2>30, C2>8,
-   AND(D2>=18, E2="South Jakarta")),
-   "High Risk", "Low Risk")
+=MIN(100, MAX(0,
+  (G2-10)*2 +
+  (F2-3)*3 +
+  IF(E2="South Jakarta",10,0) +
+  IF(HOUR(B2)>=18,8,0)
+))
 
-Accuracy on data: ~75%
-
-Verify:
-  High Risk rows → late rate should be > 70%
-  Low Risk rows  → late rate should be < 25%`,
-    bodyExtra: "Tip: if accuracy is below 60%, ask GPT to try different thresholds — test 2–3 iterations until it's reliable.",
+Validate in Excel:
+  Score > 70 → filter K column → late rate should be > 70%
+  Score < 30 → filter K column → late rate should be < 30%`,
+    bodyExtra: "Tip: if accuracy is below 60%, ask GPT to adjust the weights — test 2–3 versions until it's reliable.",
   },
 
   {
-    id: 10,
+    id: 11,
     title: "Type 4 — What-If Scenarios",
     subtitle: "Simulate interventions and compare ROI",
     body: [
@@ -294,35 +327,39 @@ Test 3 scenarios and compare:
     bodyExtra: "Tip: frame every scenario with a concrete baseline. 'Save $X' is more convincing to stakeholders than 'reduce late rate by Y%'.",
   },
 
-  // ── Section 5: GrabFood End-to-End ───────────────────────────────────────────
+  // ── Section 6: GrabFood End-to-End ───────────────────────────────────────────
 
   {
-    id: 11,
+    id: 12,
     title: "GrabFood: End-to-End",
     subtitle: "From prompt to Excel formula — 3 steps",
     body: [
       "① Ask GPT:",
-      '  "Which factors predict late orders? Give me Excel thresholds."',
+      '  "Which factors in columns E, F, G predict late orders? Give me a 0–100 score formula."',
       "② GPT responds:",
-      '  "Late if: prep_time > 30 OR distance > 8 km — accuracy ~75%"',
-      "③ Paste into Excel and validate:",
+      '  "Score = prep_time × 2 + distance × 3 + zone bonus + hour bonus"',
+      "③ Paste into column O and validate:",
     ],
-    code: `=IF(OR(B2>30, C2>8), "High Risk", "Low Risk")
+    code: `=MIN(100, MAX(0,
+  (G2-10)*2 +
+  (F2-3)*3 +
+  IF(E2="South Jakarta",10,0) +
+  IF(HOUR(B2)>=18,8,0)
+))
 
 Validate (required):
-  Filter High Risk → count is_late=TRUE → target ≥ 70%
-  Filter Low Risk  → count is_late=TRUE → target ≤ 25%
+  Filter col O > 70 → check col K → target ≥ 70% "Late"
+  Filter col O < 30 → check col K → target ≤ 30% "Late"
 
 If accuracy < 60%:
-  → Ask GPT to recalculate with different thresholds
-  → Test 2–3 iterations until it's reliable`,
+  → Ask GPT to adjust weights and retry`,
     bodyExtra: "No coding. Prompting + Excel. The same workflow applies to your own capstone data.",
   },
 
-  // ── Section 6: Validation ─────────────────────────────────────────────────────
+  // ── Section 7: Validation ─────────────────────────────────────────────────────
 
   {
-    id: 12,
+    id: 13,
     title: "Validation — 4 Required Steps",
     subtitle: "Never trust AI predictions without verification",
     points: [
@@ -363,7 +400,7 @@ If accuracy < 60%:
   },
 
   {
-    id: 13,
+    id: 14,
     title: "4 Common AI Mistakes",
     subtitle: "Learn to spot, check, and challenge GPT",
     points: [
@@ -400,7 +437,7 @@ If accuracy < 60%:
   },
 
   {
-    id: 14,
+    id: 15,
     title: "The 3-Step Workflow",
     subtitle: "Repeat this for every analytic you build",
     body: [
@@ -416,10 +453,10 @@ If accuracy < 60%:
     bodyExtra: "GPT is a fast analyst. YOU are the decision-maker. Don't let that get reversed.",
   },
 
-  // ── Section 7: Capstone ───────────────────────────────────────────────────────
+  // ── Section 8: Capstone ───────────────────────────────────────────────────────
 
   {
-    id: 15,
+    id: 16,
     title: "Capstone Work Session",
     subtitle: "Apply the workflow to your own data — 60 minutes",
     points: [
@@ -460,7 +497,7 @@ If accuracy < 60%:
   },
 
   {
-    id: 16,
+    id: 17,
     title: "Deliverables",
     subtitle: "Submit before the deadline — 3 files",
     points: [
@@ -492,10 +529,10 @@ If accuracy < 60%:
     ],
   },
 
-  // ── Section 8: Preview & Close ────────────────────────────────────────────────
+  // ── Section 9: Preview & Close ────────────────────────────────────────────────
 
   {
-    id: 17,
+    id: 18,
     title: "Week 8 Preview",
     subtitle: "Automation with n8n — Still No Code",
     body: [
@@ -512,7 +549,7 @@ If accuracy < 60%:
   },
 
   {
-    id: 18,
+    id: 19,
     title: "Let's Predict",
     subtitle: "Your data is ready. The patterns are there. All that's left is to validate.",
   },

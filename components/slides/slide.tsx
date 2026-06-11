@@ -198,7 +198,7 @@ function SlideLeftColumn({ slide, children }: { slide: SlideData; children?: Rea
 
 const HERO_ICONS: Record<number, ReactNode> = {
   1:  <BrainCircuit size={52} className="text-neutral-300 mb-8" strokeWidth={1.5} />,
-  18: <Rocket size={52} className="text-neutral-300 mb-8" strokeWidth={1.5} />,
+  19: <Rocket size={52} className="text-neutral-300 mb-8" strokeWidth={1.5} />,
 };
 
 function HeroLayout({ slide }: { slide: SlideData }) {
@@ -225,7 +225,7 @@ function HeroLayout({ slide }: { slide: SlideData }) {
             {slide.subtitle}
           </motion.p>
         )}
-        {slide.id === 18 && (
+        {slide.id === 19 && (
           <motion.div variants={fadeUp} className="mt-14">
             <div className="w-12 h-[3px] bg-neutral-900" />
           </motion.div>
@@ -410,7 +410,7 @@ function SplitLayout({ slide }: { slide: SlideData }) {
 }
 
 export default function Slide({ slide }: { slide: SlideData }) {
-  const isHero = slide.id === 1 || slide.id === 18;
+  const isHero = slide.id === 1 || slide.id === 19;
 
   if (isHero) return <HeroLayout slide={slide} />;
 
