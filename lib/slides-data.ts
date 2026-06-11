@@ -10,148 +10,148 @@ export interface SlideData {
 }
 
 export const SLIDES: SlideData[] = [
-  // ── Section 1: Pembuka ────────────────────────────────────────────────────────
+  // ── Section 1: Opening ────────────────────────────────────────────────────────
 
   {
     id: 1,
     title: "Simple Analytics with AI",
-    subtitle: "GrabFood Case Study — Dari Query ke Prediksi",
+    subtitle: "GrabFood Case Study — From Queries to Predictions",
   },
 
-  // ── Section 2: Konteks & Agenda ───────────────────────────────────────────────
+  // ── Section 2: Context & Agenda ───────────────────────────────────────────────
 
   {
     id: 2,
-    title: "Di Mana Kita Sekarang",
-    subtitle: "Week 2 sampai sekarang — satu case study berlanjut",
+    title: "Where We Are Now",
+    subtitle: "Weeks 2 through today — one continuous case study",
     points: [
       {
         label: "Weeks 2–4 — Define → Diagnose → Visualize",
         items: [
-          "Week 2: Identified problem — 25% late orders, $630K/month",
-          "Week 3: Root cause — prep time (41%), travel (31%)",
-          "Week 4: Visualized insights — dashboard + story deck",
+          "Week 2: Found the problem — 25% late orders, $630K/month lost",
+          "Week 3: Root cause — prep time (41%), travel distance (31%)",
+          "Week 4: Built visuals — dashboard + story deck",
         ],
       },
       {
-        label: "Week 6 — Build AI Assistant",
+        label: "Week 6 — Build an AI Assistant",
         items: [
-          "Built GPT assistant yang bisa jawab pertanyaan tentang data",
+          "Built a GPT assistant that answers data questions",
           "System prompt + harness engineering",
-          "Test 10+ questions, validate every answer",
+          "Tested 10+ questions and validated every answer",
         ],
       },
       {
         label: "Week 7 — Simple Analytics + Predictions (TODAY)",
         items: [
-          "Dari query (apa yang terjadi) → predict (apa yang AKAN terjadi)",
+          "From querying (what happened) → predicting (what WILL happen)",
           "Pattern discovery + risk scoring + what-if scenarios",
-          "Masih no coding — GPT + Excel only",
+          "Still no coding — GPT + Excel only",
         ],
       },
     ],
-    bodyExtra: "Goal hari ini: predict which orders will be late BEFORE they happen.",
+    bodyExtra: "Today's goal: predict which orders will be late BEFORE they happen.",
   },
 
   {
     id: 3,
-    title: "Agenda Hari Ini",
-    subtitle: "120 menit — no coding required",
+    title: "Today's Agenda",
+    subtitle: "120 minutes — no coding required",
     points: [
       {
-        label: "Part 1 — 30 min: Key Concepts + Demo",
+        label: "Part 1 — 30 min: Concepts + Demo",
         items: [
-          "Querying vs Predicting — apa bedanya?",
-          "4 tipe simple analytics",
+          "Querying vs Predicting — what's the difference?",
+          "4 types of simple analytics",
           "Live demo: GPT finds patterns → Excel formula",
-          "Cara validate AI predictions (CRITICAL)",
+          "How to validate AI predictions (CRITICAL skill)",
         ],
       },
       {
-        label: "Part 2 — 30 min: Hands-On GrabFood",
+        label: "Part 2 — 30 min: GrabFood Hands-On",
         items: [
-          "Pattern discovery di GrabFood dataset",
-          "Build risk score formula di Excel",
-          "What-if scenarios: mana intervensi terbaik?",
-          "Validate setiap result — no trust without verification",
+          "Pattern discovery on the GrabFood dataset",
+          "Build a risk score formula in Excel",
+          "What-if scenarios: which intervention wins?",
+          "Validate every result — no trust without verification",
         ],
       },
       {
         label: "Part 3 — 60 min: Capstone Work Session",
         items: [
-          "Apply ke data capstone lo sendiri",
+          "Apply the same workflow to your own capstone data",
           "Pattern → formula → what-if",
-          "Document insights untuk deliverable",
+          "Document insights for your deliverable",
         ],
       },
     ],
   },
 
-  // ── Section 3: Konsep Kunci ───────────────────────────────────────────────────
+  // ── Section 3: Key Concepts ───────────────────────────────────────────────────
 
   {
     id: 4,
     title: "Querying vs Predicting",
-    subtitle: "Dua hal beda — dua tujuan beda",
+    subtitle: "Two different goals — two different mindsets",
     points: [
       {
         label: "Week 6 — Query Data",
         items: [
           '"Which restaurants are slowest?"',
-          "Jawaban: lookup dari historical data",
+          "Answer: look up from historical data",
           "Use case: diagnosis, reporting, investigation",
-          "Timing: reaktif — setelah masalah terjadi",
+          "Timing: reactive — after the problem happens",
         ],
       },
       {
         label: "Week 7 — Predict Outcomes",
         items: [
           '"Which orders WILL be late?"',
-          "Jawaban: pattern + formula → flag in advance",
-          "Use case: prevention, proactive intervention",
-          "Timing: proaktif — sebelum masalah terjadi",
+          "Answer: find a pattern → flag it in advance",
+          "Use case: prevention, proactive action",
+          "Timing: proactive — before the problem happens",
         ],
       },
     ],
-    bodyExtra: "Shift mindset: dari 'apa yang salah?' → 'apa yang akan salah?' — dan cegah sebelum terjadi.",
+    bodyExtra: "Mindset shift: from 'what went wrong?' → 'what will go wrong?' — and stop it before it does.",
   },
 
   {
     id: 5,
-    title: "Apa yang Kita Lakuin",
-    subtitle: "Set expectations — ini bukan ML class",
+    title: "What We Do — and Don't",
+    subtitle: "Setting expectations — this is not an ML course",
     points: [
       {
-        label: "✓ Yang kita lakuin",
+        label: "✓ What we do",
         items: [
-          "✓ Pattern discovery — ask GPT to find patterns",
-          "✓ Trend forecasting — predict next period",
-          "✓ Risk scoring — flag high-risk items in Excel",
-          "✓ What-if scenarios — simulate interventions",
+          "✓ Pattern discovery — ask GPT to find patterns in your data",
+          "✓ Trend forecasting — predict what happens next period",
+          "✓ Risk scoring — flag high-risk items with an Excel formula",
+          "✓ What-if scenarios — simulate interventions and compare",
         ],
       },
       {
-        label: "❌ Yang kita nggak lakuin",
+        label: "❌ What we don't do",
         items: [
-          "Build ML models (no scikit-learn)",
+          "Build machine learning models (no scikit-learn)",
           "Write Python or R code",
           "Train neural networks",
-          "Need weeks of data prep",
+          "Spend weeks on data preparation",
         ],
       },
     ],
-    bodyExtra: "Traditional ML = weeks of work. Simple AI Analytics = hours. Results: comparable for most business decisions.",
+    bodyExtra: "Traditional ML = weeks of work. Simple AI Analytics = hours. Results: good enough for most business decisions.",
   },
 
   {
     id: 6,
-    title: "4 Tipe Simple Analytics",
-    subtitle: "Pakai GPT buat keempatnya — no coding",
+    title: "4 Types of Simple Analytics",
+    subtitle: "Use GPT for all four — no coding needed",
     points: [
       {
         label: "① Pattern Discovery",
         items: [
-          "Temukan pola yang mungkin lo miss",
+          "Uncover patterns you might have missed",
           '"What patterns predict late deliveries?"',
           "Output: thresholds + late rate % per pattern",
         ],
@@ -159,7 +159,7 @@ export const SLIDES: SlideData[] = [
       {
         label: "② Trend Forecasting",
         items: [
-          "Prediksi performa ke depan dari historical data",
+          "Project future performance from historical data",
           '"If this trend continues, what happens next month?"',
           "Output: predicted rate + key driver",
         ],
@@ -167,32 +167,33 @@ export const SLIDES: SlideData[] = [
       {
         label: "③ Risk Scoring",
         items: [
-          "Flag high-risk items sebelum mereka fail",
-          '"Create an Excel formula to score late risk"',
-          "Output: High/Medium/Low risk per row",
+          "Flag high-risk items before they fail",
+          '"Create an Excel formula to score late-delivery risk"',
+          "Output: High / Medium / Low risk per row",
         ],
       },
       {
         label: "④ What-If Scenarios",
         items: [
-          "Simulasi intervensi dan hitung impact-nya",
-          '"If prep time drops 10 min, how many orders saved?"',
+          "Simulate interventions and calculate their ROI",
+          '"If prep time drops 10 min, how many orders are saved?"',
           "Output: orders saved + estimated cost savings",
         ],
       },
     ],
+    bodyExtra: "Tip: start with Pattern Discovery — the patterns you find feed directly into Risk Scoring and What-If.",
   },
 
-  // ── Section 4: Deep Dive Per Tipe ─────────────────────────────────────────────
+  // ── Section 4: Deep Dive Per Type ─────────────────────────────────────────────
 
   {
     id: 7,
     title: "Type 1 — Pattern Discovery",
-    subtitle: "Temukan pola yang lo mungkin miss",
+    subtitle: "Find patterns you might have missed",
     body: [
-      "Minta GPT untuk analyze dataset — bukan cuma ngambil angka.",
-      "GPT akan suggest thresholds dan correlations dari data lo.",
-      "Lo tinggal verify hasilnya di Excel.",
+      "Ask GPT to analyze your dataset — not just retrieve numbers.",
+      "GPT will suggest thresholds and correlations from your data.",
+      "You verify every result in Excel before trusting it.",
     ],
     code: `Prompt:
 "Find the top 3 patterns that predict late deliveries.
@@ -207,15 +208,16 @@ After GPT responds:
 → Calculate actual late rate:
      =COUNTIFS(range,criteria,is_late,"TRUE") / COUNTIF(range,criteria)
 → Compare to GPT's number — should be within 5%`,
+    bodyExtra: "Tip: always ask GPT for the sample size. A pattern based on 5 orders is not reliable — insist on ≥ 30.",
   },
 
   {
     id: 8,
     title: "Type 2 — Trend Forecasting",
-    subtitle: "Prediksi apa yang akan terjadi",
+    subtitle: "Predict what's going to happen next",
     body: [
-      "Gunakan historical patterns untuk estimasi performa ke depan.",
-      "Bukan model yang presisi — tapi cukup buat business decisions.",
+      "Use historical patterns to estimate future performance.",
+      "This isn't a precise model — but it's accurate enough for business decisions.",
     ],
     code: `Prompt:
 "Based on Feb 9–11 data, predict the late rate for
@@ -234,15 +236,16 @@ Use the output to:
   → Create urgency with leadership (show the forecast)
   → Set improvement targets (need to reverse the trend)
   → Track progress after interventions`,
+    bodyExtra: "Tip: always state your assumptions explicitly in the prompt. GPT's forecast is only as good as the assumptions you give it.",
   },
 
   {
     id: 9,
     title: "Type 3 — Risk Scoring",
-    subtitle: "Flag high-risk orders sebelum terlambat",
+    subtitle: "Flag high-risk orders before it's too late",
     body: [
-      "Buat formula sederhana di Excel untuk label setiap order.",
-      "Tempel hasilnya ke dashboard Week 4 sebagai layer baru.",
+      "Build a simple formula in Excel to label every order.",
+      "Paste it as a new column — then layer it on top of your Week 4 dashboard.",
     ],
     code: `Prompt:
 "Create a risk scoring formula for Excel.
@@ -262,15 +265,16 @@ Accuracy on data: ~75%
 Verify:
   High Risk rows → late rate should be > 70%
   Low Risk rows  → late rate should be < 25%`,
+    bodyExtra: "Tip: if accuracy is below 60%, ask GPT to try different thresholds — test 2–3 iterations until it's reliable.",
   },
 
   {
     id: 10,
     title: "Type 4 — What-If Scenarios",
-    subtitle: "Simulasi intervensi dan bandingkan ROI-nya",
+    subtitle: "Simulate interventions and compare ROI",
     body: [
-      "Bandingkan 3 skenario: mana yang paling worth it untuk dieksekusi?",
-      "GPT menghitung impact — lo verify logika dan angkanya.",
+      "Compare 3 scenarios side-by-side: which one is most worth executing?",
+      "GPT calculates the impact — you verify the logic and the numbers.",
     ],
     code: `Prompt:
 "If we reduce prep time by 10 minutes for all restaurants,
@@ -286,7 +290,8 @@ Test 3 scenarios and compare:
   B. Add 20% more drivers during dinner rush (6–8pm)
   C. Remove 2 worst-performing restaurants from peak hours
 
-→ Pick the scenario with highest ROI`,
+→ Pick the scenario with the highest ROI`,
+    bodyExtra: "Tip: frame every scenario with a concrete baseline. 'Save $X' is more convincing to stakeholders than 'reduce late rate by Y%'.",
   },
 
   // ── Section 5: GrabFood End-to-End ───────────────────────────────────────────
@@ -294,39 +299,39 @@ Test 3 scenarios and compare:
   {
     id: 11,
     title: "GrabFood: End-to-End",
-    subtitle: "Dari prompt ke Excel formula — 3 langkah",
+    subtitle: "From prompt to Excel formula — 3 steps",
     body: [
       "① Ask GPT:",
       '  "Which factors predict late orders? Give me Excel thresholds."',
       "② GPT responds:",
       '  "Late if: prep_time > 30 OR distance > 8 km — accuracy ~75%"',
-      "③ Paste ke Excel dan validate:",
+      "③ Paste into Excel and validate:",
     ],
     code: `=IF(OR(B2>30, C2>8), "High Risk", "Low Risk")
 
-Validate (wajib dilakukan):
+Validate (required):
   Filter High Risk → count is_late=TRUE → target ≥ 70%
   Filter Low Risk  → count is_late=TRUE → target ≤ 25%
 
 If accuracy < 60%:
   → Ask GPT to recalculate with different thresholds
   → Test 2–3 iterations until it's reliable`,
-    bodyExtra: "No coding. Prompting + Excel. Workflow yang sama berlaku buat capstone data lo.",
+    bodyExtra: "No coding. Prompting + Excel. The same workflow applies to your own capstone data.",
   },
 
   // ── Section 6: Validation ─────────────────────────────────────────────────────
 
   {
     id: 12,
-    title: "Validation — 4 Langkah Wajib",
+    title: "Validation — 4 Required Steps",
     subtitle: "Never trust AI predictions without verification",
     points: [
       {
-        label: "① Ask GPT to explain logic",
+        label: "① Ask GPT to explain its logic",
         items: [
-          '"Give predictions AND explain the formula you used"',
-          "Kalau GPT nggak bisa explain → don't trust the output",
-          "Good answer includes thresholds + sample sizes",
+          '"Give me predictions AND explain the formula you used"',
+          "If GPT can't explain it → don't trust the output",
+          "A good answer includes thresholds + sample sizes",
         ],
       },
       {
@@ -346,69 +351,69 @@ If accuracy < 60%:
         ],
       },
       {
-        label: "④ Sense-check with domain",
+        label: "④ Sense-check with domain knowledge",
         items: [
           '"More prep time = better on-time rate" → WRONG',
-          "Kalau GPT bilang hal yang nggak logis — challenge it",
+          "If GPT says something illogical — challenge it",
           "Your domain knowledge > GPT's statistics",
         ],
       },
     ],
-    bodyExtra: "Minimum: manually verify 3 predictions before using any result in your deliverable.",
+    bodyExtra: "Minimum requirement: manually verify 3 predictions before using any result in your deliverable.",
   },
 
   {
     id: 13,
-    title: "4 Kesalahan AI yang Sering Muncul",
-    subtitle: "Kenali, cek, dan challenge GPT",
+    title: "4 Common AI Mistakes",
+    subtitle: "Learn to spot, check, and challenge GPT",
     points: [
       {
         label: "Hallucinated Numbers",
         items: [
-          '"There are 15 restaurants" — lo cuma punya 8',
-          "Fix: count di Excel, lalu kasih tau GPT angka yang benar",
+          '"There are 15 restaurants" — but you only have 8',
+          "Fix: count in Excel, then correct GPT with the real number",
         ],
       },
       {
         label: "Wrong Math",
         items: [
-          '"25% of 10,000 = 2,000" — harusnya 2,500',
-          "Fix: hitung manual, koreksi GPT, minta recalculate",
+          '"25% of 10,000 = 2,000" — should be 2,500',
+          "Fix: calculate manually, correct GPT, ask it to recalculate",
         ],
       },
       {
         label: "Impossible Results",
         items: [
           '"Late rate will drop to -5%"',
-          "Fix: flag as error, ask GPT to reconsider constraints",
+          "Fix: flag as an error, ask GPT to reconsider its constraints",
         ],
       },
       {
         label: "Circular Logic",
         items: [
           '"Late orders are late because they are delayed"',
-          "Fix: rephrase — ask for root cause, not description",
+          "Fix: rephrase — ask for root cause, not a description",
         ],
       },
     ],
-    bodyExtra: "Rule: kalau ada yang aneh dari GPT — screenshot, note it, crosscheck di Excel. Jangan abaikan.",
+    bodyExtra: "Rule: if anything from GPT looks off — screenshot it, note it, cross-check in Excel. Never ignore a red flag.",
   },
 
   {
     id: 14,
     title: "The 3-Step Workflow",
-    subtitle: "Repeat ini untuk setiap analytic yang lo buat",
+    subtitle: "Repeat this for every analytic you build",
     body: [
-      "Berlaku untuk semua 4 tipe analytics:",
+      "Applies to all 4 types of analytics:",
       "",
       "1. Ask GPT for the analysis or formula",
-      "  Specify: columns available, output format, min sample size",
+      "  Specify: columns available, output format, minimum sample size",
       "2. GPT gives you the pattern or Excel formula",
-      "  Save the exact response — jangan paraphrase",
+      "  Save the exact response — don't paraphrase it",
       "3. YOU verify it in Excel",
       "  Filter → count → calculate % → compare to GPT",
     ],
-    bodyExtra: "GPT adalah fast analyst. YOU adalah decision-maker. Jangan sampai kebalik.",
+    bodyExtra: "GPT is a fast analyst. YOU are the decision-maker. Don't let that get reversed.",
   },
 
   // ── Section 7: Capstone ───────────────────────────────────────────────────────
@@ -416,39 +421,39 @@ If accuracy < 60%:
   {
     id: 15,
     title: "Capstone Work Session",
-    subtitle: "Apply ke data capstone lo sendiri — 60 menit",
+    subtitle: "Apply the workflow to your own data — 60 minutes",
     points: [
       {
         label: "0–15 min — Pattern Discovery",
         items: [
-          "Pakai Week 6 AI assistant di capstone data lo",
-          "Prompt: top 5 patterns related to Week 2 problem",
-          "Verify setiap pattern di Excel sebelum lanjut",
+          "Use your Week 6 AI assistant on your capstone data",
+          "Prompt: top 5 patterns related to your Week 2 problem",
+          "Verify every pattern in Excel before moving on",
         ],
       },
       {
         label: "15–35 min — Prediction Formula",
         items: [
-          "Ask GPT: create Excel formula for risk scoring",
-          "Implement sebagai new column di Excel",
-          "Validate: high-risk rows harus punya higher problem rate",
-          "Target accuracy: >60%",
+          "Ask GPT: create an Excel formula for risk scoring",
+          "Add it as a new column in your Excel file",
+          "Validate: high-risk rows must have a higher problem rate",
+          "Target accuracy: > 60%",
         ],
       },
       {
         label: "35–50 min — What-If Scenarios",
         items: [
-          "Simulasi 3 intervensi (A, B, C)",
-          "Hitung ROI setiap scenario",
-          "Pilih scenario dengan impact terbesar",
+          "Simulate 3 interventions (A, B, C)",
+          "Calculate ROI for each scenario",
+          "Choose the one with the biggest impact",
         ],
       },
       {
         label: "50–60 min — Document Insights",
         items: [
-          "Top 3 patterns + prediction formula (dengan accuracy %)",
+          "Top 3 patterns + prediction formula (with accuracy %)",
           "Best what-if scenario + expected impact",
-          "1–2 new slides ditambahkan ke story deck Week 4",
+          "Add 1–2 new slides to your Week 4 story deck",
         ],
       },
     ],
@@ -457,15 +462,15 @@ If accuracy < 60%:
   {
     id: 16,
     title: "Deliverables",
-    subtitle: "Submit sebelum deadline — 3 file",
+    subtitle: "Submit before the deadline — 3 files",
     points: [
       {
         label: "① Analytics Summary Doc",
         items: [
-          "Top 3–5 patterns + accuracy % masing-masing",
+          "Top 3–5 patterns + accuracy % for each",
           "Prediction formula + validation evidence (Excel screenshots)",
           "What-if scenario results + best recommendation",
-          "Format: PDF, 2–3 halaman",
+          "Format: PDF, 2–3 pages",
         ],
       },
       {
@@ -480,8 +485,8 @@ If accuracy < 60%:
         label: "③ Updated Story Deck",
         items: [
           "1–2 new slides: predictions + what-if results",
-          "Extend deck dari Week 4 — jangan replace",
-          "Stakeholder-ready: angka konkret, bukan generik",
+          "Extend your Week 4 deck — don't replace it",
+          "Stakeholder-ready: concrete numbers, not generic statements",
         ],
       },
     ],
@@ -494,14 +499,14 @@ If accuracy < 60%:
     title: "Week 8 Preview",
     subtitle: "Automation with n8n — Still No Code",
     body: [
-      "Minggu depan: automate workflow yang sudah kita build.",
-      "  • Connect Excel → GPT → email stakeholders otomatis",
+      "Next week: automate the workflow you've already built.",
+      "  • Connect Excel → GPT → email stakeholders automatically",
       "  • Build alerts: high-risk orders detected → trigger notification",
-      "  • Schedule: weekly summary dikirim tiap Senin pagi",
-      "Tool: n8n — visual workflow builder.",
+      "  • Schedule: weekly summary sent every Monday morning",
+      "Tool: n8n — a visual workflow builder.",
       "  • Drag & drop nodes, no coding",
-      "  • Integrate dengan GPT, Gmail, Sheets, Slack",
-      "  • Trigger on schedule atau event",
+      "  • Integrates with GPT, Gmail, Sheets, Slack",
+      "  • Triggers on a schedule or on events",
     ],
     bodyExtra: "Same no-code approach. Bigger automation. See you next week.",
   },
@@ -509,6 +514,6 @@ If accuracy < 60%:
   {
     id: 18,
     title: "Let's Predict",
-    subtitle: "Data lo udah ada. Pattern-nya udah ada. Tinggal validate.",
+    subtitle: "Your data is ready. The patterns are there. All that's left is to validate.",
   },
 ];

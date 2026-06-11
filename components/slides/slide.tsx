@@ -49,7 +49,7 @@ function GhostNumber({ num, size = "28vw" }: { num: string; size?: string }) {
 
 function BodyLines({ lines }: { lines: string[] }) {
   return (
-    <div className="space-y-1">
+    <div className="space-y-1.5">
       {lines.map((line, i) => {
         if (line === "") return <div key={i} className="h-2" />;
 
@@ -66,11 +66,11 @@ function BodyLines({ lines }: { lines: string[] }) {
           return (
             <div key={i} className={cn("flex gap-2 items-start", isBetter && "mt-2")}>
               <CheckCircle2
-                size={15}
+                size={18}
                 className={cn("shrink-0 mt-[3px]", isBetter ? "text-emerald-600" : "text-emerald-500")}
               />
               <p className={cn(
-                "text-base leading-relaxed text-emerald-700",
+                "text-lg leading-relaxed text-emerald-700",
                 isBetter && "font-bold text-neutral-900"
               )}>
                 {displayText}
@@ -82,8 +82,8 @@ function BodyLines({ lines }: { lines: string[] }) {
         if (isCross) {
           return (
             <div key={i} className="flex gap-2 items-start">
-              <XCircle size={15} className="shrink-0 mt-[3px] text-red-500" />
-              <p className="text-base leading-relaxed text-red-600">{displayText}</p>
+              <XCircle size={18} className="shrink-0 mt-[3px] text-red-500" />
+              <p className="text-lg leading-relaxed text-red-600">{displayText}</p>
             </div>
           );
         }
@@ -92,7 +92,7 @@ function BodyLines({ lines }: { lines: string[] }) {
           <p
             key={i}
             className={cn(
-              "text-base leading-relaxed",
+              "text-lg leading-relaxed",
               isIndented ? "pl-5 text-neutral-500" : "text-neutral-700",
               isBold && "font-semibold text-neutral-900 mt-3 first:mt-0"
             )}
@@ -122,7 +122,7 @@ function PointCard({ point, index }: { point: { label: string; items: string[] }
         <div className="flex items-center gap-1.5 mb-3 pr-8">
           {labelIsCheck && <CheckCircle2 size={12} className="shrink-0 text-emerald-500" />}
           {labelIsCross && <XCircle size={12} className="shrink-0 text-red-400" />}
-          <p className="text-xs font-black tracking-[0.15em] uppercase text-neutral-500 group-hover:text-neutral-700 transition-colors leading-tight">
+          <p className="text-sm font-black tracking-[0.15em] uppercase text-neutral-500 group-hover:text-neutral-700 transition-colors leading-tight">
             {cleanLabel}
           </p>
         </div>
@@ -136,7 +136,7 @@ function PointCard({ point, index }: { point: { label: string; items: string[] }
             <li
               key={j}
               className={cn(
-                "text-sm leading-snug flex gap-1.5 items-start",
+                "text-base leading-snug flex gap-1.5 items-start",
                 isCheck ? "text-emerald-700 font-medium" : "text-neutral-700"
               )}
             >
@@ -157,8 +157,8 @@ function PointCard({ point, index }: { point: { label: string; items: string[] }
 function Callout({ text }: { text: string }) {
   return (
     <div className="flex items-start gap-2 border-l-[3px] border-neutral-400 pl-4 py-0.5">
-      <Lightbulb size={14} className="shrink-0 mt-0.5 text-neutral-500" />
-      <p className="text-sm font-semibold text-neutral-700 leading-relaxed">{text}</p>
+      <Lightbulb size={17} className="shrink-0 mt-0.5 text-neutral-500" />
+      <p className="text-base font-semibold text-neutral-700 leading-relaxed">{text}</p>
     </div>
   );
 }
@@ -180,12 +180,12 @@ function SlideLeftColumn({ slide, children }: { slide: SlideData; children?: Rea
         <motion.h1
           variants={fadeUp}
           className="font-black leading-[1.0] tracking-[-0.025em] text-neutral-950 mb-5"
-          style={{ fontSize: "clamp(1.8rem, 3vw, 3rem)" }}
+          style={{ fontSize: "clamp(2rem, 3.2vw, 3.2rem)" }}
         >
           {slide.title}
         </motion.h1>
         {slide.subtitle && (
-          <motion.p variants={fadeUp} className="text-base text-neutral-600 font-light leading-relaxed">
+          <motion.p variants={fadeUp} className="text-xl text-neutral-600 font-light leading-relaxed">
             {slide.subtitle}
           </motion.p>
         )}
@@ -255,12 +255,12 @@ function WideLayout({ slide }: { slide: SlideData }) {
             <motion.h1
               variants={fadeUp}
               className="font-black leading-tight tracking-[-0.025em] text-neutral-950"
-              style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.8rem)" }}
+              style={{ fontSize: "clamp(2rem, 3vw, 3rem)" }}
             >
               {title}
             </motion.h1>
             {subtitle && (
-              <motion.p variants={fadeUp} className="text-base text-neutral-600 font-light mt-1">
+              <motion.p variants={fadeUp} className="text-xl text-neutral-600 font-light mt-1">
                 {subtitle}
               </motion.p>
             )}
@@ -375,7 +375,7 @@ function SplitLayout({ slide }: { slide: SlideData }) {
 
         {code && (
           <motion.div variants={fadeUp} className="mb-7">
-            <pre className="font-mono text-[0.78rem] bg-neutral-950 text-neutral-100 rounded-2xl px-7 py-5 leading-relaxed whitespace-pre-wrap border border-neutral-700">
+            <pre className="font-mono text-sm bg-neutral-950 text-neutral-100 rounded-2xl px-7 py-5 leading-relaxed whitespace-pre-wrap border border-neutral-700">
               {code}
             </pre>
           </motion.div>
