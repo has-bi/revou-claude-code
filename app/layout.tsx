@@ -10,8 +10,8 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Week 6: Building Your AI Assistant",
-  description: "GrabFood Case Study — AI Assistant Design & Prompt Engineering",
+  title: "Week 7: Simple Analytics with AI",
+  description: "GrabFood Case Study — Pattern Discovery, Risk Scoring & Predictions",
 };
 
 export default function RootLayout({

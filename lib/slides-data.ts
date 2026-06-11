@@ -14,563 +14,501 @@ export const SLIDES: SlideData[] = [
 
   {
     id: 1,
-    title: "Building Your AI Assistant",
-    subtitle: "GrabFood Case Study — Dari Dashboard ke Conversation",
+    title: "Simple Analytics with AI",
+    subtitle: "GrabFood Case Study — Dari Query ke Prediksi",
   },
 
-  // ── Section 2: Di Mana Kita Sekarang ─────────────────────────────────────────
+  // ── Section 2: Konteks & Agenda ───────────────────────────────────────────────
 
   {
     id: 2,
     title: "Di Mana Kita Sekarang",
-    subtitle: "Continuing GrabFood: Week 2 → 3 → 4 → 6",
+    subtitle: "Week 2 sampai sekarang — satu case study berlanjut",
     points: [
       {
-        label: "Week 2 — Define the Problem",
+        label: "Weeks 2–4 — Define → Diagnose → Visualize",
         items: [
-          "25% of peak-hour orders late",
-          "$630K/month in refunds & lost customers",
+          "Week 2: Identified problem — 25% late orders, $630K/month",
+          "Week 3: Root cause — prep time (41%), travel (31%)",
+          "Week 4: Visualized insights — dashboard + story deck",
         ],
       },
       {
-        label: "Week 3 — Root Cause",
+        label: "Week 6 — Build AI Assistant",
         items: [
-          "Prep time: 41% of delay",
-          "Travel time: 31% · Wait time: 14%",
+          "Built GPT assistant yang bisa jawab pertanyaan tentang data",
+          "System prompt + harness engineering",
+          "Test 10+ questions, validate every answer",
         ],
       },
       {
-        label: "Week 4 — Visualize",
+        label: "Week 7 — Simple Analytics + Predictions (TODAY)",
         items: [
-          "Dashboard + story deck for stakeholders",
-          "Pizza Corner slowest: 48 min prep, 65% late",
+          "Dari query (apa yang terjadi) → predict (apa yang AKAN terjadi)",
+          "Pattern discovery + risk scoring + what-if scenarios",
+          "Masih no coding — GPT + Excel only",
         ],
       },
     ],
-    bodyExtra: "Week 6 → Build an AI assistant that answers questions about the data — without Excel.",
+    bodyExtra: "Goal hari ini: predict which orders will be late BEFORE they happen.",
   },
-
-  // ── Section 3: What We're Building ───────────────────────────────────────────
 
   {
     id: 3,
-    title: "Apa yang Kita Bangun",
-    subtitle: "AI Assistant = GPT + Your Data + Custom Instructions",
-    body: [
-      "Nggak semua orang di tim bisa buka Excel atau bikin dashboard.",
-      "Tanpa assistant — manager mau tau restoran paling lambat:",
-      "  • Buka Excel → filter → group → hitung → sort → format → kirim",
-      "  • Takes 20 minutes, requires Excel skills",
-      "Dengan assistant — manager cukup ketik:",
-      '  "Which restaurants are slowest during dinner rush?"',
-      "  • Jawaban spesifik, data-backed, dalam detik",
-      "  • No Excel skills needed",
+    title: "Agenda Hari Ini",
+    subtitle: "120 menit — no coding required",
+    points: [
+      {
+        label: "Part 1 — 30 min: Key Concepts + Demo",
+        items: [
+          "Querying vs Predicting — apa bedanya?",
+          "4 tipe simple analytics",
+          "Live demo: GPT finds patterns → Excel formula",
+          "Cara validate AI predictions (CRITICAL)",
+        ],
+      },
+      {
+        label: "Part 2 — 30 min: Hands-On GrabFood",
+        items: [
+          "Pattern discovery di GrabFood dataset",
+          "Build risk score formula di Excel",
+          "What-if scenarios: mana intervensi terbaik?",
+          "Validate setiap result — no trust without verification",
+        ],
+      },
+      {
+        label: "Part 3 — 60 min: Capstone Work Session",
+        items: [
+          "Apply ke data capstone lo sendiri",
+          "Pattern → formula → what-if",
+          "Document insights untuk deliverable",
+        ],
+      },
     ],
   },
+
+  // ── Section 3: Konsep Kunci ───────────────────────────────────────────────────
 
   {
     id: 4,
-    title: "Yang Kita Nggak Lakuin",
-    subtitle: "Set Expectations Dulu",
+    title: "Querying vs Predicting",
+    subtitle: "Dua hal beda — dua tujuan beda",
     points: [
       {
-        label: "❌ Bukan ini",
+        label: "Week 6 — Query Data",
         items: [
-          "Build ML models from scratch",
-          "Write Python code for predictions",
-          "Train neural networks",
+          '"Which restaurants are slowest?"',
+          "Jawaban: lookup dari historical data",
+          "Use case: diagnosis, reporting, investigation",
+          "Timing: reaktif — setelah masalah terjadi",
         ],
       },
       {
-        label: "✓ Ini yang kita lakuin",
+        label: "Week 7 — Predict Outcomes",
         items: [
-          "✓ Write prompts that tell GPT what to do",
-          "✓ Upload data so GPT can read it",
-          "✓ Test questions and verify answers",
-          "✓ Refine prompts based on results",
+          '"Which orders WILL be late?"',
+          "Jawaban: pattern + formula → flag in advance",
+          "Use case: prevention, proactive intervention",
+          "Timing: proaktif — sebelum masalah terjadi",
         ],
       },
     ],
-    bodyExtra: "Tools: ChatGPT Plus · Custom GPTs · Claude.ai Projects (free tier works)",
+    bodyExtra: "Shift mindset: dari 'apa yang salah?' → 'apa yang akan salah?' — dan cegah sebelum terjadi.",
   },
-
-  // ── Section 4: 4 Komponen ─────────────────────────────────────────────────────
 
   {
     id: 5,
-    title: "4 Komponen AI Assistant",
-    subtitle: "Setiap assistant butuh keempat ini",
+    title: "Apa yang Kita Lakuin",
+    subtitle: "Set expectations — ini bukan ML class",
     points: [
       {
-        label: "① Persona — Who is the assistant?",
+        label: "✓ Yang kita lakuin",
         items: [
-          '"You are a GrabFood operations analyst"',
-          "Role · Expertise · Tone (professional, data-driven, concise)",
+          "✓ Pattern discovery — ask GPT to find patterns",
+          "✓ Trend forecasting — predict next period",
+          "✓ Risk scoring — flag high-risk items in Excel",
+          "✓ What-if scenarios — simulate interventions",
         ],
       },
       {
-        label: "② Tasks — What can it do?",
+        label: "❌ Yang kita nggak lakuin",
         items: [
-          "Calculate metrics (late rate, avg time)",
-          "Compare restaurants, zones, time periods",
-          "Analyze delay patterns · Recommend actions",
-        ],
-      },
-      {
-        label: "③ Knowledge Sources — What data?",
-        items: [
-          "Cleaned dataset from Week 3 (CSV)",
-          "Data dictionary · Week 2 problem context",
-        ],
-      },
-      {
-        label: "④ System Prompt — How to behave?",
-        items: [
-          "Always cite specific numbers from data",
-          "Show calculation steps",
-          "Flag uncertainty · Keep responses concise",
+          "Build ML models (no scikit-learn)",
+          "Write Python or R code",
+          "Train neural networks",
+          "Need weeks of data prep",
         ],
       },
     ],
+    bodyExtra: "Traditional ML = weeks of work. Simple AI Analytics = hours. Results: comparable for most business decisions.",
   },
-
-  // ── Section 5: Prompt Engineering ────────────────────────────────────────────
 
   {
     id: 6,
-    title: "Prompt Engineering Basics",
-    subtitle: "Specific, contextual, testable",
-    example: { type: "bad", label: '"What\'s the problem with deliveries?" — too vague' },
-    body: [
-      "❌ Vague: \"What's the problem with deliveries?\"",
-      "   Which deliveries? What aspect? What timeframe?",
-      "❌ Too broad: \"Tell me about restaurants\"",
-      "   Which ones? What about them?",
-      "✅ Better: \"What's the late order rate (>30 min) for South Jakarta",
-      "   during dinner (6–8pm)? Show your calculation.\"",
-      "✅ Better: \"Which 3 restaurants have highest avg prep time?",
-      "   Show: name, avg time, order count. Sort descending.\"",
+    title: "4 Tipe Simple Analytics",
+    subtitle: "Pakai GPT buat keempatnya — no coding",
+    points: [
+      {
+        label: "① Pattern Discovery",
+        items: [
+          "Temukan pola yang mungkin lo miss",
+          '"What patterns predict late deliveries?"',
+          "Output: thresholds + late rate % per pattern",
+        ],
+      },
+      {
+        label: "② Trend Forecasting",
+        items: [
+          "Prediksi performa ke depan dari historical data",
+          '"If this trend continues, what happens next month?"',
+          "Output: predicted rate + key driver",
+        ],
+      },
+      {
+        label: "③ Risk Scoring",
+        items: [
+          "Flag high-risk items sebelum mereka fail",
+          '"Create an Excel formula to score late risk"',
+          "Output: High/Medium/Low risk per row",
+        ],
+      },
+      {
+        label: "④ What-If Scenarios",
+        items: [
+          "Simulasi intervensi dan hitung impact-nya",
+          '"If prep time drops 10 min, how many orders saved?"',
+          "Output: orders saved + estimated cost savings",
+        ],
+      },
     ],
   },
 
+  // ── Section 4: Deep Dive Per Tipe ─────────────────────────────────────────────
+
   {
     id: 7,
-    title: "Template Prompt",
-    subtitle: "Pakai struktur ini setiap kali tanya ke assistant",
-    code: `Question:      [Clear, specific question]
-Data source:   [Which file/table]
-Timeframe:     [When — e.g. Feb 9–11, peak hours only]
-Metric:        [How to calculate — Late = >30 min past estimate]
-Output format: [Table, number, list, etc.]
+    title: "Type 1 — Pattern Discovery",
+    subtitle: "Temukan pola yang lo mungkin miss",
+    body: [
+      "Minta GPT untuk analyze dataset — bukan cuma ngambil angka.",
+      "GPT akan suggest thresholds dan correlations dari data lo.",
+      "Lo tinggal verify hasilnya di Excel.",
+    ],
+    code: `Prompt:
+"Find the top 3 patterns that predict late deliveries.
+For each pattern:
+  - Description and threshold (e.g., prep_time > 30)
+  - Late rate for orders matching this pattern
+  - Sample size (must be ≥ 30 orders)
+  - Confidence: High / Medium / Low"
 
-─────────────────────────────────────────────
-Example:
-
-Question:  What's the correlation between prep time and late deliveries?
-Source:    restaurant_prep.csv joined with orders.csv
-Timeframe: Feb 9–11, 2024, all peak hours
-Metric:    Late = >30 min past estimated delivery
-Output:    Correlation coefficient + plain-language explanation`,
+After GPT responds:
+→ Open Excel, filter rows matching the pattern
+→ Calculate actual late rate:
+     =COUNTIFS(range,criteria,is_late,"TRUE") / COUNTIF(range,criteria)
+→ Compare to GPT's number — should be within 5%`,
   },
 
   {
     id: 8,
-    title: "System Prompt — Full Template",
-    subtitle: "Copy-paste ini ke ChatGPT atau Claude",
-    code: `PERSONA:
-You are a GrabFood operations analyst specializing in delivery
-efficiency. Data-driven, professional, and concise.
+    title: "Type 2 — Trend Forecasting",
+    subtitle: "Prediksi apa yang akan terjadi",
+    body: [
+      "Gunakan historical patterns untuk estimasi performa ke depan.",
+      "Bukan model yang presisi — tapi cukup buat business decisions.",
+    ],
+    code: `Prompt:
+"Based on Feb 9–11 data, predict the late rate for
+Feb 12–14 if current patterns continue.
 
-YOUR DATA:
-9,200 delivery orders · Feb 9–11, 2024 · Peak hours only
-Fields: order_id, restaurant, zone, prep_time, delivery_time,
-        late_status, customer_rating
-Late = >30 min past estimated delivery
+Assumptions:
+  - Same restaurants, zones, driver count
+  - No operational changes made
 
-KEY CONTEXT:
-Late rate: 25% (2,300 of 9,200 orders)
-Main cause: prep time (avg 35 min late vs 18 min on-time)
-Business impact: $630K/month
+Give:
+  - Predicted late rate (%)
+  - Key driver of the trend
+  - Confidence level (High / Medium / Low)"
 
-TASKS:
-1. Calculate metrics (rates, averages, percentiles)
-2. Compare performance across restaurants and zones
-3. Identify delay patterns and bottlenecks
-4. Recommend operational improvements
-
-HOW TO RESPOND:
-- Cite specific numbers ("2,300 of 9,200 = 25%")
-- Show calculation steps
-- Keep responses under 3 paragraphs
-- If data is insufficient, say so clearly`,
+Use the output to:
+  → Create urgency with leadership (show the forecast)
+  → Set improvement targets (need to reverse the trend)
+  → Track progress after interventions`,
   },
-
-  // ── Section 6: Steps ──────────────────────────────────────────────────────────
 
   {
     id: 9,
-    title: "Harness Engineering",
-    subtitle: "Paksa assistant berpikir sebelum jawab",
+    title: "Type 3 — Risk Scoring",
+    subtitle: "Flag high-risk orders sebelum terlambat",
     body: [
-      "Standard prompt → assistant langsung jawab, bisa salah arah.",
-      "Harness → 3 fase internal yang berjalan sebelum jawaban dikirim:",
+      "Buat formula sederhana di Excel untuk label setiap order.",
+      "Tempel hasilnya ke dashboard Week 4 sebagai layer baru.",
     ],
-    points: [
-      {
-        label: "① OBSERVE — Kumpulkan konteks dulu",
-        items: [
-          "Apa yang user tanyakan? Metric, comparison, atau recommendation?",
-          "Field dan filter mana yang relevan?",
-          "Ada yang ambigu atau kurang jelas?",
-          "Apakah butuh data dari lebih dari satu kolom?",
-        ],
-      },
-      {
-        label: "② EVALUATE — Pertimbangkan pendekatan",
-        items: [
-          "Metode kalkulasi mana yang paling tepat?",
-          "Ada confounding factor? (volume, jam peak, zona)",
-          "Apakah satu angka cukup, atau butuh perbandingan?",
-          "Apa unit dan format output yang paling tepat?",
-        ],
-      },
-      {
-        label: "③ VALIDATE — Cek output sebelum deliver",
-        items: [
-          "Jawaban ini benar-benar menjawab pertanyaannya?",
-          "Angka sudah dikutip dengan benar dari data?",
-          "Kalau tidak yakin, flag eksplisit — jangan tebak",
-          "Response sesuai panjang dan format yang diminta?",
-        ],
-      },
-    ],
-    bodyExtra: "Tambahkan 3 fase ini ke system prompt di antara TASKS dan HOW TO RESPOND.",
+    code: `Prompt:
+"Create a risk scoring formula for Excel.
+
+Available columns: prep_time, distance_km, hour, zone
+Output: 'High Risk' or 'Low Risk' per order row
+
+Give me the exact Excel IF formula I can paste."
+
+Example output from GPT:
+=IF(OR(B2>30, C2>8,
+   AND(D2>=18, E2="South Jakarta")),
+   "High Risk", "Low Risk")
+
+Accuracy on data: ~75%
+
+Verify:
+  High Risk rows → late rate should be > 70%
+  Low Risk rows  → late rate should be < 25%`,
   },
 
   {
     id: 10,
-    title: "System Prompt + Harness",
-    subtitle: "Template lengkap — paste ini ke ChatGPT atau Claude",
-    code: `PERSONA:
-You are a GrabFood operations analyst specializing in delivery
-efficiency. Data-driven, professional, and concise.
+    title: "Type 4 — What-If Scenarios",
+    subtitle: "Simulasi intervensi dan bandingkan ROI-nya",
+    body: [
+      "Bandingkan 3 skenario: mana yang paling worth it untuk dieksekusi?",
+      "GPT menghitung impact — lo verify logika dan angkanya.",
+    ],
+    code: `Prompt:
+"If we reduce prep time by 10 minutes for all restaurants,
+how many of the 2,300 late orders would be prevented?
 
-YOUR DATA:
-9,200 orders · Feb 9–11, 2024 · Peak hours only
-Fields: order_id, restaurant, zone, prep_time, delivery_time,
-        late_status, customer_rating
-Late = >30 min past estimated delivery
+Show:
+  - Number of orders that become on-time
+  - New overall late rate (baseline: 25%)
+  - Estimated monthly savings ($630K baseline)"
 
-TASKS:
-1. Calculate metrics (rates, averages, percentiles)
-2. Compare restaurants, zones, time periods
-3. Identify delay patterns and bottlenecks
-4. Recommend operational improvements
+Test 3 scenarios and compare:
+  A. Reduce prep time by 10 min across all restaurants
+  B. Add 20% more drivers during dinner rush (6–8pm)
+  C. Remove 2 worst-performing restaurants from peak hours
 
-INTERNAL REASONING (before every response):
-① OBSERVE  — What is asked? Which fields/filters apply?
-② EVALUATE — Best calc method? Any confounders?
-③ VALIDATE — Does this answer the question? Numbers correct?
-
-HOW TO RESPOND:
-- Cite specific numbers ("2,300 of 9,200 = 25%")
-- Show calculation steps
-- Keep responses under 3 paragraphs
-- If uncertain, flag explicitly — never guess`,
+→ Pick the scenario with highest ROI`,
   },
+
+  // ── Section 5: GrabFood End-to-End ───────────────────────────────────────────
 
   {
     id: 11,
-    title: "Step 1 — Siapkan Data",
-    subtitle: "5 menit sebelum buka ChatGPT",
-    points: [
-      {
-        label: "File 1: orders_cleaned.csv",
-        items: [
-          "Dataset hasil cleaning dari Week 3",
-          "File utama yang akan dibaca assistant",
-          "Pastikan sudah cleaned — bukan raw data",
-        ],
-      },
-      {
-        label: "File 2: summary.txt",
-        items: [
-          "Context singkat: date range, key metrics, Week 2 findings",
-          '"9,200 orders · Feb 9–11 · 25% late · Avg prep 28 min"',
-          "Copy-paste dari problem statement Week 2",
-        ],
-      },
+    title: "GrabFood: End-to-End",
+    subtitle: "Dari prompt ke Excel formula — 3 langkah",
+    body: [
+      "① Ask GPT:",
+      '  "Which factors predict late orders? Give me Excel thresholds."',
+      "② GPT responds:",
+      '  "Late if: prep_time > 30 OR distance > 8 km — accuracy ~75%"',
+      "③ Paste ke Excel dan validate:",
     ],
-    bodyExtra: "Jangan skip — GPT nggak punya data lo kalau file belum di-upload.",
+    code: `=IF(OR(B2>30, C2>8), "High Risk", "Low Risk")
+
+Validate (wajib dilakukan):
+  Filter High Risk → count is_late=TRUE → target ≥ 70%
+  Filter Low Risk  → count is_late=TRUE → target ≤ 25%
+
+If accuracy < 60%:
+  → Ask GPT to recalculate with different thresholds
+  → Test 2–3 iterations until it's reliable`,
+    bodyExtra: "No coding. Prompting + Excel. Workflow yang sama berlaku buat capstone data lo.",
   },
+
+  // ── Section 6: Validation ─────────────────────────────────────────────────────
 
   {
     id: 12,
-    title: "Step 2 & 3 — Build the Assistant",
-    subtitle: "3 opsi tool, pilih yang lo punya akses",
+    title: "Validation — 4 Langkah Wajib",
+    subtitle: "Never trust AI predictions without verification",
     points: [
       {
-        label: "Option A — ChatGPT Plus",
+        label: "① Ask GPT to explain logic",
         items: [
-          "New chat → upload CSV via paperclip",
-          "Paste system prompt → send",
-          '"Acknowledge by summarizing the dataset"',
+          '"Give predictions AND explain the formula you used"',
+          "Kalau GPT nggak bisa explain → don't trust the output",
+          "Good answer includes thresholds + sample sizes",
         ],
       },
       {
-        label: "Option B — Custom GPTs",
+        label: "② Test on known data",
         items: [
-          "Explore GPTs → Create",
-          "Instructions = system prompt",
-          "Knowledge = CSV upload → Save",
+          "Verify in Excel: filter → count → calculate %",
+          "Compare to GPT's number — within 5% = trustworthy",
+          "Off by >10% → re-prompt or check your data",
         ],
       },
       {
-        label: "Option C — Claude Projects (free)",
+        label: "③ Check for AI mistakes",
         items: [
-          "Create Project → upload files",
-          "Custom instructions = system prompt",
-          "Free tier works",
+          "Hallucinated counts — numbers not in your data",
+          "Wrong calculations — verify the math manually",
+          "Impossible results — negative rate, >100% accuracy",
+        ],
+      },
+      {
+        label: "④ Sense-check with domain",
+        items: [
+          '"More prep time = better on-time rate" → WRONG',
+          "Kalau GPT bilang hal yang nggak logis — challenge it",
+          "Your domain knowledge > GPT's statistics",
         ],
       },
     ],
-    bodyExtra: 'Verify: tanya "What dataset do you have?" — kalau jawab bener, lanjut testing.',
+    bodyExtra: "Minimum: manually verify 3 predictions before using any result in your deliverable.",
   },
 
   {
     id: 13,
-    title: "Step 4 — Test 10 Questions",
-    subtitle: "Cover 4 tipe: metrics, comparisons, patterns, recommendations",
+    title: "4 Kesalahan AI yang Sering Muncul",
+    subtitle: "Kenali, cek, dan challenge GPT",
     points: [
       {
-        label: "Set 1 — Basic Metrics",
+        label: "Hallucinated Numbers",
         items: [
-          "What's the overall late order rate?",
-          "Avg delivery time: late vs on-time orders?",
-          "How many restaurants in the dataset?",
+          '"There are 15 restaurants" — lo cuma punya 8',
+          "Fix: count di Excel, lalu kasih tau GPT angka yang benar",
         ],
       },
       {
-        label: "Set 2 — Comparisons",
+        label: "Wrong Math",
         items: [
-          "Which 3 restaurants have worst late rate?",
-          "Compare late rates: lunch (12–2pm) vs dinner (6–8pm)",
-          "Which zone has best performance?",
+          '"25% of 10,000 = 2,000" — harusnya 2,500',
+          "Fix: hitung manual, koreksi GPT, minta recalculate",
         ],
       },
       {
-        label: "Set 3 — Patterns",
+        label: "Impossible Results",
         items: [
-          "Correlation between prep time and late deliveries?",
-          "Avg prep, travel, wait time for late orders?",
+          '"Late rate will drop to -5%"',
+          "Fix: flag as error, ask GPT to reconsider constraints",
         ],
       },
       {
-        label: "Set 4 — Recommendations",
+        label: "Circular Logic",
         items: [
-          "If prep drops 10 min, how many orders saved?",
-          "Fix slow restaurants or improve routing — which first?",
+          '"Late orders are late because they are delayed"',
+          "Fix: rephrase — ask for root cause, not description",
         ],
       },
     ],
+    bodyExtra: "Rule: kalau ada yang aneh dari GPT — screenshot, note it, crosscheck di Excel. Jangan abaikan.",
   },
-
-  // ── Section 7: Iteration ──────────────────────────────────────────────────────
 
   {
     id: 14,
-    title: "Per Question — Cek 3 Hal",
-    subtitle: "Kalau ada yang fail → revise prompt → re-test → log",
+    title: "The 3-Step Workflow",
+    subtitle: "Repeat ini untuk setiap analytic yang lo buat",
     body: [
-      "Untuk setiap pertanyaan yang lo test:",
-      "✓ Directly answers what was asked? (bukan summary samar-samar)",
-      "✓ Calculations shown? (\"2,300 ÷ 9,200 = 25%\" bukan cuma \"25%\")",
-      "✓ Verified against Excel? (spot-check minimal 3 jawaban secara manual)",
+      "Berlaku untuk semua 4 tipe analytics:",
       "",
-      "Kalau nggak lolos:",
-      "  • Tambah instruksi spesifik di system prompt",
-      "  • Coba rephrase pertanyaannya",
-      "  • Log apa yang diubah dan kenapa",
+      "1. Ask GPT for the analysis or formula",
+      "  Specify: columns available, output format, min sample size",
+      "2. GPT gives you the pattern or Excel formula",
+      "  Save the exact response — jangan paraphrase",
+      "3. YOU verify it in Excel",
+      "  Filter → count → calculate % → compare to GPT",
     ],
-    bodyExtra: "Minimum 2 iterasi prompt sebelum submit.",
+    bodyExtra: "GPT adalah fast analyst. YOU adalah decision-maker. Jangan sampai kebalik.",
   },
+
+  // ── Section 7: Capstone ───────────────────────────────────────────────────────
 
   {
     id: 15,
-    title: "Common Pitfalls",
-    subtitle: "Yang paling sering bikin stuck",
-    points: [
-      {
-        label: "Lupa upload file",
-        items: [
-          "GPT nggak punya data lo sampai lo attach",
-          "Ini penyebab #1 jawaban yang salah",
-        ],
-      },
-      {
-        label: "Prompt terlalu vague",
-        items: [
-          '"Analyze data" → GPT bingung mau ngapain',
-          "Harus ada: role, data description, task list",
-        ],
-      },
-      {
-        label: "Nggak verify jawaban",
-        items: [
-          "GPT bisa confident tapi salah",
-          "Always open Excel and spot-check",
-        ],
-      },
-      {
-        label: "Cuma test 2–3 pertanyaan",
-        items: [
-          "Butuh diversity: metrics, comparisons, patterns, rekomendasi",
-          "Minimum 10 untuk rubrik full score",
-        ],
-      },
-    ],
-  },
-
-  // ── Section 8: Capstone ───────────────────────────────────────────────────────
-
-  {
-    id: 16,
     title: "Capstone Work Session",
     subtitle: "Apply ke data capstone lo sendiri — 60 menit",
     points: [
       {
-        label: "0–15 min — Design Persona & Prompt",
+        label: "0–15 min — Pattern Discovery",
         items: [
-          "Persona spesifik ke problem lo, bukan generic",
-          "List knowledge sources (cleaned dataset lo)",
-          "Tulis system prompt pakai template tadi",
+          "Pakai Week 6 AI assistant di capstone data lo",
+          "Prompt: top 5 patterns related to Week 2 problem",
+          "Verify setiap pattern di Excel sebelum lanjut",
         ],
       },
       {
-        label: "15–35 min — Build & Test",
+        label: "15–35 min — Prediction Formula",
         items: [
-          "Upload dataset, paste prompt, verify initial response",
-          "Test 10+ questions: metrics, comparisons, patterns, rekomendasi",
-          "Verify setiap jawaban terhadap data aslinya",
+          "Ask GPT: create Excel formula for risk scoring",
+          "Implement sebagai new column di Excel",
+          "Validate: high-risk rows harus punya higher problem rate",
+          "Target accuracy: >60%",
         ],
       },
       {
-        label: "35–50 min — Iterate & Refine",
+        label: "35–50 min — What-If Scenarios",
         items: [
-          "Revise prompt berdasarkan jawaban yang wrong/vague",
-          "Minimum 2 iterasi — log setiap perubahan",
+          "Simulasi 3 intervensi (A, B, C)",
+          "Hitung ROI setiap scenario",
+          "Pilih scenario dengan impact terbesar",
         ],
       },
       {
-        label: "50–60 min — Document & Demo Prep",
+        label: "50–60 min — Document Insights",
         items: [
-          "Finalize system prompt (copy-paste ready)",
-          "Q&A log: 10+ pairs + verification notes",
-          "2-min demo video atau screenshots 3+ interactions",
+          "Top 3 patterns + prediction formula (dengan accuracy %)",
+          "Best what-if scenario + expected impact",
+          "1–2 new slides ditambahkan ke story deck Week 4",
         ],
       },
     ],
   },
+
+  {
+    id: 16,
+    title: "Deliverables",
+    subtitle: "Submit sebelum deadline — 3 file",
+    points: [
+      {
+        label: "① Analytics Summary Doc",
+        items: [
+          "Top 3–5 patterns + accuracy % masing-masing",
+          "Prediction formula + validation evidence (Excel screenshots)",
+          "What-if scenario results + best recommendation",
+          "Format: PDF, 2–3 halaman",
+        ],
+      },
+      {
+        label: "② Updated Excel File",
+        items: [
+          "New column: risk scores / predictions per row",
+          "Validation pivot table: risk category × actual outcome",
+          "What-if calculations for all 3 scenarios",
+        ],
+      },
+      {
+        label: "③ Updated Story Deck",
+        items: [
+          "1–2 new slides: predictions + what-if results",
+          "Extend deck dari Week 4 — jangan replace",
+          "Stakeholder-ready: angka konkret, bukan generik",
+        ],
+      },
+    ],
+  },
+
+  // ── Section 8: Preview & Close ────────────────────────────────────────────────
 
   {
     id: 17,
-    title: "Checkpoint Rubrik — 100 Poin",
-    subtitle: "Week 6 fokus di AA, AS, dan TM",
-    points: [
-      {
-        label: "AI Literacy — 25 pts ← FOKUS",
-        items: [
-          "✓ 3+ AI use cases dari lecture",
-          "✓ BI vs GenAI dibedakan dengan benar",
-          "✓ 3–5 pertanyaan analisis terdefinisi",
-          "✓ Output AI tool terdokumentasi",
-          "✓ Limitations & adjustment dicatat",
-        ],
-      },
-      {
-        label: "Business Interpretation — 25 pts",
-        items: [
-          "✓ Top 3–5 findings diprioritaskan",
-          "✓ Findings → concrete actions",
-          "✓ Risks highlighted · EDA Week 3 extended",
-        ],
-      },
-      {
-        label: "Assistant Design — 25 pts ← FOKUS",
-        items: [
-          "✓ Persona & tasks clearly defined",
-          "✓ System prompt documented",
-          "✓ 10+ test questions prepared",
-          "✓ Prompt iterations logged",
-        ],
-      },
-      {
-        label: "Testing & UX — 25 pts ← FOKUS",
-        items: [
-          "✓ Responses concise & on-topic",
-          "✓ Tested with outside user",
-          "✓ 2+ iterations from feedback",
-          "✓ Stable for demo",
-        ],
-      },
+    title: "Week 8 Preview",
+    subtitle: "Automation with n8n — Still No Code",
+    body: [
+      "Minggu depan: automate workflow yang sudah kita build.",
+      "  • Connect Excel → GPT → email stakeholders otomatis",
+      "  • Build alerts: high-risk orders detected → trigger notification",
+      "  • Schedule: weekly summary dikirim tiap Senin pagi",
+      "Tool: n8n — visual workflow builder.",
+      "  • Drag & drop nodes, no coding",
+      "  • Integrate dengan GPT, Gmail, Sheets, Slack",
+      "  • Trigger on schedule atau event",
     ],
+    bodyExtra: "Same no-code approach. Bigger automation. See you next week.",
   },
-
-  // ── Section 9: Deliverable ────────────────────────────────────────────────────
 
   {
     id: 18,
-    title: "Deliverable",
-    subtitle: "Submit sebelum deadline",
-    points: [
-      {
-        label: "① Final System Prompt",
-        items: [
-          "Copy-paste ready — langsung bisa dipakai",
-          "Spesifik ke problem & data capstone lo",
-          "Bukan template generic dari internet",
-        ],
-      },
-      {
-        label: "② Q&A Log (10+ pairs)",
-        items: [
-          "Question · Answer · Verified? · Iteration notes",
-          "Cover: metrics, comparisons, patterns, recommendations",
-          "Log perubahan prompt: apa yang diubah, kenapa",
-        ],
-      },
-      {
-        label: "③ Demo Video / Screenshots",
-        items: [
-          "2-min screen recording atau min. 3 screenshots",
-          "Show: system prompt, 2 live questions, 1 limitation",
-          "Harus jelas assistant-nya stable dan siap dipakai stakeholder",
-        ],
-      },
-    ],
-  },
-
-  // ── Section 10: Preview & Close ───────────────────────────────────────────────
-
-  {
-    id: 19,
-    title: "Week 7 Preview",
-    subtitle: "Simple Analytics with GPT — Still No Code",
-    body: [
-      "Minggu depan kita pakai GPT buat analytics lebih dalam:",
-      "  • Ask GPT to find patterns in your data",
-      "  • Generate simple trend forecasts",
-      "  • Create text summaries and insight reports",
-      "GrabFood angle:",
-      "  • Predict which orders are likely to be late",
-      "  • Based on patterns yang kita temukan minggu ini",
-    ],
-    bodyExtra: "Same tools, smarter questions. No new setup required.",
-  },
-
-  {
-    id: 20,
-    title: "Let's Build",
-    subtitle: "Data lo udah siap. Prompt template udah ada. Tinggal mulai.",
+    title: "Let's Predict",
+    subtitle: "Data lo udah ada. Pattern-nya udah ada. Tinggal validate.",
   },
 ];
