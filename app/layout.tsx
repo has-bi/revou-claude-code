@@ -10,8 +10,8 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Week 7: Simple Analytics with AI",
-  description: "GrabFood Case Study — Pattern Discovery, Risk Scoring & Predictions",
+  title: "Sistem Bikin Materi Ngajar — Belajar Bekerja",
+  description: "Dari brief sampai slides jadi, beberapa menit. NotebookLM → Claude Code Space → Review via HP.",
 };
 
 export default function RootLayout({
