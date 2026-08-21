@@ -1,5 +1,13 @@
+export type SlideLayout = "hero" | "split" | "wide";
+export type SlideAccent = "brain" | "rocket";
+
 export interface SlideData {
+  /** Display number. Also the React key — keep unique. */
   id: number;
+  /** Explicit layout choice. No id-based magic routing. */
+  layout: SlideLayout;
+  /** Optional icon for hero slides. */
+  accent?: SlideAccent;
   title: string;
   subtitle?: string;
   body?: string[];
@@ -12,12 +20,15 @@ export interface SlideData {
 export const SLIDES: SlideData[] = [
   {
     id: 1,
+    layout: "hero",
+    accent: "brain",
     title: "Sistem Gue Bikin Materi Ngajar",
     subtitle: "Dari brief sampai slides — beberapa menit.",
   },
 
   {
     id: 2,
+    layout: "split",
     title: "Masalahnya",
     subtitle: "Kenapa tiap sesi terasa berat",
     body: [
@@ -30,6 +41,7 @@ export const SLIDES: SlideData[] = [
 
   {
     id: 3,
+    layout: "split",
     title: "The System",
     body: [
       "Brief / Syllabus",
@@ -47,6 +59,7 @@ export const SLIDES: SlideData[] = [
 
   {
     id: 4,
+    layout: "split",
     title: "NotebookLM",
     subtitle: "Knowledge distillation",
     body: [
@@ -60,6 +73,7 @@ export const SLIDES: SlideData[] = [
 
   {
     id: 5,
+    layout: "split",
     title: "Claude Code Space",
     subtitle: "Style lo tersimpan permanen",
     body: [
@@ -72,6 +86,7 @@ export const SLIDES: SlideData[] = [
 
   {
     id: 6,
+    layout: "split",
     title: "Slides ≠ Dokumen",
     body: [
       "Slides adalah pointer — penunjuk arah",
@@ -83,6 +98,7 @@ export const SLIDES: SlideData[] = [
 
   {
     id: 7,
+    layout: "split",
     title: "Review via HP",
     subtitle: "Sistem yang bisa ditinggal",
     body: [
@@ -95,6 +111,7 @@ export const SLIDES: SlideData[] = [
 
   {
     id: 8,
+    layout: "wide",
     title: "4 Prinsip",
     points: [
       {
@@ -118,6 +135,8 @@ export const SLIDES: SlideData[] = [
 
   {
     id: 9,
+    layout: "hero",
+    accent: "rocket",
     title: "Worth Dicoba.",
     subtitle: "Kalau lo ngajar atau sering bikin presentasi.",
   },
