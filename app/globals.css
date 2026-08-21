@@ -1,8 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@theme {
+  --font-sans: var(--font-plus-jakarta-sans), sans-serif;
+
+  /*
+    Deck type scale — fixed px, authored against the 1920×1080 stage.
+    The stage scales the whole slide with a transform, so these never
+    need clamp()/vw: every size holds its exact proportion on a
+    projector, a laptop, and a phone alike.
+  */
+  --text-deck-hero: 104px;
+  --text-deck-hero-sub: 34px;
+  --text-deck-title: 58px;
+  --text-deck-title-wide: 52px;
+  --text-deck-sub: 27px;
+  --text-deck-body: 25px;
+  --text-deck-code: 19px;
+  --text-deck-callout: 23px;
+  --text-deck-card-label: 18px;
+  --text-deck-card-item: 21px;
+  --text-deck-mono: 17px;
+}
 
 :root {
   color-scheme: light;
@@ -16,20 +34,28 @@
 
 html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
   background-color: #ffffff;
   color: #1a1a1a;
-  font-family: var(--font-plus-jakarta-sans), 'Plus Jakarta Sans', sans-serif;
 }
 
 /* Prevent accidental drag-selection on slide chrome */
 body {
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Re-enable selection on readable content so users can copy text */
-p, li, pre, code, h1, h2, h3, span {
+p,
+li,
+pre,
+code,
+h1,
+h2,
+h3,
+span {
   user-select: text;
 }
 
@@ -40,4 +66,10 @@ p, li, pre, code, h1, h2, h3, span {
 }
 .scrollbar-none::-webkit-scrollbar {
   display: none;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
 }
